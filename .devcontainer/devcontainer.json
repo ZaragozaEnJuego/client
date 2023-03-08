@@ -11,7 +11,8 @@
         "vscode": {
             "extensions": ["esbenp.prettier-vscode",
             "dsznajder.es7-react-js-snippets",
-            "formulahendry.terminal"]}
+            "formulahendry.terminal",
+            "bradlc.vscode-tailwindcss"]}
     },
     "remoteUser": "vscode"
    
