@@ -1,0 +1,18 @@
+{ 
+    "name": "node-template", 
+   
+    "dockerFile": "Dockerfile",
+    
+    "mounts": [
+        "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    ],
+    
+    "customizations":{
+        "vscode": {
+            "extensions": ["esbenp.prettier-vscode",
+            "dsznajder.es7-react-js-snippets",
+            "formulahendry.terminal"]}
+    },
+    "remoteUser": "vscode"
+   
+} 
