@@ -1,8 +1,8 @@
 FROM ubuntu:latest
 ARG HOME_DIR
 
-RUN apt update
-RUN apt upgrade
+RUN apt update -y
+RUN apt upgrade -y
 #RUN unminimize -y
 
 RUN apt install zsh  git sudo man    -y
