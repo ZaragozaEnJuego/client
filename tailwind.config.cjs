@@ -22,7 +22,7 @@ module.exports = {
 
       primary: '#2E3440',
       secondary: '#D8DEE9',
-      hover: '#8FBCBB',
+      hover: '#eceff4',
       'nord-bg': '#eceff4',
       'nord-red': '#A3BE8C',
       'nord-orange': '#A3BE8C',
