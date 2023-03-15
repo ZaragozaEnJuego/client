@@ -61,7 +61,7 @@ const MobileHeader = () => {
   return (
     <div className='flex items-center w-full justify-between px-10 py-4'>
       <button onClick={toggleDrawer}>
-        <MenuIcon className='h-14 w-14 fill-primary' />
+        <MenuIcon className='h-10 w-10 fill-primary' />
       </button>
       <Drawer open={isOpen} onClose={toggleDrawer} direction='left' size={window.innerWidth * 0.8}>
         <MobileSideBarContent />
@@ -83,7 +83,7 @@ const DesktopSideBarContent = () => {
               key={idx}
               className={
                 (path === opt.route ? 'fill-primary ' : ' fill-secondary  hover:fill-hover ') +
-                ' h-12 w-12 mb-12 '
+                ' h-8 w-8 mb-12 '
               }
             >
               <Link to={opt.route}>{opt.icon}</Link>
@@ -193,6 +193,8 @@ const MainLayout: FC<Props> = ({ children, title = 'ZarahozaEnJuego' }) => {
           <div className='fixed w-full'>
             <MobileHeader />
           </div>
+          {/**Page */}
+          <div className=' h-full w-full pt-24'>{children}</div>
         </div>
       )}
     </>
