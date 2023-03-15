@@ -30,25 +30,37 @@ const SideBarContent = () => {
 
   return (
     <>
-      <div className='w-full   '>
+      <div className='w-full h-full py-20  flex flex-col justify-between  items-center '>
         {/*  menu */}
-        {menuOptions.map((opt, idx) => {
-          return (
-            <div key={idx} className={'text-paragraph'}>
-              <button
-                onClick={() => {
-                  console.log(opt.route + ' clicked');
-                }}
+        <div className=''>
+          {menuOptions.map((opt, idx) => {
+            return (
+              <div
+                key={idx}
                 className={
-                  (path === opt.route ? 'fill-primary' : ' fill-secondary ') +
-                  ' my-2  h-full py-2 rounded-lg'
+                  (path === opt.route ? 'fill-primary' : ' fill-secondary  hover:fill-hover  ') +
+                  'h-12 w-12 mb-12 '
                 }
               >
-                <div className='h-10 w-10'>{opt.icon}</div>
-              </button>
-            </div>
-          );
-        })}
+                {opt.icon}
+              </div>
+            );
+          })}
+        </div>
+
+        {/** profile button */}
+
+        <button
+          className='h-20 w-20 rounded-full  '
+          onClick={() => {
+            console.log('Cerrar sesión');
+          }}
+        >
+          <img
+            className='w-full h-full object-cover rounded-full'
+            src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'
+          />
+        </button>
       </div>
     </>
   );
@@ -58,7 +70,7 @@ export const MainLayout: FC<Props> = ({ children, title = 'Nmail' }) => {
   return (
     <>
       {/*Navbar */}
-      <div className='fixed h-screen bg-background '>
+      <div className='fixed h-screen w-24 ml-8 bg-background '>
         <SideBarContent />
 
         {/* header*/}
