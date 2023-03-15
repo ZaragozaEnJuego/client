@@ -4,6 +4,7 @@ import { ReactComponent as AdrressBookIcon } from '/src/assets/address-book-regu
 import { ReactComponent as BuildingIcon } from '/src/assets/building-regular.svg';
 import { ReactComponent as InfoIcon } from '/src/assets/circle-question-regular.svg';
 import { ReactComponent as Logo } from '/src/assets/tree-city-solid.svg';
+import { Link } from 'react-router-dom';
 import { ReactComponent as MenuIcon } from '/src/assets/bars-solid.svg';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
@@ -41,8 +42,6 @@ const menuOptions: menuOption[] = [
   },
 ];
 
-const path = location.pathname;
-
 const DesktopHeader = () => {
   return (
     <div className='flex p-8 justify-between pl-32 '>
@@ -72,6 +71,7 @@ const MobileHeader = () => {
 };
 
 const DesktopSideBarContent = () => {
+  const path = location.pathname;
   return (
     <div className='h-full flex flex-col justify-between  items-center '>
       {/*  menu */}
@@ -81,11 +81,11 @@ const DesktopSideBarContent = () => {
             <div
               key={idx}
               className={
-                (path === opt.route ? 'fill-primary' : ' fill-secondary  hover:fill-hover  ') +
-                'h-12 w-12 mb-12 '
+                (path === opt.route ? 'fill-primary ' : ' fill-secondary  hover:fill-hover ') +
+                ' h-12 w-12 mb-12 '
               }
             >
-              {opt.icon}
+              <Link to={opt.route}>{opt.icon}</Link>
             </div>
           );
         })}
@@ -109,6 +109,7 @@ const DesktopSideBarContent = () => {
 };
 
 const MobileSideBarContent = () => {
+  const path = location.pathname;
   return (
     <div className='flex flex-col justify-between h-full  py-10 '>
       {/*  menu */}
@@ -122,7 +123,7 @@ const MobileSideBarContent = () => {
                 'text-4xl my-4 font-bold'
               }
             >
-              {opt.name}
+              <Link to={opt.route}>{opt.name}</Link>
             </div>
           );
         })}
@@ -146,7 +147,7 @@ const MobileSideBarContent = () => {
   );
 };
 
-export const MainLayout: FC<Props> = ({ children, title = 'ZarahozaEnJuego' }) => {
+const MainLayout: FC<Props> = ({ children, title = 'ZarahozaEnJuego' }) => {
   //a md window have 768 pixels
   const md = 768;
 
@@ -217,3 +218,5 @@ export const MainLayout: FC<Props> = ({ children, title = 'ZarahozaEnJuego' }) =
     </>
   );
 };
+
+export { MainLayout };
