@@ -2,6 +2,7 @@ import React, { FC, PropsWithChildren } from 'react';
 import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 
 import { HomePage, LoginPage, ProfilePage, NegotiationPage, AboutPage } from './ui/pages';
+import { UseAuth } from './ui/hooks/auth/AuthContext';
 
 const publicRoutes: RouteObject[] = [
   {
@@ -31,9 +32,8 @@ const protectedRoutes: RouteObject[] = [
 ];
 
 const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
-  //TODO:
-  //  const { privateKey, publicKey } = useProfile();
-  if (false) {
+  const { isLogged } = UseAuth();
+  if (!isLogged) {
     return <Navigate to='/login' replace />;
   }
 

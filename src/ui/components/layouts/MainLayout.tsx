@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as MenuIcon } from '/src/assets/bars-solid.svg';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
+import { ProfileButton } from '../ui';
 
 type Props = PropsWithChildren & {
   title?: string;
@@ -92,18 +93,7 @@ const DesktopSideBarContent = () => {
       </div>
 
       {/** profile button */}
-
-      <button
-        className='h-20 w-20 rounded-full  hover:opacity-80 '
-        onClick={() => {
-          console.log('Cerrar sesión');
-        }}
-      >
-        <img
-          className='w-full h-full object-cover rounded-full '
-          src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'
-        />
-      </button>
+      <ProfileButton />
     </div>
   );
 };
@@ -131,17 +121,7 @@ const MobileSideBarContent = () => {
 
       {/** profile button */}
       <div className='w-full flex  justify-center  '>
-        <button
-          className='h-20 w-20 rounded-full  hover:opacity-80 '
-          onClick={() => {
-            console.log('Cerrar sesión');
-          }}
-        >
-          <img
-            className='w-full h-full object-cover rounded-full '
-            src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'
-          />
-        </button>
+        <ProfileButton />
       </div>
     </div>
   );
