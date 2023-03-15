@@ -1,49 +1,77 @@
-import { FC, PropsWithChildren, useEffect } from 'react';
+import { FC, PropsWithChildren, ReactElement, useEffect, useState } from 'react';
 import { ReactComponent as UserIcon } from '/src/assets/user-regular.svg';
 import { ReactComponent as AdrressBookIcon } from '/src/assets/address-book-regular.svg';
 import { ReactComponent as BuildingIcon } from '/src/assets/building-regular.svg';
 import { ReactComponent as InfoIcon } from '/src/assets/circle-question-regular.svg';
 import { ReactComponent as Logo } from '/src/assets/tree-city-solid.svg';
+import { ReactComponent as MenuIcon } from '/src/assets/bars-solid.svg';
+import Drawer from 'react-modern-drawer';
+import 'react-modern-drawer/dist/index.css';
 
 type Props = PropsWithChildren & {
   title?: string;
 };
 
 interface menuOption {
-  icon: any;
+  icon: ReactElement;
   route: string;
+  name: string;
 }
 
 const menuOptions: menuOption[] = [
   {
     icon: <BuildingIcon />,
     route: '/',
+    name: 'Home',
   },
   {
     icon: <UserIcon />,
     route: '/profile',
+    name: 'Portfolio',
   },
   {
     icon: <AdrressBookIcon />,
     route: '/negotiation',
+    name: 'Negociaciones',
   },
   {
     icon: <InfoIcon />,
     route: '/about',
+    name: 'Acerca de',
   },
 ];
 
-const Header = () => {
+const path = location.pathname;
+
+const DesktopHeader = () => {
   return (
-    <div className='flex p-8 items-end pl-32 '>
+    <div className='flex p-8 justify-between pl-32 '>
       <Logo className='h-20 w-20 fill-primary mx-4 ' />
-      <h1 className='text-6xl font-bold text-primary'>Zaragoza en juego</h1>
+      <h1 className='text-5xl font-bold text-primary'>Zaragoza en juego</h1>
     </div>
   );
 };
-const SideBarContent = () => {
-  const path = location.pathname;
 
+const MobileHeader = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  return (
+    <div className='flex items-center w-full justify-between px-10 py-4'>
+      <button onClick={toggleDrawer}>
+        <MenuIcon className='h-14 w-14 fill-primary' />
+      </button>
+      <Drawer open={isOpen} onClose={toggleDrawer} direction='left' size={window.innerWidth * 0.8}>
+        <MobileSideBarContent />
+      </Drawer>
+      <h1 className='text-3xl font-bold text-primary '>Zaragoza en juego</h1>
+    </div>
+  );
+};
+
+const DesktopSideBarContent = () => {
   return (
     <div className='h-full flex flex-col justify-between  items-center '>
       {/*  menu */}
@@ -80,25 +108,112 @@ const SideBarContent = () => {
   );
 };
 
+const MobileSideBarContent = () => {
+  return (
+    <div className='flex flex-col justify-between h-full  py-10 '>
+      {/*  menu */}
+      <div className='pl-4 '>
+        {menuOptions.map((opt, idx) => {
+          return (
+            <div
+              key={idx}
+              className={
+                (path === opt.route ? 'text-primary  ' : ' text-secondary  hover:text-hover  ') +
+                'text-4xl my-4 font-bold'
+              }
+            >
+              {opt.name}
+            </div>
+          );
+        })}
+      </div>
+
+      {/** profile button */}
+      <div className='w-full flex  justify-center  '>
+        <button
+          className='h-20 w-20 rounded-full  hover:opacity-80 '
+          onClick={() => {
+            console.log('Cerrar sesión');
+          }}
+        >
+          <img
+            className='w-full h-full object-cover rounded-full '
+            src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'
+          />
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export const MainLayout: FC<Props> = ({ children, title = 'ZarahozaEnJuego' }) => {
+  //a md window have 768 pixels
+  const md = 768;
+
+  //set html head metadata
   useEffect(() => {
     document.title = title;
   }, []);
 
+  //state of the current windw dimension
+  const [windowDimenion, detectHW] = useState({
+    winWidth: window.innerWidth,
+    winHeight: window.innerHeight,
+  });
+
+  //detect size of the current browser window
+  const detectSize = () => {
+    detectHW({
+      winWidth: window.innerWidth,
+      winHeight: window.innerHeight,
+    });
+  };
+
+  //avoid recurrennt executions of detectSize
+  const [mounted, setMounted] = useState(false);
+
+  //run each time the window dimension changes
+  useEffect(() => {
+    console.log('resizing');
+
+    //listed al the window redimensions
+    window.addEventListener('resize', detectSize);
+
+    if (!mounted) {
+      setMounted(true);
+      detectSize();
+    }
+
+    return () => {
+      window.removeEventListener('resize', detectSize);
+    };
+  }, [mounted, windowDimenion]);
+
   return (
     <>
-      <div className=' w-screen h-screen bg-background '>
-        {/* header*/}
-        <div className='fixed'>
-          <Header />
+      {windowDimenion.winWidth > md ? (
+        //Desktop layout
+        <div className=' w-screen h-screen bg-background '>
+          {/* header*/}
+          <div className='fixed'>
+            <DesktopHeader />
+          </div>
+          {/*Navbar */}
+          <div className='fixed h-full w-24 pl-8 pt-36 pb-10 '>
+            <DesktopSideBarContent />
+          </div>
+          {/**Page */}
+          <div className=' h-full w-full pt-36 pl-28'>{children}</div>
         </div>
-        {/*Navbar */}
-        <div className='fixed h-full w-24 pl-8 pt-36 pb-10 '>
-          <SideBarContent />
+      ) : (
+        //Mobile layout
+        <div className=' w-screen h-screen bg-background '>
+          {/* header*/}
+          <div className='fixed w-full'>
+            <MobileHeader />
+          </div>
         </div>
-        {/**Page */}
-        <div className=' h-full w-full pt-36 pl-28'>{children}</div>
-      </div>
+      )}
     </>
   );
 };
