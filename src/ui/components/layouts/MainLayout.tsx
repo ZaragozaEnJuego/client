@@ -45,7 +45,7 @@ const menuOptions: menuOption[] = [
 
 const DesktopHeader = () => {
   return (
-    <div className='flex p-8 justify-between pl-32 '>
+    <div className='flex p-8 justify-between items-end pl-32 '>
       <Logo className='h-20 w-20 fill-primary mx-4 ' />
       <h1 className='text-5xl font-bold text-primary'>Zaragoza en juego</h1>
     </div>
