@@ -1,7 +1,14 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 
-import { HomePage, LoginPage, ProfilePage, NegotiationPage, AboutPage } from './ui/pages';
+import {
+  HomePage,
+  LoginPage,
+  ProfilePage,
+  NegotiationPage,
+  AboutPage,
+  BuildingPage,
+} from './ui/pages';
 import { UseAuth } from './ui/hooks/auth/AuthContext';
 
 const publicRoutes: RouteObject[] = [
@@ -28,6 +35,10 @@ const protectedRoutes: RouteObject[] = [
   {
     path: '/about',
     element: <AboutPage />,
+  },
+  {
+    path: '/building/:buildingId',
+    element: <BuildingPage />,
   },
 ];
 
