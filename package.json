@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "npx http-server ./dist"
+    "start": "npx http-server ./dist -a 0.0.0.0:$PORT"
   },
   "dependencies": {
     "react": "^18.2.0",
