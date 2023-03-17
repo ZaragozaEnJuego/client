@@ -26,7 +26,7 @@ const HomePage = () => {
           {propertiesList.map((p, k) => (
             <NavLink
               key={k}
-              className='bg-secondary rounded-md py-2 px-4 text-nord15 mt-3'
+              className='bg-secondary rounded-md py-2 px-4 text-primary font-bold mt-3'
               to={`/propertie/${p.id}`}
             >
               {p.name}
