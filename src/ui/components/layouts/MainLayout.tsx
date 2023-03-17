@@ -155,8 +155,6 @@ const MainLayout: FC<Props> = ({ children, title = 'ZarahozaEnJuego' }) => {
 
   //run each time the window dimension changes
   useEffect(() => {
-    console.log('resizing');
-
     //listed al the window redimensions
     window.addEventListener('resize', detectSize);
 
