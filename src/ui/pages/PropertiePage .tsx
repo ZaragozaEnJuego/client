@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { MainLayout } from '../components/layouts';
 
-const BuildingPage = () => {
+const PropertiePage = () => {
   const params = useParams();
   return (
     <MainLayout>
@@ -12,4 +12,4 @@ const BuildingPage = () => {
   );
 };
 
-export { BuildingPage };
+export { PropertiePage };

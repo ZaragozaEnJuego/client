@@ -9,7 +9,7 @@ const HomePage = () => {
           <h1 className='text-secondary text-4xl font-bold'>HOME</h1>
           <NavLink
             className='bg-secondary rounded-md py-2 px-4 text-nord15 mt-3'
-            to={'/building/1'}
+            to={'/propertie/1'}
           >
             Edificio 1
           </NavLink>

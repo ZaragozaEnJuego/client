@@ -7,7 +7,7 @@ import {
   ProfilePage,
   NegotiationPage,
   AboutPage,
-  BuildingPage,
+  PropertiePage,
 } from './ui/pages';
 import { UseAuth } from './ui/hooks/auth/AuthContext';
 
@@ -37,8 +37,8 @@ const protectedRoutes: RouteObject[] = [
     element: <AboutPage />,
   },
   {
-    path: '/building/:buildingId',
-    element: <BuildingPage />,
+    path: '/propertie/:buildingId',
+    element: <PropertiePage />,
   },
 ];
 
