@@ -9,9 +9,9 @@ interface Props {
 
 const PropertieList: FC<Props> = ({ list }) => {
   return (
-    <div className='flex flex-col items-center w-full'>
+    <div className='w-full overflow-y-scroll overflow-x-clip pr-2 h-full '>
       {list.map((p, k) => (
-        <NavLink className='w-full' key={k} to={`/propertie/${p.id}`}>
+        <NavLink className='w-full ' key={k} to={`/propertie/${p.id}`}>
           <PropertieCard propertie={p} />
         </NavLink>
       ))}
