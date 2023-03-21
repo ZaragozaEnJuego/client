@@ -11,8 +11,6 @@ const HomePage = () => {
   const [propertiesList, setPropertiesList] = useState<Propertie[]>([]);
 
   useEffect(() => {
-    console.log('called');
-
     propertieRepo.getAllProperties().then((list) => {
       setPropertiesList(list);
     });
