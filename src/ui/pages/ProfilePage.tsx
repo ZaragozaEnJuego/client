@@ -48,7 +48,12 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className='bg-pink-nord w-1/2 h-full collapse md:visible'></div>
+        <div className='rounded-3xl border-secondary border-2 w-1/2 h-full collapse md:visible'>
+          {/**TODO: change for a chart */}
+          <div className='flex items-center justify-center h-full w-full'>
+            <h1 className='text-secondary text-4xl'>Charts</h1>
+          </div>
+        </div>
       </div>
     </MainLayout>
   );
