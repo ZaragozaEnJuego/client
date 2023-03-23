@@ -59,7 +59,7 @@ const MobileHeader = () => {
   };
 
   return (
-    <div className='flex items-center w-full justify-between px-10 py-4'>
+    <div className='flex items-center w-full justify-between px-2 py-4'>
       <button onClick={toggleDrawer}>
         <MenuIcon className='h-10 w-10 fill-primary' />
       </button>
