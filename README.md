@@ -35,3 +35,14 @@ Para trabajar con dev containers es necesario configurar dos elementos:
 
  El proyecto cuenta con el formateador prettier, recomendamos configurar vscode para que lo ejecute cada vez que se guarda un archivo. En caso contrario, 
  se debe ejuctar manualmente antes de realizar un commit.
+ 
+ ### Mapa
+ 
+ - Se ha creado un componente `Mapa` que muestra un mapa interactivo de `OpenStreetMap` utilizando la biblioteca `react-leaflet`.
+ - El componente `Mapa` acepta una lista de propiedades como una prop llamada `propiedades`.
+ - Se han agregado marcadores al mapa para cada propiedad en la lista de propiedades.
+ - Se ha agregado un `Popup` a cada marcador que muestra información detallada sobre la propiedad, incluyendo su nombre, dirección, precio y tipo.
+
+### Errores
+
+ - A la hora de meter los marcadores, se pretendía recorrer una lista (similar a la lista de edificios) y poner un marcador por cada propiedad. Esta llamada (renderMarkers) no funciona correctamente por lo que en el commit se ha dejado que ponga un marcador puntual para demostrar el correcto funcionamiento de lo que se persigue conseguir.
