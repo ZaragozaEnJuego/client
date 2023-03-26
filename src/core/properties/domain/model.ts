@@ -7,4 +7,6 @@ export type Propertie = {
   price: number;
   owner?: string;
   kind: Kind;
+  latitude: number;
+  longitude: number;
 };

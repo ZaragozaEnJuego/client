@@ -5,6 +5,7 @@ import { MainLayout } from '../components/layouts';
 import { useEffect, useState } from 'react';
 import { list } from 'postcss';
 import { PropertieList } from '../components/ui/propertie';
+import { Mapa } from '../components/ui/Mapa';
 
 const HomePage = () => {
   const propertieRepo: IPropertieRepo = new MemoriePropertieRepo();
@@ -24,9 +25,7 @@ const HomePage = () => {
         </div>
         <div className=' h-full w-1/2 px-2 collapse md:visible'>
           {/**TODO: reemplazar este div por el mapa */}
-          <div className='flex justify-center items-center border-2 rounded-lg border-secondary text-4xl font-bold text-primary h-full w-full'>
-            <h1>MAP</h1>
-          </div>
+          <Mapa list={propertiesList}/>
         </div>
       </div>
     </MainLayout>
