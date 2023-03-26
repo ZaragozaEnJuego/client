@@ -3,7 +3,6 @@ import { IPropertieRepo, Propertie } from '../../core/properties/domain';
 import { MemoriePropertieRepo } from '../../infraestructure/memory';
 import { MainLayout } from '../components/layouts';
 import { useEffect, useState } from 'react';
-import { list } from 'postcss';
 
 const HomePage = () => {
   const propertieRepo: IPropertieRepo = new MemoriePropertieRepo();
