@@ -4,7 +4,7 @@ import { ReactComponent as Fondo } from '/src/assets/Fondo.svg';
 import { UseAuth } from '../hooks/auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const LoginPage = (title = 'ZaragozaEnJuego') => {
+const LoginPage = () => {
   const useAuth = UseAuth();
   const navigate = useNavigate();
   //a md window have 768 pixels
@@ -12,7 +12,7 @@ const LoginPage = (title = 'ZaragozaEnJuego') => {
 
   //set html head metadata
   useEffect(() => {
-    document.title = title;
+    document.title = '';
   }, []);
 
   //state of the current windw dimension
@@ -54,8 +54,8 @@ const LoginPage = (title = 'ZaragozaEnJuego') => {
         <div className=' w-screen h-screen bg-background '>
           <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'></div>
           <div className='bg-secondary bg-opacity-80 p-8 rounded-lg'>
-            <h1 className='text-5xl font-bold text-primary'>{title}</h1>
-            <Logo className='my-8'/>
+            <h1 className='text-5xl font-bold text-primary'>{''}</h1>
+            <Logo className='my-8' />
             <button
               onClick={() => {
                 useAuth.handleLogin();
@@ -73,8 +73,8 @@ const LoginPage = (title = 'ZaragozaEnJuego') => {
           <Fondo className='absolute w-full h-full top-0 left-0 z-0' />
           <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'></div>
           <div className='bg-secondary bg-opacity-80 p-8 rounded-lg'>
-          <h1 className='text-5xl font-bold text-primary'>{title}</h1>
-            <Logo className='my-8'/>
+            <h1 className='text-5xl font-bold text-primary'>{''}</h1>
+            <Logo className='my-8' />
             <button
               onClick={() => {
                 useAuth.handleLogin();
