@@ -25,6 +25,7 @@ module.exports = {
       hover: '#eceff4',
       'nord-bg': '#eceff4',
       'red-nord': '#bf616a',
+      'blue-nord': '#5E81AC',
       'orange-nord': '#d08770',
       'yellow-nord': '#ebcb8b',
       'green-nord': '#a3be8c',

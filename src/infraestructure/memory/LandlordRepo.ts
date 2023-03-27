@@ -1,7 +1,8 @@
+import { Landlord } from '../../core/landlord/model';
 import { Kind, Propertie } from '../../core/properties/domain/model';
 
-export class MemoriePropertieRepo {
-  getAllProperties(): Promise<Propertie[]> {
+export class MemorieLandlordRepo {
+  getLandlordInfo(): Promise<Landlord> {
     return new Promise((resolve, reject) => {
       // Aquí puedes hacer la lógica de la llamada HTTP, por ejemplo:
       setTimeout(() => {
@@ -65,7 +66,12 @@ export class MemoriePropertieRepo {
             kind: 'Groceries',
           },
         ];
-        resolve(properties);
+        const res: Landlord = {
+          liquidity: 1000,
+          properties: properties,
+          lastDayIncome: 1000000000,
+        };
+        resolve(res);
       }, 100); // Simulando una llamada HTTP que tarda 1 segundo
     });
   }
