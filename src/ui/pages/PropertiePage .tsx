@@ -179,7 +179,7 @@ const PropertiePage = () => {
           style={{ backgroundColor: chooseColor(propertie.kind) }}
           className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
           onClick={() => {
-            navigate(-1);
+            propertieRepo.buyById(propertie.id);
           }}
         >
           Comprar

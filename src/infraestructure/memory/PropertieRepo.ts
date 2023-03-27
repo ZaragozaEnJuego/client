@@ -101,4 +101,15 @@ export class MemoriePropertieRepo {
       }, 100); // Simulando una llamada HTTP que tarda 1 segundo
     });
   }
+
+  buyById(id: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      console.log('Buy propertie ', id);
+
+      // Aquí puedes hacer la lógica de la llamada HTTP, por ejemplo:
+      setTimeout(() => {
+        resolve();
+      }, 100); // Simulando una llamada HTTP que tarda 1 segundo
+    });
+  }
 }
