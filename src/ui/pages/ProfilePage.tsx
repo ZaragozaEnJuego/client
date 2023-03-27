@@ -32,8 +32,8 @@ const ProfilePage = () => {
     <MainLayout>
       <div className='w-full h-full flex md:pb-10 md:pr-4  '>
         <div className='w-full md:w-1/2 flex flex-col h-full '>
-          <div className=' md:h-1/3 w-full flex  items-center justify-center md:py-11'>
-            <div className='rounded-3xl border-secondary border-2 text-primary font-bold  text-lg md:text-4xl p-3 w-full mx-4 md:h-full  flex flex-col  items-center justify-center'>
+          <div className=' md:h-1/3 md:min-h-fit  w-full flex  items-center justify-center '>
+            <div className='rounded-3xl border-secondary border-2 text-primary font-bold  text-lg md:text-3xl p-3 w-full mx-4   flex flex-col  items-center justify-center '>
               <h1>Balance ultimo día: {landlord.lastDayIncome}</h1>
               <h1>Patrimonio: {calcPropertieValue(landlord.properties)}</h1>
               <h1>Liquidez: {landlord.liquidity}</h1>
