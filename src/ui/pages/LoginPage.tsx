@@ -51,39 +51,48 @@ const LoginPage = () => {
     <>
       {windowDimenion.winWidth > md ? (
         //Desktop layout
-        <div className=' w-screen h-screen bg-background '>
-          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'></div>
-          <div className='bg-secondary bg-opacity-80 p-8 rounded-lg'>
-            <h1 className='text-5xl font-bold text-primary'>{''}</h1>
-            <Logo className='my-8' />
-            <button
-              onClick={() => {
-                useAuth.handleLogin();
-                navigate('/', { replace: true });
-              }}
-              className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
-            >
-              Iniciar sesión
-            </button>
+        <div className='w-screen h-screen bg-primary '>
+          <div className='bg-secondary bg-opacity-80 p-8 rounded-lg w-full h-full flex flex-col justify-center items-center pb-40 px-6'>
+            <div className="mb-6 flex">
+              <h1 className='text-5xl font-bold text-primary'>{'Zaragoza en juego'}</h1>
+            </div>
+            <div className="mb-6flex">
+              <Logo className="max-w-full"/>
+            </div>
+            <div>
+              <button
+                onClick={() => {
+                  useAuth.handleLogin();
+                  navigate('/', { replace: true });
+                }}
+                className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
+              >
+                Iniciar sesión
+              </button>
+            </div>
           </div>
         </div>
       ) : (
         //Mobile layout
-        <div className=' w-screen h-screen bg-background '>
-          <Fondo className='absolute w-full h-full top-0 left-0 z-0' />
-          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10'></div>
-          <div className='bg-secondary bg-opacity-80 p-8 rounded-lg'>
-            <h1 className='text-5xl font-bold text-primary'>{''}</h1>
-            <Logo className='my-8' />
-            <button
-              onClick={() => {
-                useAuth.handleLogin();
-                navigate('/', { replace: true });
-              }}
-              className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
-            >
-              Iniciar sesión
-            </button>
+        <div className='w-screen h-screen bg-background '>
+          <div className='bg-secondary bg-opacity-80 p-8 rounded-lg w-full h-full flex flex-col justify-center items-center pb-40 px-6'>
+            <div className="mb-6 flex">
+              <h1 className='text-5xl font-bold text-primary'>{'Zaragoza en juego'}</h1>
+            </div>
+            <div className="mb-6 flex">
+              <Logo className="max-w-full"/>
+            </div>
+            <div>
+              <button
+                onClick={() => {
+                  useAuth.handleLogin();
+                  navigate('/', { replace: true });
+                }}
+                className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
+              >
+                Iniciar sesión
+              </button>
+            </div>
           </div>
         </div>
       )}
