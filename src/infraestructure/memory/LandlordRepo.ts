@@ -13,7 +13,7 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Health',
-            latitude: 41.6488,
+            latitude: 30.6488,
             longitude: -0.8891
           },
           {
@@ -23,7 +23,7 @@ export class MemorieLandlordRepo {
             price: 240000,
             owner: 'Juan',
             kind: 'Transport',
-            latitude: 41.6488,
+            latitude: 35.6488,
             longitude: -0.8891
           },
           {
@@ -41,7 +41,7 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Groceries',
-            latitude: 41.6488,
+            latitude: 47.6488,
             longitude: -0.8891
           },
           {
@@ -51,7 +51,7 @@ export class MemorieLandlordRepo {
             price: 240000,
             kind: 'Health',
             latitude: 41.6488,
-            longitude: -0.8891
+            longitude: -5.8891
           },
           {
             name: 'Propiedad 2',
@@ -61,7 +61,7 @@ export class MemorieLandlordRepo {
             owner: 'Juan',
             kind: 'Transport',
             latitude: 41.6488,
-            longitude: -0.8891
+            longitude: -10.8891
           },
           {
             name: 'Propiedad 3',
@@ -70,7 +70,7 @@ export class MemorieLandlordRepo {
             price: 240000,
             kind: 'Education',
             latitude: 41.6488,
-            longitude: -0.8891
+            longitude: 5.8891
           },
           {
             name: 'Propiedad 4',
@@ -79,7 +79,7 @@ export class MemorieLandlordRepo {
             price: 240000,
             kind: 'Groceries',
             latitude: 41.6488,
-            longitude: -0.8891
+            longitude: 10.8891
           },
         ];
         const res: Landlord = {

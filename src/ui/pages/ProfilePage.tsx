@@ -5,6 +5,7 @@ import { Propertie } from '../../core/properties/domain';
 import { MemorieLandlordRepo } from '../../infraestructure/memory/LandlordRepo';
 import { MainLayout } from '../components/layouts';
 import { PropertieList } from '../components/ui/propertie';
+import { BarChart } from '../components/ui/BarChart';
 
 const ProfilePage = () => {
   const landlordRepo: ILandlordRepo = new MemorieLandlordRepo();
@@ -51,7 +52,7 @@ const ProfilePage = () => {
         <div className='rounded-3xl border-secondary border-2 w-1/2 h-full collapse md:visible'>
           {/**TODO: change for a chart */}
           <div className='flex items-center justify-center h-full w-full'>
-            <h1 className='text-secondary text-4xl'>Charts</h1>
+            <BarChart data={[12, 19, 3, 5, 2, 3]} labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']} />
           </div>
         </div>
       </div>
