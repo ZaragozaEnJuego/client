@@ -40,8 +40,15 @@ const OfferCard: FC<Offers> = ({ offer }) => {
         </div>
         <div className='flex items-center justify-center flex-col'>
           {PropertyIcon(offer.property)}
+          <div className='flex flex-col-2 px-5 py-2 w-full'>
+            <button className='text-sm text-primary rounded-sm mx-2 bg-green-nord'
+              onClick={() => { alert('Oferta aceptada');}}>Aceptar</button>
+            <button className='text-xs text-hover rounded-sm mx-2 bg-red-nord'
+              onClick={() => { alert('Oferta rechazada');}}>Rechazar</button>
+          </div>
         </div>
         <div className='flex flex-col justify-center items-center '>
+          <img className='w-10 h-10 object-cover rounded-full 'src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'/>
           <h1 className='text-xs text-nord1' >{offer.property.owner}</h1>
           <h1 className='text-xl font-bold text-primary'>{offer.property.name}</h1>
         </div>

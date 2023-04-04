@@ -1,23 +1,22 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Offer } from "/workspaces/client/src/core/negotiations/domain/index";
-import { UserOfferCard } from '.';
+import { User } from "/workspaces/client/src/core/user/domain/index";
+import { UserCard } from '.';
 
-interface Offers {
-    list: Offer[];
-  }
+interface Users {
+    list: User[];
+}
 
-const UserOfferList: FC<Offers> = ({ list }) => {
+const UserList: FC<Users> = ({ list }) => {
     return (
         <div className='w-full overflow-y-scroll overflow-x-clip pr-2 h-full '>
             {list.map((value, index) => (
                 <NavLink className='w-full ' key={index} to={`/offer/${value.id}`}>
-                    <UserOfferCard offer={value} />
+                    <UserCard user={value} />
                 </NavLink>
-      ))}
+            ))}
         </div>
     );
 };
 
-export { UserOfferList };
-
+export { UserList };

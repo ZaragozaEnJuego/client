@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Offer } from "/workspaces/client/src/core/negotiations/domain/index";
 import { OfferCard } from '.';

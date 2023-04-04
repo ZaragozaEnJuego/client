@@ -9,6 +9,7 @@ const LoginPage = () => {
       <div>
         <h1 className='text-secondary text-4xl font-bold'>INICIAR SESIÓN</h1>
 
+      <div className='flex flex-col'>
         <button
           onClick={() => {
             useAuth.handleLogin();
@@ -18,6 +19,16 @@ const LoginPage = () => {
         >
           Iniciar sesión
         </button>
+        <button
+          onClick={() => {
+            useAuth.handleLogin();
+            navigate('/admin', { replace: true });
+          }}
+          className='px-20 py-4 mt-4 bg-orange-nord text-secondary rounded-lg'
+        >
+          Prueba Admin
+        </button>
+        </div>
       </div>
     </div>
   );
