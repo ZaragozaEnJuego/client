@@ -18,11 +18,11 @@ const HomePage = () => {
 
   return (
     <MainLayout>
-      <div className='w-full h-full flex justify-center items-center pb-40 px-6'>
+      <div className='w-full h-full flex justify-center items-center md:pb-40 px-6'>
         <div className='h-full md:w-1/2 px-2 w-full '>
           <PropertieList list={propertiesList} />
         </div>
-        <div className=' h-full w-1/2 px-2 collapse md:visible'>
+        <div className=' h-full w-1/2 px-2  hidden md:inline'>
           {/**TODO: reemplazar este div por el mapa */}
           <div className='flex justify-center items-center border-2 rounded-lg border-secondary text-4xl font-bold text-primary h-full w-full'>
             <h1>MAP</h1>
