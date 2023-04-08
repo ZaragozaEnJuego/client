@@ -46,7 +46,7 @@ const UserOfferCard: FC<Offers> = ({ offer }) => {
         <div className='flex flex-col justify-center items-center '>
           <img className='w-10 h-10 object-cover rounded-full' src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'/>
           <h1 className='text-xs text-nord1' >Tú</h1>
-          <h1 style={{ color: 'nord0' }} className={ 'font-bold text-2xl' }>175000€</h1>
+          <h1 style={{ color: 'nord0' }} className={ 'font-bold text-2xl' }>{offer.amount}€</h1>
         </div>
       </div>
     );
