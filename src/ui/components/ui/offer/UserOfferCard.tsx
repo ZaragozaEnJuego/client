@@ -29,26 +29,27 @@ const PropertyIcon = (kind: Kind) => {
 };
 
 const UserOfferCard: FC<Offers> = ({ offer }) => {
-    return (
-        <div style={{ backgroundColor:'#8FBCBB', color: '#2E3440' }} className='flex justify-between items-center border w-100 rounded-3xl py-2 px-4 my-2 h-auto'>
-        <div className='flex flex-col justify-center items-center '>
-          <img className='w-10 h-10 object-cover rounded-full' src='https://media.istockphoto.com/id/1151155288/es/foto/close-up-foto-incre%C3%ADble-hermosa-ella-sus-dedos-pulgar-de-la-dama-indican-directamente-pecho.jpg?s=612x612&w=0&k=20&c=NCuogVJLvUYYfMihKzWPAl7OPRQSsQsyWFKi6fyuty4='/>
-          <h1 className='text-xs text-nord1 items-center justify-center' >Lucía</h1>
-          <h1 className='flex text-lg justify-center font-bold text-primary'>Hospital Quironsalud</h1>
-        </div>
-        <div className='flex items-center justify-center align-top flex-col'>
-          {PropertyIcon('Health')}
-          <div className='flex flex-col-2 px-5 py-2 w-full'>
-            <button className='font-bold bg-primary text-secondary text-xs py-1 w-20 rounded-lg mx-2'
-              onClick={() => { alert('Oferta cancelada');}}>Cancelar</button>
-          </div>
-        </div>
-        <div className='flex flex-col justify-center items-center '>
-          <img className='w-10 h-10 object-cover rounded-full' src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'/>
-          <h1 className='text-xs text-nord1' >Tú</h1>
-          <h1 style={{ color: 'nord0' }} className={ 'font-bold text-2xl' }>{offer.amount}€</h1>
-        </div>
+  return (
+    <div style={{ background: '#8FBCBB' }} className='flex justify-center items-center border w-full rounded-3xl py-2 px-4 my-4 h-100'>
+    <div className='flex flex-col justify-center items-center'>
+      <img className='w-10 h-10 object-cover rounded-full' src='https://media.istockphoto.com/id/1151155288/es/foto/close-up-foto-incre%C3%ADble-hermosa-ella-sus-dedos-pulgar-de-la-dama-indican-directamente-pecho.jpg?s=612x612&w=0&k=20&c=NCuogVJLvUYYfMihKzWPAl7OPRQSsQsyWFKi6fyuty4='/>
+      <h1 className='text-xs text-nord1' >Lucía</h1>
+      <h1 style={{ background: '#8FBCBB' }} className={'w-50 font-bold text-lg'}>Estación Delicias</h1>
+    </div>
+    <div className='flex items-center justify-top mt-4 flex-col'>
+      {PropertyIcon('Transport')}
+      <div className='flex flex-col items-bottom px-5 py-1 w-full'>
+        <button className='items-center text-xs text-hover py-1 my-1 w-20 rounded-lg mx-2 bg-primary'
+          onClick={() => { alert('Oferta cancelada');}}>Cancelar</button>
+        <button style={{ background: '#8FBCBB', color: '#8FBCBB'}} className='items-center text-xs cursor-default py-1 my-1 w-20 rounded-lg mx-2'>Consultar</button>
       </div>
+    </div>
+    <div className='flex flex-col justify-center items-center '>
+      <img className='w-10 h-10 object-cover rounded-full 'src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'/>
+      <h1 className='text-xs text-nord1' >Tú</h1>
+      <h1 className='text-2xl w-50 font-bold text-primary'>{offer.amount}€</h1>
+    </div>
+  </div>
     );
 };
 export { UserOfferCard };
