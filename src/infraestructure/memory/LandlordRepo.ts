@@ -13,6 +13,7 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Health',
+            income:10,
           },
           {
             name: 'Propiedad 2',
@@ -21,6 +22,7 @@ export class MemorieLandlordRepo {
             price: 240000,
             owner: 'Juan',
             kind: 'Transport',
+            income:10,
           },
           {
             name: 'Propiedad 3',
@@ -28,6 +30,7 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Education',
+            income:10,
           },
           {
             name: 'Propiedad 4',
@@ -35,6 +38,7 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Groceries',
+            income:10,
           },
           {
             name: 'Propiedad 1',
@@ -42,6 +46,7 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Health',
+            income:10,
           },
           {
             name: 'Propiedad 2',
@@ -50,6 +55,7 @@ export class MemorieLandlordRepo {
             price: 240000,
             owner: 'Juan',
             kind: 'Transport',
+            income:10,
           },
           {
             name: 'Propiedad 3',
@@ -57,6 +63,7 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Education',
+            income:10,
           },
           {
             name: 'Propiedad 4',
@@ -64,6 +71,7 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Groceries',
+            income:10,
           },
         ];
         const res: Landlord = {
