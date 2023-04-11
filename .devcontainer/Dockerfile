@@ -20,5 +20,6 @@ RUN adduser vscode sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
 RUN echo "vscode:vscode" | chpasswd
 
+ENV clientId=162455912950-gvl6mce1fmkkc80a4g07ppi75maapmjn.apps.googleusercontent.com
 
 COPY ./.zshrc /home/vscode
