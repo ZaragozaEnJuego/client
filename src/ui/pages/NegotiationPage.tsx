@@ -16,6 +16,7 @@ const NegotiationPage = () => {
     offerRepo.getOffererOffers().then((list) => {
       setUserOffersList(list);
     });
+    //TODO: Modificar este useEffect para que llame a las operaciones que reciben los datos de la api
   }, []);
 
   const getOwnerOffers = async () => {

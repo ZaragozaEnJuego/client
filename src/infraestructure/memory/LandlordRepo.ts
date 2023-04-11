@@ -12,6 +12,7 @@ export class MemorieLandlordRepo {
             id: '1',
             address: 'Avenida academia nº12',
             price: 240000,
+            income: 1000,
             kind: 'Health',
           },
           {
@@ -19,6 +20,7 @@ export class MemorieLandlordRepo {
             id: '2',
             address: 'Avenida academia nº12',
             price: 240000,
+            income: 1000,
             owner: 'Juan',
             kind: 'Transport',
           },
@@ -27,6 +29,7 @@ export class MemorieLandlordRepo {
             id: '3',
             address: 'Avenida academia nº12',
             price: 240000,
+            income: 1000,
             kind: 'Education',
           },
           {
@@ -34,6 +37,7 @@ export class MemorieLandlordRepo {
             id: '4',
             address: 'Avenida academia nº12',
             price: 240000,
+            income: 1000,
             kind: 'Groceries',
           },
           {
@@ -41,6 +45,7 @@ export class MemorieLandlordRepo {
             id: '1',
             address: 'Avenida academia nº12',
             price: 240000,
+            income: 1000,
             kind: 'Health',
           },
           {
@@ -48,6 +53,7 @@ export class MemorieLandlordRepo {
             id: '2',
             address: 'Avenida academia nº12',
             price: 240000,
+            income: 1000,
             owner: 'Juan',
             kind: 'Transport',
           },
@@ -56,6 +62,7 @@ export class MemorieLandlordRepo {
             id: '3',
             address: 'Avenida academia nº12',
             price: 240000,
+            income: 1000,
             kind: 'Education',
           },
           {
@@ -63,10 +70,15 @@ export class MemorieLandlordRepo {
             id: '4',
             address: 'Avenida academia nº12',
             price: 240000,
+            income: 1000,
             kind: 'Groceries',
           },
         ];
         const res: Landlord = {
+          id: '1',
+          name: 'Juan',
+          access: 'Active',
+          icon: 'https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg',
           liquidity: 1000,
           properties: properties,
           lastDayIncome: 1000000000,

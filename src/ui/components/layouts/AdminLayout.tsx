@@ -32,7 +32,7 @@ const MobileHeader = () => {
       <Drawer open={isOpen} onClose={toggleDrawer} direction='left' size={window.innerWidth * 0.8}>
         <MobileSideBarContent />
       </Drawer>
-      <h1 className='text-3xl font-bold text-primary '>Panel de administración</h1>
+      <h1 className='text-3xl font-bold text-primary '>Panel de administrador</h1>
     </div>
   );
 };
@@ -45,7 +45,7 @@ const DesktopSideBarContent = () => {
     return (<div className='w-full flex  justify-center  '><ProfileButton /></div>);
   };
 
-const AdminLayout: FC<Props> = ({ children, title = 'Panel de administración' }) => {
+const AdminLayout: FC<Props> = ({ children, title = 'Panel de administrador' }) => {
     const md = 768;
     useEffect(() => {
         document.title = title;
