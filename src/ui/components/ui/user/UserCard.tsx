@@ -1,16 +1,16 @@
 import { FC } from 'react';
-import { User, Access } from '../../../../core/user/domain';
+import { Landlord, Access } from '../../../../core/landlord/model';
 
 interface Users {
-    user: User;
+    user: Landlord;
 }
 
 const chooseColor = (access: Access): string => {
     switch (access) {
-      case 'Activado':
+      case 'Active':
         return '#bf616a';
   
-      case 'Desactivado':
+      case 'Blocked':
         return '#a3be8c';
   
       default:
@@ -30,9 +30,9 @@ const UserCard: FC<Users> = ({ user }) => {
                 <button style={{background: chooseColor(user.access)}} className=' text-primary rounded-lg px-5 py-5'
                     onClick={() => {
                         alert('Cambio de modo');
-                        user.access === 'Activado' ?  user.access = 'Desactivado' : user.access = 'Activado';
+                        user.access === 'Active' ?  user.access = 'Blocked' : user.access = 'Active';
                     }}>
-                    {user.access === 'Desactivado' ? (
+                    {user.access === 'Blocked' ? (
                         <p>Activar</p>
                     ) : (
                         <p className='text-hover'>Desactivar</p>

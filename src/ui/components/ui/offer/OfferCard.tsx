@@ -27,7 +27,7 @@ const PropertyIcon = (kind: Kind) => {
     default:
       return <></>;
   }
-};
+}
 
 const OfferCard: FC<Offers> = ({ offer }) => {
     return (
@@ -49,9 +49,10 @@ const OfferCard: FC<Offers> = ({ offer }) => {
           <div className='flex flex-col justify-center items-center'>
             <img className='w-10 h-10 object-cover rounded-full 'src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'/>
             <h1 className='text-xs text-nord1' >Tú</h1>
-            <h1 className='w-50 text-lg font-bold text-primary'>Estación Delicias</h1>
+            <h1 style={{ color: chooseColor('Transport') }} className='w-50 text-lg font-bold text-primary'>Estación Delicias</h1>
           </div>
         </div>
       );
-};
-export { OfferCard };
+}
+
+export { OfferCard }

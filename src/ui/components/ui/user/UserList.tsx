@@ -1,22 +1,17 @@
 import { FC } from 'react';
-import { NavLink } from 'react-router-dom';
-import { User } from "/workspaces/client/src/core/user/domain/index";
 import { UserCard } from '.';
+import { Landlord } from '../../../../core/landlord/model';
 
 interface Users {
-    list: User[];
+    list: Landlord[];
 }
 
 const UserList: FC<Users> = ({ list }) => {
     return (
         <div className='w-full overflow-y-scroll overflow-x-clip pr-2 h-full '>
-            {list.map((value, index) => (
-                <NavLink className='w-full ' key={index} to={`/offer/${value.id}`}>
-                    <UserCard user={value} />
-                </NavLink>
-            ))}
+            {list.map((value, index) => (<UserCard user={value} />))}
         </div>
     );
-};
+}
 
-export { UserList };
+export { UserList }

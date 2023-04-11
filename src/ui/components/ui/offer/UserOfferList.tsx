@@ -1,15 +1,21 @@
 import { FC } from 'react';
-import { UserOfferCard } from '.';
+import { UserOfferCard, SmallUserOfferCard } from '.';
 import { Offer } from '../../../../core/negotiations/domain';
 
+type Size = 'small' | 'regular'
+
 interface Offers {
-    list: Offer[];
+    list: Offer[],
+    size?: Size
   }
 
-const UserOfferList: FC<Offers> = ({ list }) => {
+const UserOfferList: FC<Offers> = ({ list, size }) => {
     return (
         <div className='w-full overflow-y-scroll overflow-x-clip pr-2 h-full '>
-            {list.map((value, index) => (<UserOfferCard offer={value}/>))}
+        {size === 'small' ? (
+            list.map((value) => (<SmallUserOfferCard offer={value} />)))
+             : (list.map((value) => (<UserOfferCard offer={value} />))
+        )}
         </div>
     );
 };
