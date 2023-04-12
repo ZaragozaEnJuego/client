@@ -41,7 +41,7 @@ export class MemorieLandlordRepo {
             kind: 'Groceries',
           },
           {
-            name: 'Propiedad 1',
+            name: 'Propiedad 5',
             id: '5',
             address: 'Avenida academia nº12',
             price: 240000,
@@ -49,7 +49,7 @@ export class MemorieLandlordRepo {
             kind: 'Health',
           },
           {
-            name: 'Propiedad 2',
+            name: 'Propiedad 6',
             id: '6',
             address: 'Avenida academia nº12',
             price: 240000,
@@ -58,7 +58,7 @@ export class MemorieLandlordRepo {
             kind: 'Transport',
           },
           {
-            name: 'Propiedad 3',
+            name: 'Propiedad 7',
             id: '7',
             address: 'Avenida academia nº12',
             price: 240000,
@@ -66,7 +66,7 @@ export class MemorieLandlordRepo {
             kind: 'Education',
           },
           {
-            name: 'Propiedad 4',
+            name: 'Propiedad 8',
             id: '8',
             address: 'Avenida academia nº12',
             price: 240000,
