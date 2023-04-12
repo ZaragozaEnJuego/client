@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-import { IUserRepo, User } from "../../core/user/domain";
-import { MemoryUserRepo } from "../../infraestructure/memory";
-import { AdminLayout } from "../components/layouts";
-import { UserList } from '../components/ui/user';
-
+import { useEffect, useState } from "react"
+import { MemoryUserRepo } from "../../infraestructure/memory"
+import { AdminLayout } from "../components/layouts"
+import { BarChart, DonutChart, UserList } from '../components/ui/user'
+import { Landlord } from "../../core/landlord/model"
 
 const AdminPage = () => {
-  const userRepo: IUserRepo = new MemoryUserRepo(); 
-  const [userList, setUsersList] = useState<User[]>([]);
+  const userRepo: MemoryUserRepo = new MemoryUserRepo(); 
+  const [userList, setUsersList] = useState<Landlord[]>([]);
 
   useEffect(() => {
     userRepo.getAllUsers().then((list) => {
@@ -17,15 +16,18 @@ const AdminPage = () => {
 
   return (
       <AdminLayout>
-          <div className='flex flex-col2 px-4 w-full h-full'>
-            <div className='font-bold text-primary text-3xl w-full mx-10 flex flex-col justify-center'>
+          <div className='flex flex-col-3 px-4 w-full h-full'>
+            <div className='font-bold text-primary text-3xl w-1/2 mx-10 flex flex-col justify-center'>
               <h1>Usuarios</h1>
               <UserList list={userList} />
             </div>
-            <div className='flex justify-center collapse xl:visible lg:visible items-center border-2 rounded-lg border-secondary text-4xl font-bold text-hover h-full w-full'>
-            <h1>CHARTS</h1>
+              <div className="w-1/4 collapse md:visible">
+                <BarChart data={[112, 119, 93, 145, 123, 198, 185, 230]} labels={['L', 'M', 'X', 'J', 'V', 'S', 'D']} />
+              </div>
+              <div className="w-1/4 collapse md:visible">
+                <DonutChart data={[120, 85, 73, 95]} labels={['Transporte', 'Salud', 'Restaurantes', 'Educación']} />
+              </div>
             </div>
-          </div>
       </AdminLayout>
   );
 }

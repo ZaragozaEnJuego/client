@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { OfferCard, SmallOfferCard } from '.';
 import { Offer } from '../../../../core/negotiations/domain';
-import { NavLink } from 'react-router-dom';
 
 type Size = 'small' | 'regular'
 

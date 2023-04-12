@@ -27,7 +27,7 @@ const UserCard: FC<Users> = ({ user }) => {
                 <h1 className=' text-secondary text-sm' >{user.access}</h1>
             </div>
             <div className='text-sm justify-end items-end'>
-                <button style={{background: chooseColor(user.access)}} className=' text-primary rounded-lg px-5 py-5'
+                <button style={{background: chooseColor(user.access)}} className='text-xs text-primary rounded-md px-3 py-5'
                     onClick={() => {
                         alert('Cambio de modo');
                         user.access === 'Active' ?  user.access = 'Blocked' : user.access = 'Active';
