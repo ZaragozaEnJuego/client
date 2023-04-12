@@ -77,7 +77,7 @@ export class MemorieLandlordRepo {
         const res: Landlord = {
           id: '1',
           name: 'Juan',
-          access: 'Active',
+          access: true,
           icon: 'https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg',
           liquidity: 1000,
           properties: properties,
