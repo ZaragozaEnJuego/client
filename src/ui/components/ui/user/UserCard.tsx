@@ -1,22 +1,11 @@
 import { FC } from 'react';
-import { Landlord, Access } from '../../../../core/landlord/model';
+import { Landlord } from '../../../../core/landlord/model';
 
 interface Users {
     user: Landlord;
 }
 
-const chooseColor = (access: Access): string => {
-    switch (access) {
-      case 'Active':
-        return '#bf616a';
-  
-      case 'Blocked':
-        return '#a3be8c';
-  
-      default:
-        return '#D8DEE9';
-    }
-  };
+const chooseColor = (access: boolean): string => { return access ? '#bf616a' : '#a3be8c' }
 
 const UserCard: FC<Users> = ({ user }) => {
     return (
@@ -30,9 +19,9 @@ const UserCard: FC<Users> = ({ user }) => {
                 <button style={{background: chooseColor(user.access)}} className='text-xs text-primary rounded-md px-3 py-5'
                     onClick={() => {
                         alert('Cambio de modo');
-                        user.access === 'Active' ?  user.access = 'Blocked' : user.access = 'Active';
+                        user.access === true ?  user.access = false : user.access = true;
                     }}>
-                    {user.access === 'Blocked' ? (
+                    {user.access === false ? (
                         <p>Activar</p>
                     ) : (
                         <p className='text-hover'>Desactivar</p>
