@@ -42,7 +42,7 @@ export class MemorieLandlordRepo {
           },
           {
             name: 'Propiedad 1',
-            id: '1',
+            id: '5',
             address: 'Avenida academia nº12',
             price: 240000,
             income: 1000,
@@ -50,7 +50,7 @@ export class MemorieLandlordRepo {
           },
           {
             name: 'Propiedad 2',
-            id: '2',
+            id: '6',
             address: 'Avenida academia nº12',
             price: 240000,
             income: 1000,
@@ -59,7 +59,7 @@ export class MemorieLandlordRepo {
           },
           {
             name: 'Propiedad 3',
-            id: '3',
+            id: '7',
             address: 'Avenida academia nº12',
             price: 240000,
             income: 1000,
@@ -67,7 +67,7 @@ export class MemorieLandlordRepo {
           },
           {
             name: 'Propiedad 4',
-            id: '4',
+            id: '8',
             address: 'Avenida academia nº12',
             price: 240000,
             income: 1000,
@@ -75,7 +75,7 @@ export class MemorieLandlordRepo {
           },
         ];
         const res: Landlord = {
-          id: '1',
+          id: '100',
           name: 'Juan',
           access: true,
           icon: 'https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg',
