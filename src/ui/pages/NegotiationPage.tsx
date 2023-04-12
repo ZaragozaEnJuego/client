@@ -33,12 +33,12 @@ const NegotiationPage = () => {
 
   return (
     <MainLayout>
-      <div className='xl:flex flex-col-2 justify-start mx-10 w-auto'>
-        <div className='font-bold text-primary xl:items-start sm:items-center xs:items-center xxs:items-center md:items-center text-3xl w-full h-1/3 ml-5 flex flex-col'>
+      <div className='xl:flex flex-col-2 justify-start pb-40 mx-10 w-auto'>
+        <div className='font-bold text-primary items-start text-3xl h-full w-full ml-5 flex flex-col'>
           <h1>Mis Ofertas</h1>
           <UserOfferList list={userOffersList} />
         </div>
-        <div className='font-bold text-primary text-3xl w-full ml-5 flex flex-col'>
+        <div className='font-bold text-primary items-start text-3xl h-full w-full ml-5 flex flex-col'>
           <h1>Mis propiedades</h1>
           <OfferList list={offersList} />
         </div>

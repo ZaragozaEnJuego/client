@@ -51,6 +51,27 @@ export class MemoryOfferRepo {
           owner: '',
           amount: 180000,
         },
+        {
+          id: '5',
+          property: '',
+          offerer: '',
+          owner: '',
+          amount: 180000,
+        },
+        {
+          id: '6',
+          property: '',
+          offerer: '',
+          owner: '',
+          amount: 180000,
+        },
+        {
+          id: '7',
+          property: '',
+          offerer: '',
+          owner: '',
+          amount: 180000,
+        },
     ];
     offers: Offer[] = [
       {

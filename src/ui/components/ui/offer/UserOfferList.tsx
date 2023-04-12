@@ -11,7 +11,7 @@ interface Offers {
 
 const UserOfferList: FC<Offers> = ({ list, size }) => {
     return (
-        <div className='w-full overflow-y-scroll overflow-x-clip pr-2 h-full '>
+        <div className='w-full overflow-y-scroll overflow-x-clip pr-2 h-full'>
         {size === 'small' ? (
             list.map((value) => (<SmallUserOfferCard offer={value} />)))
              : (list.map((value) => (<UserOfferCard offer={value} />))
