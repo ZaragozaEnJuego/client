@@ -78,6 +78,9 @@ export class MemorieLandlordRepo {
           liquidity: 1000,
           properties: properties,
           lastDayIncome: 1000000000,
+          id: '12',
+          access: true,
+          name: 'Lorenzo'
         };
         resolve(res);
       }, 100); // Simulando una llamada HTTP que tarda 1 segundo
