@@ -9,6 +9,9 @@ import { PropertieList } from '../components/ui/propertie';
 const ProfilePage = () => {
   const landlordRepo: ILandlordRepo = new MemorieLandlordRepo();
   const [landlord, setPropertiesList] = useState<Landlord>({
+    id: '1',
+    name: 'Juan',
+    access: true,
     liquidity: 0,
     properties: [],
     lastDayIncome: 0,
