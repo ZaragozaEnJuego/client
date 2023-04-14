@@ -127,7 +127,7 @@ const MobileSideBarContent = () => {
   );
 };
 
-const MainLayout: FC<Props> = ({ children, title = 'ZarahozaEnJuego' }) => {
+const MainLayout: FC<Props> = ({ children, title = 'ZaragozaEnJuego' }) => {
   //a md window have 768 pixels
   const md = 768;
 
