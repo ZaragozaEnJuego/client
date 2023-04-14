@@ -11,6 +11,8 @@ interface Props {
 }
 
 const Mapa: FC<Props> = ({ list }) => {
+  const center = [41.6488, -0.8891];
+
   list.forEach((element) => {
     console.log(element.longitude);
   });
@@ -32,7 +34,7 @@ const Mapa: FC<Props> = ({ list }) => {
   return (
     <div className='w-full overflow-x-clip pr-2 h-full '>
       <MapContainer
-        center={[41.6488, -0.8891]}
+        center={center}
         zoom={13}
         scrollWheelZoom={false}
         className='w-full overflow-x-clip pr-2 h-full '
