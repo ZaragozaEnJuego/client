@@ -53,6 +53,9 @@ export function BarChart({ labels, data }: BarChartProps) {
             }]
           },
           options: {
+            animation: {
+              duration: 0
+          },
             scales: {
               y: {
                 beginAtZero: true
