@@ -8,6 +8,8 @@ export type Propertie = {
   income: number;
   owner?: string;
   kind: Kind;
+  latitude: number;
+  longitude: number;
 };
 
 export type KindRestrictions = {
@@ -18,5 +20,5 @@ export type KindRestrictions = {
 };
 
 export const DefaultPropertie = (): Propertie => {
-  return { address: '', id: '', kind: 'Education', name: '', price: 0, income: 0 };
+  return { address: '', id: '', kind: 'Education', name: '', price: 0, income: 0, latitude: 0, longitude: 0 };
 };

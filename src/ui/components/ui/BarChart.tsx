@@ -71,3 +71,107 @@ export function BarChart({ labels, data }: BarChartProps) {
     <canvas ref={canvasRef} />
   );
 }
+
+export function TemperatureBarChart({ labels, data }: BarChartProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const context = canvas.getContext('2d');
+      if (context) {
+        const chart = new Chart(context, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: data,
+              backgroundColor: data.map((value) => value < 10 ? '#5E81AC' : '#bf616a'),
+              borderColor: 'black',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: 'Temperatura',
+              },
+              legend: {
+                display: false,
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Temperatura (ºC)'
+                }
+              }
+            },
+          }
+        });
+        return () => {
+          chart.destroy();
+        };
+      }
+    }
+  }, [data, labels]);
+
+  return (
+    <canvas ref={canvasRef} />
+  );
+}
+
+export function ElectricityBarChart({ labels, data }: BarChartProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const context = canvas.getContext('2d');
+      if (context) {
+        const chart = new Chart(context, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: data,
+              backgroundColor: '#d08770',
+              borderColor: 'black',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: 'Electricidad',
+              },
+              legend: {
+                display: false,
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Electricidad (€/MWh)'
+                }
+              }
+            },
+          }
+        });
+        return () => {
+          chart.destroy();
+        };
+      }
+    }
+  }, [data, labels]);
+
+  return (
+    <canvas ref={canvasRef} />
+  );
+}

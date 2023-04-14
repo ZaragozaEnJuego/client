@@ -60,3 +60,52 @@ export function DonutChart({ data, labels }: DonutChartProps) {
     <canvas ref={canvasRef} />
   );
 }
+
+export function StateDonutChart({ data, labels }: DonutChartProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const context = canvas.getContext('2d');
+      if (context) {
+        const chart = new Chart(context, {
+          type: 'doughnut',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: data,
+              backgroundColor: [
+                '#ebcb8b',
+                '#5E81AC',
+                '#a3be8c'
+              ],
+              borderColor: [
+                'black',
+                'black',
+                'black'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right'
+              }
+            }
+          }
+        });
+        return () => {
+          chart.destroy();
+        };
+      }
+    }
+  }, [data, labels]);
+
+  return (
+    <canvas ref={canvasRef} />
+  );
+}

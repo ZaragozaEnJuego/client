@@ -1,9 +1,16 @@
 import { MainLayout } from '../components/layouts';
-import { BarChart } from '../components/ui/BarChart';
-import { DonutChart } from '../components/ui/DonutChart';
+import { BarChart, TemperatureBarChart, ElectricityBarChart } from '../components/ui/BarChart';
+import { DonutChart, StateDonutChart } from '../components/ui/DonutChart';
 import { useState, useEffect } from 'react';
+import { MemorieAboutRepo, getTemperatureChartData, getElectricityChartData, getStateChartData } from '../../infraestructure/memory/AboutRepo';
+
 
 const AboutPage = () => {
+
+  const weatherDataList = new MemorieAboutRepo().list;
+  const { chartDataValuesTemperature, chartLabelsTemperature } = getTemperatureChartData(weatherDataList);
+  const { chartDataValuesElectricity, chartLabelsElectricity } = getElectricityChartData(weatherDataList);
+  const { chartDataValuesState, chartLabelsState } = getStateChartData(weatherDataList);
 
   return (
     <MainLayout>
@@ -18,13 +25,13 @@ const AboutPage = () => {
         </p>
         <div className="flex flex-row collapse md:visible">
           <div className="w-1/3 collapse md:visible">
-          <BarChart data={[12, 19, 3, 5, 2, 3]} labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']} />
+            <TemperatureBarChart data={chartDataValuesTemperature} labels={chartLabelsTemperature} />
           </div>
           <div className="w-1/3 collapse md:visible">
-            <BarChart data={[12, 19, 3, 5, 2, 3]} labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']} />
+            <ElectricityBarChart data={chartDataValuesElectricity} labels={chartLabelsElectricity} />
           </div>
           <div className="w-1/3 collapse md:visible">
-            <DonutChart data={[12, 19, 3, 5, 2, 3]} labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']} />
+            <StateDonutChart data={chartDataValuesState} labels={chartLabelsState} />
           </div>
         </div>
       </div>
