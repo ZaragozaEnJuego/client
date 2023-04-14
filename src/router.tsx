@@ -8,6 +8,7 @@ import {
   NegotiationPage,
   AboutPage,
   PropertiePage,
+  AdminPage,
 } from './ui/pages';
 import { UseAuth } from './ui/hooks/auth/AuthContext';
 
@@ -41,6 +42,13 @@ const protectedRoutes: RouteObject[] = [
     element: <PropertiePage />,
   },
 ];
+
+const privateRoutes: RouteObject[] = [
+  {
+    path: '/admin',
+    element: <AdminPage />,
+  },
+]
 
 const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
   const { isLogged } = UseAuth();

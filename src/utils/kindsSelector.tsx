@@ -7,13 +7,13 @@ import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg';
 const chooseColor = (kind: Kind): string => {
   switch (kind) {
     case 'Health':
-      return '#5E81AC';
+      return '#bf616a';
 
     case 'Groceries':
       return '#a3be8c';
 
     case 'Education':
-      return '#bf616a';
+      return '#5E81AC';
 
     case 'Transport':
       return '#b48ead';
