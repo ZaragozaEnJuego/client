@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Propertie } from '../../../core/properties/domain';
+import L from 'leaflet';
 
 type Sizes = 'small' | 'regular';
 
@@ -11,7 +12,7 @@ interface Props {
 }
 
 const Mapa: FC<Props> = ({ list }) => {
-  const center = [41.6488, -0.8891];
+  const center = L.latLng([41.6488, -0.8891]);
 
   list.forEach((element) => {
     console.log(element.longitude);
