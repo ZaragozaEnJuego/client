@@ -28,11 +28,11 @@ const PropertiePage = () => {
   }, []);
 
   useEffect(() => {
+    console.log('propertie');
     propertieRepo.getKindRestrictions(propertie.kind).then((restrictions: KindRestrictions) => {
       setKindRestrictions(restrictions);
     });
-  }),
-    [propertie];
+  }, [propertie]);
 
   const divider = () => {
     return <div className='border border-b w-full border-secondary my-1'></div>;
