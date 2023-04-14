@@ -54,7 +54,7 @@ export class MemorieAboutRepo {
     ];
 }
 
-export function getTemperatureChartData(data: WeatherData[]) {
+export function getTemperatureChartData(data: WeatherData[]) : { chartDataValuesTemperature: number[], chartLabelsTemperature: string[] } {
     const labels = data.map((item) => item.date.toLocaleDateString());
     const temperatures = data.map((item) => item.temperature);
   
@@ -64,7 +64,7 @@ export function getTemperatureChartData(data: WeatherData[]) {
     return { chartDataValuesTemperature, chartLabelsTemperature };
   }
 
-  export function getElectricityChartData(data: WeatherData[]) {
+  export function getElectricityChartData(data: WeatherData[]) : { chartDataValuesElectricity: number[], chartLabelsElectricity: string[] } {
     const labels = data.map((item) => item.date.toLocaleDateString());
     const electricities = data.map((item) => item.electricity);
   
@@ -74,7 +74,7 @@ export function getTemperatureChartData(data: WeatherData[]) {
     return { chartDataValuesElectricity, chartLabelsElectricity };
   }
 
-  export function getStateChartData(data: WeatherData[]) {
+  export function getStateChartData(data: WeatherData[]) : { chartDataValuesState: number[], chartLabelsState: string[] } {
     let sunnyCount = 0;
     let cloudyCount = 0;
     let rainCount = 0;
