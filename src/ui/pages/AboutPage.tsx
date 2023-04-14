@@ -1,10 +1,39 @@
 import { MainLayout } from '../components/layouts';
+import { BarChart, TemperatureBarChart, ElectricityBarChart } from '../components/ui/BarChart';
+import { DonutChart, StateDonutChart } from '../components/ui/DonutChart';
+import { useState, useEffect } from 'react';
+import { MemorieAboutRepo, getTemperatureChartData, getElectricityChartData, getStateChartData } from '../../infraestructure/memory/AboutRepo';
+
 
 const AboutPage = () => {
+
+  const weatherDataList = new MemorieAboutRepo().list;
+  const { chartDataValuesTemperature, chartLabelsTemperature } = getTemperatureChartData(weatherDataList);
+  const { chartDataValuesElectricity, chartLabelsElectricity } = getElectricityChartData(weatherDataList);
+  const { chartDataValuesState, chartLabelsState } = getStateChartData(weatherDataList);
+
   return (
     <MainLayout>
-      <div className='w-full h-full flex justify-center items-center pb-40 '>
-        <h1 className='text-secondary text-4xl font-bold'>ACERCA DE</h1>
+      <div className='overflow-y-scroll overflow-x-clip pr-2 h-full '>
+        <h1 className="font-bold text-primary text-3xl">Acerca del juego</h1>
+        <p className="text-black text-lg mt-4">ZARAGOZA EN JUEGO es el clásico juego de operaciones inmobiliarias, 
+        consistente en hacer grandes negocios comprando el mayor número de propiedades posible.<br/><br/>
+        Navega sobre el mapa o a través de la lista de propiedades y toma decisiones para comprar propiedades a la 
+        banca o negocia para obtener las propiedades de otros jugadores. Tu éxito dependerá de unas inversiones inteligentes 
+        y de tus dotes como negociador y, sobretodo, evita la bancarrota a cualquier precio.<br/><br/>
+        ¿Serás capaz de convertirte en el propietario más poderoso?<br/><br/>
+        </p>
+        <div className="flex flex-row collapse md:visible">
+          <div className="w-1/3 collapse md:visible">
+            <TemperatureBarChart data={chartDataValuesTemperature} labels={chartLabelsTemperature} />
+          </div>
+          <div className="w-1/3 collapse md:visible">
+            <ElectricityBarChart data={chartDataValuesElectricity} labels={chartLabelsElectricity} />
+          </div>
+          <div className="w-1/3 collapse md:visible">
+            <StateDonutChart data={chartDataValuesState} labels={chartLabelsState} />
+          </div>
+        </div>
       </div>
     </MainLayout>
   );

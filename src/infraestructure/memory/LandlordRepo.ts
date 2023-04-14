@@ -13,6 +13,8 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Health',
+            latitude: 41.6488,
+            longitude: -0.8891,
             income:10,
           },
           {
@@ -22,6 +24,8 @@ export class MemorieLandlordRepo {
             price: 240000,
             owner: 'Juan',
             kind: 'Transport',
+            latitude: 41.6488,
+            longitude: -0.8891,
             income:10,
           },
           {
@@ -30,6 +34,8 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Education',
+            latitude: 41.6488,
+            longitude: -0.8891,
             income:10,
           },
           {
@@ -38,6 +44,8 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Groceries',
+            latitude: 41.6488,
+            longitude: -0.8891,
             income:10,
           },
           {
@@ -46,6 +54,8 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Health',
+            latitude: 41.6488,
+            longitude: -0.8891,
             income:10,
           },
           {
@@ -55,6 +65,8 @@ export class MemorieLandlordRepo {
             price: 240000,
             owner: 'Juan',
             kind: 'Transport',
+            latitude: 41.6488,
+            longitude: -0.8891,
             income:10,
           },
           {
@@ -63,6 +75,8 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Education',
+            latitude: 41.6488,
+            longitude: -0.8891,
             income:10,
           },
           {
@@ -71,6 +85,8 @@ export class MemorieLandlordRepo {
             address: 'Avenida academia nº12',
             price: 240000,
             kind: 'Groceries',
+            latitude: 41.6488,
+            longitude: -0.8891,
             income:10,
           },
         ];

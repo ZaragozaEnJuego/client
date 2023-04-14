@@ -9,6 +9,7 @@ import {
 import { MemoriePropertieRepo } from '../../infraestructure/memory';
 import { chooseColor, PropertieIcon } from '../../utils/kindsSelector';
 import { MainLayout } from '../components/layouts';
+import { BarChart } from '../components/ui/BarChart';
 
 const PropertiePage = () => {
   const navigate = useNavigate();
@@ -27,11 +28,11 @@ const PropertiePage = () => {
   }, []);
 
   useEffect(() => {
+    console.log('propertie');
     propertieRepo.getKindRestrictions(propertie.kind).then((restrictions: KindRestrictions) => {
       setKindRestrictions(restrictions);
     });
-  }),
-    [propertie];
+  }, [propertie]);
 
   const divider = () => {
     return <div className='border border-b w-full border-secondary my-1'></div>;
@@ -160,7 +161,7 @@ const PropertiePage = () => {
         <div className=' h-full w-1/2 px-2 hidden md:block'>
           {/**TODO: reemplazar este div por el grafico */}
           <div className='flex justify-center items-center border-2 rounded-lg border-secondary text-4xl font-bold text-primary h-full w-full'>
-            <h1>CHART</h1>
+            <BarChart data={[12, 19, 3, 5, 2, 3]} labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']} />
           </div>
         </div>
       </div>
