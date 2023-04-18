@@ -41,6 +41,10 @@ const protectedRoutes: RouteObject[] = [
     path: '/propertie/:buildingId',
     element: <PropertiePage />,
   },
+  {
+    path: '/admin',
+    element: <AdminPage />,
+  },
 ];
 
 const privateRoutes: RouteObject[] = [
