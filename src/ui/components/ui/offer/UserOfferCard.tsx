@@ -30,7 +30,7 @@ const PropertyIcon = (kind: Kind) => {
 
 const UserOfferCard: FC<Offers> = ({ offer }) => {
   return (
-    <div style={{ background: '#8FBCBB' }} className='flex justify-center items-center border w-full rounded-3xl py-2 px-4 my-4 h-100'>
+    <div style={{ background: '#8FBCBB' }} className='flex justify-center align-middle items-center border w-full rounded-3xl py-2 px-4 my-4 h-100'>
     <div className='flex flex-col justify-center items-center'>
       <img className='w-10 h-10 object-cover rounded-full 'src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'/>
       <h1 className='text-xs text-nord1' >Tú</h1>

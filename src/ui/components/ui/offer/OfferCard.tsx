@@ -31,7 +31,7 @@ const PropertyIcon = (kind: Kind) => {
 
 const OfferCard: FC<Offers> = ({ offer }) => {
     return (
-        <div style={{ color: chooseColor('Transport') }} className='flex flex-col-3 justify-center items-top border w-full rounded-3xl py-2 px-4 my-4 h-100'>
+        <div style={{ color: chooseColor('Transport') }} className='flex flex-col-3 justify-center align-middle items-top border w-full rounded-3xl py-2 px-4 my-4 h-100'>
           <div className='flex flex-col justify-center items-center'>
             <img className='w-10 h-10 object-cover rounded-full 'src='https://media.istockphoto.com/id/1151155288/es/foto/close-up-foto-incre%C3%ADble-hermosa-ella-sus-dedos-pulgar-de-la-dama-indican-directamente-pecho.jpg?s=612x612&w=0&k=20&c=NCuogVJLvUYYfMihKzWPAl7OPRQSsQsyWFKi6fyuty4='/>
             <h1 className='text-xs text-nord1' >Lucía</h1>
