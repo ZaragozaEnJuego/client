@@ -13,16 +13,16 @@ interface Offers {
 const PropertyIcon = (kind: Kind) => {
   switch (kind) {
     case 'Health':
-      return <MedicalIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
+      return <MedicalIcon style={{ fill: '#2E3440' }} className={'h-full md:w-10 w-16 px-2'} />;
 
     case 'Groceries':
-      return <GrocerieIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
+      return <GrocerieIcon style={{ fill: '#2E3440' }} className={'h-full md:w-10 w-16 px-2'} />;
 
     case 'Education':
-      return <SchoolIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
+      return <SchoolIcon style={{ fill: '#2E3440' }} className={'h-full md:w-10 w-16 px-2'} />;
 
     case 'Transport':
-      return <TrainIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
+      return <TrainIcon style={{ fill: '#2E3440' }} className={'h-full md:w-10 w-16 px-2'} />;
     default:
       return <></>;
   }
@@ -30,11 +30,11 @@ const PropertyIcon = (kind: Kind) => {
 
 const UserOfferCard: FC<Offers> = ({ offer }) => {
   return (
-    <div style={{ background: '#8FBCBB' }} className='flex justify-center align-middle items-center border w-full rounded-3xl py-2 px-4 my-4 h-100'>
+    <div style={{ background: '#8FBCBB' }} className='flex justify-center align-baseline items-center border w-full rounded-3xl py-2 px-4 my-4 h-100'>
     <div className='flex flex-col justify-center items-center'>
       <img className='w-10 h-10 object-cover rounded-full 'src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'/>
       <h1 className='text-xs text-nord1' >Tú</h1>
-      <h1 className='text-xl w-50 font-bold text-primary'>{offer.amount}€</h1>
+      <h1 className='text-xl lg:text-lg md:text-base sm:text-sm xs:text-xs w-50 font-bold text-primary'>{offer.amount}€</h1>
     </div>
     <div className='flex items-center justify-top mt-4 mx-4 flex-col'>
       {PropertyIcon('Transport')}
@@ -47,7 +47,7 @@ const UserOfferCard: FC<Offers> = ({ offer }) => {
     <div className='flex flex-col justify-center items-center '>
       <img className='w-10 h-10 object-cover rounded-full 'src='https://media.istockphoto.com/id/1151155288/es/foto/close-up-foto-incre%C3%ADble-hermosa-ella-sus-dedos-pulgar-de-la-dama-indican-directamente-pecho.jpg?s=612x612&w=0&k=20&c=NCuogVJLvUYYfMihKzWPAl7OPRQSsQsyWFKi6fyuty4='/>
       <h1 className='text-xs text-nord1' >Lucía</h1>
-      <h1 style={{ background: '#8FBCBB' }} className={'w-50 font-bold text-lg'}>Estación Delicias</h1>
+      <h1 style={{ background: '#8FBCBB' }} className={'w-50 font-bold text-lg lg:text-base md:text-sm xs:text-xs'}>Estación Delicias</h1>
     </div>
   </div>
     );
