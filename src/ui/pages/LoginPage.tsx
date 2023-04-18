@@ -86,7 +86,7 @@ const LoginPage = () => {
               <button
                 onClick={() => {
                   useAuth.handleLogin();
-                  navigate('/admin', { replace: true });
+                  navigate('/', { replace: true });
                 }}
                 className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
               >
