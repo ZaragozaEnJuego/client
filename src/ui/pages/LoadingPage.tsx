@@ -1,16 +1,30 @@
 import { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { HttpAuthRepo } from '../../infraestructure/http/AuthRepo';
+import { IAuthRepo } from '../../core/auth/domain';
+import axios from '../../infraestructure/http/http';
+import { UseAuth } from '../hooks/auth/AuthContext';
 
 const LoadingPage = () => {
+  const authRepo: IAuthRepo = new HttpAuthRepo();
   const [loaded, setloaded] = useState(false);
+  const useAuth = UseAuth();
   useEffect(() => {
-    const timer = setTimeout(() => {
-      //TODO: request to jwt
-      // setloaded(true);
-    }, 8000);
+    async function fetchData() {
+      try {
+        const tkn = await authRepo.getToken();
+        axios.defaults.headers.common['Authorization'] = `Bearer ${tkn.token}`;
+        useAuth.handleLogin(tkn);
+        setloaded(true);
+      } catch (error) {
+        console.log('no server connection');
+        console.log(error);
+      }
+    }
+    fetchData();
 
-    return () => clearTimeout(timer);
+    // setloaded(true);
   }, []);
 
   return loaded ? (

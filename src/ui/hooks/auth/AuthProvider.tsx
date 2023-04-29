@@ -1,27 +1,32 @@
 import { FC, PropsWithChildren, useState } from 'react';
 import { AuthContext } from './AuthContext';
+import { TokenJWT } from '../../../core/auth/domain/model';
 
 export interface AuthState {
-  isLogged: Boolean;
+  credetials: TokenJWT;
 }
 
 const AUTH_INITIAL_STATE: AuthState = {
-  isLogged: false,
+  credetials: {},
 };
 
 //TODO: cambiar por un correcto uso, no solo un booleano, sino las credenciales
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, setSate] = useState<AuthState>(AUTH_INITIAL_STATE);
-  const handleLogin = () => {
-    setSate({ ...state, isLogged: true });
+  const handleLogin = (credetials: TokenJWT) => {
+    setSate({ ...state, credetials });
   };
 
   const handleLogout = () => {
-    setSate({ ...state, isLogged: false });
+    setSate({ ...state, credetials: {} });
+  };
+
+  const isLogged = () => {
+    return state.credetials.token !== undefined;
   };
 
   return (
-    <AuthContext.Provider value={{ ...state, handleLogin, handleLogout }}>
+    <AuthContext.Provider value={{ ...state, handleLogin, handleLogout, isLogged }}>
       {children}
     </AuthContext.Provider>
   );

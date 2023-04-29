@@ -1,1 +1,1 @@
-export type TokenJWT = { token: string; isAdmin: boolean };
+export type TokenJWT = { token?: string; isAdmin?: boolean };

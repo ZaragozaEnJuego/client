@@ -56,8 +56,8 @@ const privateRoutes: RouteObject[] = [
 ];
 
 const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
-  const { isLogged } = UseAuth();
-  if (!isLogged) {
+  const useAuth = UseAuth();
+  if (!useAuth.isLogged()) {
     return <Navigate to='/login' replace />;
   }
 
