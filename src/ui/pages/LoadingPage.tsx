@@ -16,10 +16,11 @@ const LoadingPage = () => {
         const tkn = await authRepo.getToken();
         axios.defaults.headers.common['Authorization'] = `Bearer ${tkn.token}`;
         useAuth.handleLogin(tkn);
-        setloaded(true);
       } catch (error) {
         console.log('no server connection');
         console.log(error);
+      } finally {
+        setloaded(true);
       }
     }
     fetchData();
