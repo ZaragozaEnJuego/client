@@ -3,12 +3,12 @@ import { IPropertieRepo, Propertie } from '../../core/properties/domain';
 import { MemoriePropertieRepo } from '../../infraestructure/memory';
 import { MainLayout } from '../components/layouts';
 import { useEffect, useState } from 'react';
-import { list } from 'postcss';
 import { PropertieList } from '../components/ui/propertie';
 import { Mapa } from '../components/ui/Mapa';
+import { HttpPropertieRepo } from '../../infraestructure/http/PropertieRepo';
 
 const HomePage = () => {
-  const propertieRepo: IPropertieRepo = new MemoriePropertieRepo();
+  const propertieRepo: IPropertieRepo = new HttpPropertieRepo();
   const [propertiesList, setPropertiesList] = useState<Propertie[]>([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const HomePage = () => {
           <PropertieList list={propertiesList} />
         </div>
         <div className=' h-full w-1/2 px-2  collapse md:visible'>
-          <Mapa list={propertiesList}/>
+          <Mapa list={propertiesList} />
         </div>
       </div>
     </MainLayout>
