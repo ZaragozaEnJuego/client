@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   DefaultPropertie,
@@ -6,22 +6,24 @@ import {
   KindRestrictions,
   Propertie,
 } from '../../core/properties/domain';
-import { MemoriePropertieRepo } from '../../infraestructure/memory';
 import { chooseColor, PropertieIcon } from '../../utils/kindsSelector';
 import { MainLayout } from '../components/layouts';
 import { BarChart } from '../components/ui/BarChart';
+import { HttpPropertieRepo } from '../../infraestructure/http/PropertieRepo';
 
 const PropertiePage = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const propertieRepo: IPropertieRepo = new MemoriePropertieRepo();
+  const propertieRepo: IPropertieRepo = new HttpPropertieRepo();
   const [propertie, setPropertie] = useState<Propertie>(DefaultPropertie());
   const [kindRestrictions, setKindRestrictions] = useState<KindRestrictions>();
 
   useEffect(() => {
     if (undefined !== params.buildingId) {
       propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
+        console.log(propertie);
+
         setPropertie(propertie);
       });
     }
@@ -29,9 +31,9 @@ const PropertiePage = () => {
 
   useEffect(() => {
     console.log('propertie');
-    propertieRepo.getKindRestrictions(propertie.kind).then((restrictions: KindRestrictions) => {
+    /*propertieRepo.getKindRestrictions(propertie.kind).then((restrictions: KindRestrictions) => {
       setKindRestrictions(restrictions);
-    });
+    });*/
   }, [propertie]);
 
   const divider = () => {
@@ -161,7 +163,10 @@ const PropertiePage = () => {
         <div className=' h-full w-1/2 px-2 hidden md:block'>
           {/**TODO: reemplazar este div por el grafico */}
           <div className='flex justify-center items-center border-2 rounded-lg border-secondary text-4xl font-bold text-primary h-full w-full'>
-            <BarChart data={[12, 19, 3, 5, 2, 3]} labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']} />
+            <BarChart
+              data={[12, 19, 3, 5, 2, 3]}
+              labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']}
+            />
           </div>
         </div>
       </div>

@@ -3,7 +3,18 @@ import { Kind, KindRestrictions, Propertie } from '../../core/properties/domain/
 
 export class HttpPropertieRepo {
   async getAllProperties(): Promise<Propertie[]> {
-    const response = await axios.get<Propertie[]>('http://localhost:3000/properties', {
+    interface PropertieDTO {
+      _id: string;
+      name: string;
+      kind: 'transport' | 'education' | 'health' | 'groceries';
+      address: string;
+      lng: number;
+      lat: number;
+      price: number;
+      baseIncome: number;
+      owener?: string;
+    }
+    const response = await axios.get<PropertieDTO[]>('http://localhost:3000/properties', {
       headers: {
         accept: 'application/json',
       },
@@ -13,35 +24,63 @@ export class HttpPropertieRepo {
     }
     console.log(response.data);
 
-    return response.data;
+    return response.data.map((propertieDto) => {
+      const prop: Propertie = {
+        address: propertieDto.address,
+        id: propertieDto._id,
+        income: propertieDto.baseIncome,
+        kind: propertieDto.kind,
+        lat: propertieDto.lat,
+        lng: propertieDto.lng,
+        name: propertieDto.name,
+        price: propertieDto.price,
+        owner: propertieDto.owener,
+      };
+      return prop;
+    });
   }
-  getPropertieById(id: string): Promise<Propertie> {
+  async getPropertieById(id: string): Promise<Propertie> {
+    interface PropertieDTO {
+      name: string;
+      address: string;
+      _id: string;
+      price: number;
+      baseIncome: number;
+      kind: 'transport' | 'education' | 'health' | 'groceries';
+      stats: {
+        date: string;
+        baseIncome: number;
+      }[];
+    }
+    const response = await axios.get<PropertieDTO>(`http://localhost:3000/properties/${id}`, {
+      headers: {
+        accept: 'application/json',
+      },
+    });
+    if (response.status !== 200) {
+      throw new Error('No se puedo obtener los datos de la propiedad');
+    }
+    const propertieRes = response.data;
+    const propertie: Propertie = {
+      address: propertieRes.address,
+      id: propertieRes._id,
+      income: propertieRes.baseIncome,
+      kind: propertieRes.kind,
+      lat: 0,
+      lng: 0,
+      name: propertieRes.name,
+      price: propertieRes.price,
+      owner: 'not sended',
+    };
+    console.log(propertie);
+    return propertie;
+  }
+
+  getKindRestrictions(id: string): Promise<KindRestrictions> {
     throw Error('not implemented');
   }
 
-  getKindRestrictions(kind: Kind): Promise<KindRestrictions> {
-    const restrictions: KindRestrictions = {
-      EnergyConsumption: 300,
-      MaxTemperature: { modifier: 10, value: 30 },
-      MinTemperature: { modifier: -20, value: 10 },
-      Weather: { cloudy: 10, sunny: 20, rainy: -4 },
-    };
-    return new Promise((resolve, reject) => {
-      // Aquí puedes hacer la lógica de la llamada HTTP, por ejemplo:
-      setTimeout(() => {
-        resolve(restrictions);
-      }, 100); // Simulando una llamada HTTP que tarda 1 segundo
-    });
-  }
-
   buyById(id: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      console.log('Buy propertie ', id);
-
-      // Aquí puedes hacer la lógica de la llamada HTTP, por ejemplo:
-      setTimeout(() => {
-        resolve();
-      }, 100); // Simulando una llamada HTTP que tarda 1 segundo
-    });
+    throw Error('not implemented');
   }
 }
