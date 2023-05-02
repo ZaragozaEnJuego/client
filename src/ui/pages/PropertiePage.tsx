@@ -31,9 +31,11 @@ const PropertiePage = () => {
 
   useEffect(() => {
     console.log('propertie');
-    /*propertieRepo.getKindRestrictions(propertie.kind).then((restrictions: KindRestrictions) => {
-      setKindRestrictions(restrictions);
-    });*/
+    if (undefined !== params.buildingId) {
+      propertieRepo.getKindRestrictions(propertie.id).then((restrictions: KindRestrictions) => {
+        setKindRestrictions(restrictions);
+      });
+    }
   }, [propertie]);
 
   const divider = () => {

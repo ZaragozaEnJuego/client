@@ -103,7 +103,7 @@ export class MemoriePropertieRepo {
     });
   }
 
-  getKindRestrictions(kind: Kind): Promise<KindRestrictions> {
+  getKindRestrictions(id: string): Promise<KindRestrictions> {
     const restrictions: KindRestrictions = {
       EnergyConsumption: 300,
       MaxTemperature: { modifier: 10, value: 30 },

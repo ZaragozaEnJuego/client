@@ -76,8 +76,21 @@ export class HttpPropertieRepo {
     return propertie;
   }
 
-  getKindRestrictions(id: string): Promise<KindRestrictions> {
-    throw Error('not implemented');
+  async getKindRestrictions(id: string): Promise<KindRestrictions> {
+    const response = await axios.get<KindRestrictions>(
+      `http://localhost:3000/properties/${id}/kindrules`,
+      {
+        headers: {
+          accept: 'application/json',
+        },
+      },
+    );
+    if (response.status !== 200) {
+      throw new Error('No se puedo obtener los datos de la propiedad');
+    }
+    console.log(response.data);
+
+    return response.data;
   }
 
   buyById(id: string): Promise<void> {
