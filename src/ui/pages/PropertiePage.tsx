@@ -18,6 +18,7 @@ const PropertiePage = () => {
   const propertieRepo: IPropertieRepo = new HttpPropertieRepo();
   const [propertie, setPropertie] = useState<Propertie>(DefaultPropertie());
   const [kindRestrictions, setKindRestrictions] = useState<KindRestrictions>();
+  const [buy, setBuy] = useState<string>('');
 
   useEffect(() => {
     if (undefined !== params.buildingId) {
@@ -28,6 +29,16 @@ const PropertiePage = () => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if (undefined !== params.buildingId) {
+      propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
+        console.log(propertie);
+
+        setPropertie(propertie);
+      });
+    }
+  }, [buy]);
 
   useEffect(() => {
     console.log('propertie');
@@ -76,7 +87,7 @@ const PropertiePage = () => {
           <div className='w-full'>
             <div className='flex ml-16 py-2  '>
               <div className='block'>
-                {descriptionElement('Propietario', propertie.owner)}
+                {descriptionElement('Propietario', propertie.owner || 'Sin comprar')}
                 {descriptionElement('Valor de compra', propertie.price)}
               </div>
               <div className='w-20' />
@@ -186,8 +197,9 @@ const PropertiePage = () => {
         <button
           style={{ backgroundColor: chooseColor(propertie.kind) }}
           className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
-          onClick={() => {
-            propertieRepo.buyById(propertie.id);
+          onClick={async () => {
+            const buyId = await propertieRepo.buyById(propertie.id);
+            setBuy(buyId);
           }}
         >
           Comprar

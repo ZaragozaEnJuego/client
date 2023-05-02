@@ -47,6 +47,7 @@ export class HttpPropertieRepo {
       price: number;
       baseIncome: number;
       kind: 'transport' | 'education' | 'health' | 'groceries';
+      owner?: string;
       stats: {
         date: string;
         baseIncome: number;
@@ -70,7 +71,7 @@ export class HttpPropertieRepo {
       lng: 0,
       name: propertieRes.name,
       price: propertieRes.price,
-      owner: 'not sended',
+      owner: propertieRes.owner,
     };
     console.log(propertie);
     return propertie;
@@ -93,7 +94,18 @@ export class HttpPropertieRepo {
     return response.data;
   }
 
-  buyById(id: string): Promise<void> {
-    throw Error('not implemented');
+  async buyById(id: string): Promise<string> {
+    const response = await axios.post<{ id: string }>(
+      `http://localhost:3000/properties/${id}/buy`,
+      {
+        ownerId: '644cdc7fdf537c6dac5b2db6',
+      },
+    );
+
+    if (response.status !== 201) {
+      throw new Error('No se puedo obtener los datos de la propiedad');
+    }
+    console.log(response.data);
+    return response.data.id;
   }
 }
