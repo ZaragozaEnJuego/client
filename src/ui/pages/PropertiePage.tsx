@@ -228,9 +228,19 @@ const PropertiePage = () => {
           onClick={async () => {
             try {
               const buyId = await propertieRepo.buyById(propertie.id);
+              toast('Edificio comprado', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+              });
               setBuy(buyId);
             } catch (error) {
-              toast('Error al comprar', {
+              toast.error('Error al comprar', {
                 position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,
