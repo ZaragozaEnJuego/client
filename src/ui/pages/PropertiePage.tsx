@@ -10,6 +10,8 @@ import { chooseColor, PropertieIcon } from '../../utils/kindsSelector';
 import { MainLayout } from '../components/layouts';
 import { BarChart } from '../components/ui/BarChart';
 import { HttpPropertieRepo } from '../../infraestructure/http/PropertieRepo';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PropertiePage = () => {
   const navigate = useNavigate();
@@ -22,21 +24,47 @@ const PropertiePage = () => {
 
   useEffect(() => {
     if (undefined !== params.buildingId) {
-      propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
-        console.log(propertie);
+      try {
+        propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
+          console.log(propertie);
 
-        setPropertie(propertie);
-      });
+          setPropertie(propertie);
+        });
+      } catch (error) {
+        toast('Error al obtener datos del edificio', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
     }
   }, []);
 
   useEffect(() => {
     if (undefined !== params.buildingId) {
-      propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
-        console.log(propertie);
+      try {
+        propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
+          console.log(propertie);
 
-        setPropertie(propertie);
-      });
+          setPropertie(propertie);
+        });
+      } catch (error) {
+        toast('Error al obtener datos del edificio', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
     }
   }, [buy]);
 
@@ -198,13 +226,27 @@ const PropertiePage = () => {
           style={{ backgroundColor: chooseColor(propertie.kind) }}
           className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
           onClick={async () => {
-            const buyId = await propertieRepo.buyById(propertie.id);
-            setBuy(buyId);
+            try {
+              const buyId = await propertieRepo.buyById(propertie.id);
+              setBuy(buyId);
+            } catch (error) {
+              toast('Error al comprar', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+              });
+            }
           }}
         >
           Comprar
         </button>
       </div>
+      <ToastContainer />
     </MainLayout>
   );
 };
