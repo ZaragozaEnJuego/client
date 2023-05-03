@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   DefaultPropertie,
@@ -6,32 +6,75 @@ import {
   KindRestrictions,
   Propertie,
 } from '../../core/properties/domain';
-import { MemoriePropertieRepo } from '../../infraestructure/memory';
 import { chooseColor, PropertieIcon } from '../../utils/kindsSelector';
 import { MainLayout } from '../components/layouts';
 import { BarChart } from '../components/ui/BarChart';
+import { HttpPropertieRepo } from '../../infraestructure/http/PropertieRepo';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PropertiePage = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const propertieRepo: IPropertieRepo = new MemoriePropertieRepo();
+  const propertieRepo: IPropertieRepo = new HttpPropertieRepo();
   const [propertie, setPropertie] = useState<Propertie>(DefaultPropertie());
   const [kindRestrictions, setKindRestrictions] = useState<KindRestrictions>();
+  const [buy, setBuy] = useState<string>('');
 
   useEffect(() => {
     if (undefined !== params.buildingId) {
-      propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
-        setPropertie(propertie);
-      });
+      try {
+        propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
+          console.log(propertie);
+
+          setPropertie(propertie);
+        });
+      } catch (error) {
+        toast('Error al obtener datos del edificio', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
     }
   }, []);
 
   useEffect(() => {
+    if (undefined !== params.buildingId) {
+      try {
+        propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
+          console.log(propertie);
+
+          setPropertie(propertie);
+        });
+      } catch (error) {
+        toast('Error al obtener datos del edificio', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+    }
+  }, [buy]);
+
+  useEffect(() => {
     console.log('propertie');
-    propertieRepo.getKindRestrictions(propertie.kind).then((restrictions: KindRestrictions) => {
-      setKindRestrictions(restrictions);
-    });
+    if (undefined !== params.buildingId) {
+      propertieRepo.getKindRestrictions(propertie.id).then((restrictions: KindRestrictions) => {
+        setKindRestrictions(restrictions);
+      });
+    }
   }, [propertie]);
 
   const divider = () => {
@@ -72,7 +115,7 @@ const PropertiePage = () => {
           <div className='w-full'>
             <div className='flex ml-16 py-2  '>
               <div className='block'>
-                {descriptionElement('Propietario', propertie.owner)}
+                {descriptionElement('Propietario', propertie.owner || 'Sin comprar')}
                 {descriptionElement('Valor de compra', propertie.price)}
               </div>
               <div className='w-20' />
@@ -161,7 +204,10 @@ const PropertiePage = () => {
         <div className=' h-full w-1/2 px-2 hidden md:block'>
           {/**TODO: reemplazar este div por el grafico */}
           <div className='flex justify-center items-center border-2 rounded-lg border-secondary text-4xl font-bold text-primary h-full w-full'>
-            <BarChart data={[12, 19, 3, 5, 2, 3]} labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']} />
+            <BarChart
+              data={[12, 19, 3, 5, 2, 3]}
+              labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']}
+            />
           </div>
         </div>
       </div>
@@ -179,13 +225,38 @@ const PropertiePage = () => {
         <button
           style={{ backgroundColor: chooseColor(propertie.kind) }}
           className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
-          onClick={() => {
-            propertieRepo.buyById(propertie.id);
+          onClick={async () => {
+            try {
+              const buyId = await propertieRepo.buyById(propertie.id);
+              toast('Edificio comprado', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+              });
+              setBuy(buyId);
+            } catch (error) {
+              toast.error('Error al comprar', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+              });
+            }
           }}
         >
           Comprar
         </button>
       </div>
+      <ToastContainer />
     </MainLayout>
   );
 };

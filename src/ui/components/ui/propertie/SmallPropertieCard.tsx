@@ -12,19 +12,19 @@ interface Props {
 const SmallPropertieCard: FC<Props> = ({ propertie }) => {
   const chooseColor = (kind: Kind): string => {
     switch (kind) {
-      case 'Health':
+      case 'health':
         console.log(propertie.kind);
         return '#5E81AC';
 
-      case 'Groceries':
+      case 'groceries':
         console.log(propertie.kind);
         return '#a3be8c';
 
-      case 'Education':
+      case 'education':
         console.log(propertie.kind);
         return '#bf616a';
 
-      case 'Transport':
+      case 'transport':
         console.log(propertie.kind);
         return '#b48ead';
       default:
@@ -34,7 +34,7 @@ const SmallPropertieCard: FC<Props> = ({ propertie }) => {
 
   const PropertieIcon = (kind: Kind) => {
     switch (kind) {
-      case 'Health':
+      case 'health':
         return (
           <MedicalIcon
             style={{ fill: chooseColor(propertie.kind) }}
@@ -42,7 +42,7 @@ const SmallPropertieCard: FC<Props> = ({ propertie }) => {
           />
         );
 
-      case 'Groceries':
+      case 'groceries':
         console.log(propertie.kind);
         return (
           <GrocerieIcon
@@ -51,7 +51,7 @@ const SmallPropertieCard: FC<Props> = ({ propertie }) => {
           />
         );
 
-      case 'Education':
+      case 'education':
         console.log(propertie.kind);
         return (
           <SchoolIcon
@@ -60,7 +60,7 @@ const SmallPropertieCard: FC<Props> = ({ propertie }) => {
           />
         );
 
-      case 'Transport':
+      case 'transport':
         console.log(propertie.kind);
         return (
           <TrainIcon

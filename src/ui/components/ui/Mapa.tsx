@@ -15,11 +15,11 @@ const Mapa: FC<Props> = ({ list }) => {
   const center = L.latLng([41.6488, -0.8891]);
 
   list.forEach((element) => {
-    console.log(element.longitude);
+    console.log(element.lng);
   });
   const renderMarkers = () => {
     return list.map((propiedad) => (
-      <Marker key={propiedad.id} position={[propiedad.latitude, propiedad.longitude]}>
+      <Marker key={propiedad.id} position={[propiedad.lat, propiedad.lng]}>
         <Popup>
           <div>
             <h2>{propiedad.name}</h2>
