@@ -1,4 +1,6 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from 'axios';
+
+export const baseUrl = import.meta.env.VITE_SERVER_URL ?? 'http://localhost:3000';
 
 class AxiosSingleton {
   private static instance: AxiosInstance;
@@ -6,8 +8,10 @@ class AxiosSingleton {
   private constructor() {}
 
   public static getInstance(): AxiosInstance {
+    const baseUrl = import.meta.env.VITE_SERVER_URL ?? 'http://localhost:3000';
     if (!AxiosSingleton.instance) {
       AxiosSingleton.instance = axios.create({
+        baseURL: baseUrl,
         // configuración de axios
       });
     }
@@ -15,4 +19,4 @@ class AxiosSingleton {
   }
 }
 
-export default AxiosSingleton.getInstance()
+export default AxiosSingleton.getInstance();
