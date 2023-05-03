@@ -11,8 +11,14 @@ import {
   AdminPage,
 } from './ui/pages';
 import { UseAuth } from './ui/hooks/auth/AuthContext';
+import { LoadingPage } from './ui/pages/LoadingPage';
 
 const publicRoutes: RouteObject[] = [
+  {
+    index: true,
+    path: '/',
+    element: <LoadingPage />,
+  },
   {
     path: '/login',
     element: <LoginPage />,
@@ -21,8 +27,7 @@ const publicRoutes: RouteObject[] = [
 
 const protectedRoutes: RouteObject[] = [
   {
-    index: true,
-    path: '/',
+    path: '/home',
     element: <HomePage />,
   },
   {
@@ -51,8 +56,8 @@ const privateRoutes: RouteObject[] = [
 ];
 
 const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
-  const { isLogged } = UseAuth();
-  if (false) {
+  const useAuth = UseAuth();
+  if (!useAuth.isLogged()) {
     return <Navigate to='/login' replace />;
   }
 

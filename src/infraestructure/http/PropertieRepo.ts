@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from './http';
 import { Kind, KindRestrictions, Propertie } from '../../core/properties/domain/model';
 
 export class HttpPropertieRepo {
@@ -14,7 +14,7 @@ export class HttpPropertieRepo {
       baseIncome: number;
       owener?: string;
     }
-    const response = await axios.get<PropertieDTO[]>('http://localhost:3000/properties', {
+    const response = await axios.get<PropertieDTO[]>('/properties', {
       headers: {
         accept: 'application/json',
       },
@@ -53,7 +53,7 @@ export class HttpPropertieRepo {
         baseIncome: number;
       }[];
     }
-    const response = await axios.get<PropertieDTO>(`http://localhost:3000/properties/${id}`, {
+    const response = await axios.get<PropertieDTO>(`/properties/${id}`, {
       headers: {
         accept: 'application/json',
       },
@@ -78,14 +78,11 @@ export class HttpPropertieRepo {
   }
 
   async getKindRestrictions(id: string): Promise<KindRestrictions> {
-    const response = await axios.get<KindRestrictions>(
-      `http://localhost:3000/properties/${id}/kindrules`,
-      {
-        headers: {
-          accept: 'application/json',
-        },
+    const response = await axios.get<KindRestrictions>(`/properties/${id}/kindrules`, {
+      headers: {
+        accept: 'application/json',
       },
-    );
+    });
     if (response.status !== 200) {
       throw new Error('No se puedo obtener los datos de la propiedad');
     }
@@ -95,12 +92,9 @@ export class HttpPropertieRepo {
   }
 
   async buyById(id: string): Promise<string> {
-    const response = await axios.post<{ id: string }>(
-      `http://localhost:3000/properties/${id}/buy`,
-      {
-        ownerId: '644cdc7fdf537c6dac5b2db6',
-      },
-    );
+    const response = await axios.post<{ id: string }>(`/properties/${id}/buy`, {
+      ownerId: '644cdc7fdf537c6dac5b2db6',
+    });
 
     if (response.status !== 201) {
       throw new Error('No se puedo obtener los datos de la propiedad');
