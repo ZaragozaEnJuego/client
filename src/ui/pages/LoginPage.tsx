@@ -82,7 +82,7 @@ const LoginPage = () => {
             </div>
             <div>
               <Link
-                to={'http://localhost:3000/api/auth/google'}
+                 to={baseUrl + '/api/auth/google'}
                 className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
               >
                 Iniciar sesión
