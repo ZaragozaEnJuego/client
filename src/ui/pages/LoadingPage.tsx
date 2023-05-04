@@ -20,7 +20,7 @@ const LoadingPage = () => {
         console.log('no server connection');
         console.log(error);
       } finally {
-        setloaded(true);
+        //  setloaded(true);
       }
     }
     fetchData();
