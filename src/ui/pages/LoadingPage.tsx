@@ -1,27 +1,28 @@
 import { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { HttpAuthRepo } from '../../infraestructure/http/AuthRepo';
 import { IAuthRepo } from '../../core/auth/domain';
 import axios from '../../infraestructure/http/http';
 import { UseAuth } from '../hooks/auth/AuthContext';
 
 const LoadingPage = () => {
-  const authRepo: IAuthRepo = new HttpAuthRepo();
   const [loaded, setloaded] = useState(false);
   const useAuth = UseAuth();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
   useEffect(() => {
     async function fetchData() {
-      try {
-        const tkn = await authRepo.getToken();
-        axios.defaults.headers.common['Authorization'] = `Bearer ${tkn.token}`;
-        useAuth.handleLogin(tkn);
-      } catch (error) {
-        console.log('no server connection');
-        console.log(error);
-      } finally {
-        //  setloaded(true);
+      const jwt = searchParams.get('token');
+      if (jwt === null) {
+        setloaded(true);
+      } else {
+        console.log(jwt);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
+        useAuth.handleLogin({ isAdmin: false, token: jwt });
       }
+      //  setloaded(true);
     }
     fetchData();
 
