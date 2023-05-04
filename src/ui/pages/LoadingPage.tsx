@@ -21,6 +21,7 @@ const LoadingPage = () => {
         console.log(jwt);
         axios.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
         useAuth.handleLogin({ isAdmin: false, token: jwt });
+        setloaded(true);
       }
       //  setloaded(true);
     }
