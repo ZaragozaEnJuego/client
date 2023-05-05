@@ -1,5 +1,5 @@
 import axios from './http';
-import { Kind, KindRestrictions, Propertie } from '../../core/properties/domain/model';
+import { KindRestrictions, Propertie } from '../../core/properties/domain/model';
 
 export class HttpPropertieRepo {
   async getAllProperties(): Promise<Propertie[]> {

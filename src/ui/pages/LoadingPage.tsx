@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { HttpAuthRepo } from '../../infraestructure/http/AuthRepo';
-import { IAuthRepo } from '../../core/auth/domain';
+import { Navigate, useLocation } from 'react-router-dom';
 import axios from '../../infraestructure/http/http';
 import { UseAuth } from '../hooks/auth/AuthContext';
 
