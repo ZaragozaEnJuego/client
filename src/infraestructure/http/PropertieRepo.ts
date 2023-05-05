@@ -1,5 +1,5 @@
 import axios from './http';
-import { Kind, KindRestrictions, Propertie } from '../../core/properties/domain/model';
+import { KindRestrictions, Propertie } from '../../core/properties/domain/model';
 
 export class HttpPropertieRepo {
   async getAllProperties(): Promise<Propertie[]> {
@@ -91,9 +91,9 @@ export class HttpPropertieRepo {
     return response.data;
   }
 
-  async buyById(id: string): Promise<string> {
+  async buyById(id: string, usr: string): Promise<string> {
     const response = await axios.post<{ id: string }>(`/properties/${id}/buy`, {
-      ownerId: '644cdc7fdf537c6dac5b2db6',
+      ownerId: usr,
     });
 
     if (response.status !== 201) {

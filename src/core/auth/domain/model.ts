@@ -1,1 +1,1 @@
-export type TokenJWT = { token?: string; isAdmin?: boolean };
+export type Credentials = { token?: string; isAdmin?: boolean; userId?: string };

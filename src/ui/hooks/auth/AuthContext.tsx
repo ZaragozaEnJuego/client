@@ -1,11 +1,12 @@
 import { createContext, useContext } from 'react';
-import { TokenJWT } from '../../../core/auth/domain/model';
+import { Credentials } from '../../../core/auth/domain/model';
 
 interface ContextProps {
   //Methods
-  handleLogin(credetials: TokenJWT): void;
+  handleLogin(credetials: Credentials): void;
   handleLogout(): void;
   isLogged(): boolean;
+  getUserId(): string | undefined;
 }
 
 export const AuthContext = createContext({} as ContextProps);

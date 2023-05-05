@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { HttpAuthRepo } from '../../infraestructure/http/AuthRepo';
-import { IAuthRepo } from '../../core/auth/domain';
+import { Navigate, useLocation } from 'react-router-dom';
 import axios from '../../infraestructure/http/http';
 import { UseAuth } from '../hooks/auth/AuthContext';
 
@@ -14,20 +12,17 @@ const LoadingPage = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const jwt = searchParams.get('token');
-      if (jwt === null) {
-        setloaded(true);
-      } else {
-        console.log(jwt);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
-        useAuth.handleLogin({ isAdmin: false, token: jwt });
-        setloaded(true);
+      const token = searchParams.get('token');
+      const userId = searchParams.get('id');
+      const isAdminStr = searchParams.get('admin');
+      const isAdmin = isAdminStr === 'true';
+      if (token !== null && userId !== null) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        useAuth.handleLogin({ isAdmin, token, userId });
       }
-      //  setloaded(true);
+      setloaded(true);
     }
     fetchData();
-
-    // setloaded(true);
   }, []);
 
   return loaded ? (
