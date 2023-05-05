@@ -6,6 +6,7 @@ interface ContextProps {
   handleLogin(credetials: Credentials): void;
   handleLogout(): void;
   isLogged(): boolean;
+  getUserId(): string | undefined;
 }
 
 export const AuthContext = createContext({} as ContextProps);

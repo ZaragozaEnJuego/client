@@ -12,15 +12,18 @@ import { BarChart } from '../components/ui/BarChart';
 import { HttpPropertieRepo } from '../../infraestructure/http/PropertieRepo';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UseAuth } from '../hooks/auth/AuthContext';
 
 const PropertiePage = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const useAuth = UseAuth();
 
   const propertieRepo: IPropertieRepo = new HttpPropertieRepo();
   const [propertie, setPropertie] = useState<Propertie>(DefaultPropertie());
   const [kindRestrictions, setKindRestrictions] = useState<KindRestrictions>();
   const [buy, setBuy] = useState<string>('');
+  const userId = useAuth.getUserId();
 
   useEffect(() => {
     if (undefined !== params.buildingId) {
@@ -227,7 +230,7 @@ const PropertiePage = () => {
           className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
           onClick={async () => {
             try {
-              const buyId = await propertieRepo.buyById(propertie.id);
+              const buyId = await propertieRepo.buyById(propertie.id, userId ?? '');
               toast('Edificio comprado', {
                 position: 'top-right',
                 autoClose: 5000,

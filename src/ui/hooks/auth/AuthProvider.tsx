@@ -24,9 +24,10 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const isLogged = () => {
     return state.credetials.token !== undefined;
   };
+  const getUserId = () => state.credetials.userId;
 
   return (
-    <AuthContext.Provider value={{ ...state, handleLogin, handleLogout, isLogged }}>
+    <AuthContext.Provider value={{ ...state, handleLogin, handleLogout, isLogged, getUserId }}>
       {children}
     </AuthContext.Provider>
   );
