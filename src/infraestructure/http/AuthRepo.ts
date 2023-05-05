@@ -1,11 +1,11 @@
-import { TokenJWT } from '../../core/auth/domain/model';
+import { Credentials } from '../../core/auth/domain/model';
 import axios from './http';
 export class HttpAuthRepo {
-  async getToken(): Promise<TokenJWT> {
+  async getToken(): Promise<Credentials> {
     const tokenUrl = '/api/auth/google/login';
 
     const token = (
-      await axios.get<TokenJWT>(tokenUrl, {
+      await axios.get<Credentials>(tokenUrl, {
         withCredentials: true,
       })
     ).data;

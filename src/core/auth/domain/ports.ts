@@ -1,5 +1,5 @@
-import { TokenJWT } from './model';
+import { Credentials } from './model';
 
 export interface IAuthRepo {
-  getToken(): Promise<TokenJWT>;
+  getToken(): Promise<Credentials>;
 }
