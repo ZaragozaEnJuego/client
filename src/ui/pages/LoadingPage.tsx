@@ -13,7 +13,7 @@ const LoadingPage = () => {
   useEffect(() => {
     async function fetchData() {
       const token = searchParams.get('token');
-      const userId = searchParams.get('id');
+      const userId = searchParams.get('userId');
       const isAdminStr = searchParams.get('admin');
       const isAdmin = isAdminStr === 'true';
       if (token !== null && userId !== null) {
