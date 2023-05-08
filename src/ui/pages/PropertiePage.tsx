@@ -225,8 +225,8 @@ const PropertiePage = () => {
         >
           Volver
         </button>
-        <button
-          style={{ backgroundColor: chooseColor(propertie.kind) }}
+        { propertie.owner === undefined ? (
+          <button style={{ backgroundColor: chooseColor(propertie.kind) }}
           className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
           onClick={async () => {
             try {
@@ -256,8 +256,34 @@ const PropertiePage = () => {
             }
           }}
         >
-          Comprar
+        Comprar
         </button>
+        ) : (
+          <button style={{ backgroundColor: chooseColor(propertie.kind) }}
+          className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
+          onClick={async () => {
+            try {
+              // Lanzar una ventana emergente
+              // Especificar la cantidad a ofrecer
+              // Al clickar en "Realizar oferta" lanzar createOffer(property.id, property.owner, userId, amount) 
+            } catch (error) {
+              toast.error('Error al crear negociación', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+              });
+            }
+          }}
+        >
+        Comprar
+        </button>
+        )}
+
       </div>
       <ToastContainer />
     </MainLayout>

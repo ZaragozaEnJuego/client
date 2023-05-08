@@ -3,6 +3,19 @@ import { Offer } from '../../core/negotiations/domain'
 import axios from './http'
 
 export class HTTPOfferRepo {
+    async createOffer(_property: string, _owner: string, _offerer: string, _amount: number): Promise<string> {
+        const response = await axios.post<{ id: string }>('/negotiations', {
+            property: _property,
+            owner: _owner,
+            offerer: _offerer,
+            amount: _amount
+        })
+        if (response.status !== 201) {
+            throw new Error('No se puedo obtener los datos de la oferta creada')
+        }
+        console.log(response.data)
+        return response.data.id
+    }
     async getOffererOffers(id: string): Promise<Offer[]> {
         interface OfferDTO {
             _id: string,
@@ -11,7 +24,7 @@ export class HTTPOfferRepo {
             owner: string,
             amount: number
         }
-        const response = await axios.get<OfferDTO[]>(`/offers/${id}/offerer`, {
+        const response = await axios.get<OfferDTO[]>(`/negotiation/${id}/offerer`, {
             headers: {
                 accept: 'application/json'
             }
@@ -39,7 +52,7 @@ export class HTTPOfferRepo {
             owner: string,
             amount: number
         }
-        const response = await axios.get<OfferDTO[]>(`/offers/${id}/owner`, {
+        const response = await axios.get<OfferDTO[]>(`/negotiation/${id}/owner`, {
             headers: {
                 accept: 'application/json'
             }
