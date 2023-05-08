@@ -16,8 +16,8 @@ const ProfilePage = () => {
   const landlordRepo: ILandlordRepo = new HttpLandlordRepo();
   const useAuth = UseAuth();
   const [landlord, setPropertiesList] = useState<Landlord>({
-    id: '1',
-    name: 'Juan',
+    id: '',
+    name: '',
     access: true,
     liquidity: 0,
     properties: [],
@@ -66,7 +66,7 @@ const ProfilePage = () => {
           <div className=' h-full md:h-2/3 w-full  flex justify-center items-center'>
             <div className='w-2/3 h-full '>
               <h1 className='text-secondary text-2xl'>
-                Propiedades: {landlord.properties.length ?? 0}{' '}
+                Propiedades: {landlord.properties?.length ?? 0}{' '}
               </h1>
               <PropertieList list={landlord.properties ?? []} size={'small'} />
             </div>
