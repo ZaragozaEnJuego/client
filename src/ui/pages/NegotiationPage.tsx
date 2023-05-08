@@ -21,6 +21,24 @@ const NegotiationPage = () => {
         offerRepo.getOwnerOffers(userId).then((list) => {
           setOffersList(list)
         })
+    } catch (error) {
+        toast('Error al obtener las ofertas al usuario', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (userId !== undefined) {
+      try {
         offerRepo.getOffererOffers(userId).then((list) => {
           setUserOffersList(list)
         })
