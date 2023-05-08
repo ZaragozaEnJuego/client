@@ -1,4 +1,4 @@
 export * from './UserCard'
 export * from './UserList'
-export * from './BarChart'
-export * from './DonutChart'
+export * from './UserBarChart'
+export * from './UserDonutChart'
