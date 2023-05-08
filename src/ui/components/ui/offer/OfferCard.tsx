@@ -8,26 +8,26 @@ import { ReactComponent as GrocerieIcon } from '/src/assets/utensils-solid.svg';
 import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg';
 
 interface Offers {
-    offer: Offer;
+  offer: Offer;
 }
 
 const PropertyIcon = (kind: Kind) => {
   switch (kind) {
-    case 'Health':
-      return <MedicalIcon style={{ fill: chooseColor(kind) }} className={'h-full lg:w-16 w-10 px-1 sm:px-2'} />;
+    case 'health':
+      return <MedicalIcon style={{ fill: chooseColor(kind) }} className={'h-full  w-16 px-2'} />;
 
-    case 'Groceries':
-      return <GrocerieIcon style={{ fill: chooseColor(kind) }} className={'h-full lg:w-16 w-10 px-1 sm:px-2'} />;
+    case 'groceries':
+      return <GrocerieIcon style={{ fill: chooseColor(kind) }} className={'h-full  w-16 px-2'} />;
 
-    case 'Education':
-      return <SchoolIcon style={{ fill: chooseColor(kind) }} className={'h-full lg:w-16 w-10 px-1 sm:px-2'} />;
+    case 'education':
+      return <SchoolIcon style={{ fill: chooseColor(kind) }} className={'h-full  w-16 px-2'} />;
 
-    case 'Transport':
-      return <TrainIcon style={{ fill: chooseColor(kind) }} className={'h-full lg:w-16 w-10 px-1 sm:px-2'} />;
+    case 'transport':
+      return <TrainIcon style={{ fill: chooseColor(kind) }} className={'h-full  w-16 px-2'} />;
     default:
       return <></>;
   }
-}
+};
 
 const OfferCard: FC<Offers> = ({ offer }) => {
     return (
@@ -52,7 +52,22 @@ const OfferCard: FC<Offers> = ({ offer }) => {
             <h1 style={{ color: chooseColor('Transport') }} className='w-50 text-center text-sm lg:text-base md:text-sm xl:text-lg font-bold text-primary'>Estación Delicias</h1>
           </div>
         </div>
-      );
-}
+      </div>
+      <div className='flex flex-col justify-center items-center'>
+        <img
+          className='w-10 h-10 object-cover rounded-full '
+          src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'
+        />
+        <h1 className='text-xs text-nord1'>Tú</h1>
+        <h1
+          style={{ color: chooseColor('transport') }}
+          className='w-50 text-lg font-bold text-primary'
+        >
+          Estación Delicias
+        </h1>
+      </div>
+    </div>
+  );
+};
 
-export { OfferCard }
+export { OfferCard };

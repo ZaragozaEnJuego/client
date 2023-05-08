@@ -23,7 +23,7 @@ interface menuOption {
 const menuOptions: menuOption[] = [
   {
     icon: <BuildingIcon />,
-    route: '/',
+    route: '/home',
     name: 'Home',
   },
   {

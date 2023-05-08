@@ -6,16 +6,16 @@ import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg';
 
 const chooseColor = (kind: Kind): string => {
   switch (kind) {
-    case 'Health':
+    case 'health':
       return '#bf616a';
 
-    case 'Groceries':
+    case 'groceries':
       return '#a3be8c';
 
-    case 'Education':
+    case 'education':
       return '#5E81AC';
 
-    case 'Transport':
+    case 'transport':
       return '#b48ead';
     default:
       return '';
@@ -24,16 +24,16 @@ const chooseColor = (kind: Kind): string => {
 
 const PropertieIcon = (kind: Kind) => {
   switch (kind) {
-    case 'Health':
+    case 'health':
       return <MedicalIcon style={{ fill: chooseColor(kind) }} className={'h-full  w-24 px-2 '} />;
 
-    case 'Groceries':
+    case 'groceries':
       return <GrocerieIcon style={{ fill: chooseColor(kind) }} className={'h-full  w-20 px-2 '} />;
 
-    case 'Education':
+    case 'education':
       return <SchoolIcon style={{ fill: chooseColor(kind) }} className={'h-full  w-24 px-2 '} />;
 
-    case 'Transport':
+    case 'transport':
       return <TrainIcon style={{ fill: chooseColor(kind) }} className={'h-full  w-20 px-2 '} />;
     default:
       return <></>;

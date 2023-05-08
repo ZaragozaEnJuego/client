@@ -7,22 +7,22 @@ import { ReactComponent as GrocerieIcon } from '/src/assets/utensils-solid.svg';
 import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg';
 
 interface Offers {
-    offer: Offer;
+  offer: Offer;
 }
 
 const PropertyIcon = (kind: Kind) => {
   switch (kind) {
-    case 'Health':
-      return <MedicalIcon style={{ fill: '#2E3440' }} className={'h-full w-10 lg:w-16 px-1 sm:px-2'} />;
+    case 'health':
+      return <MedicalIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
 
-    case 'Groceries':
-      return <GrocerieIcon style={{ fill: '#2E3440' }} className={'h-full w-10 lg:w-16 px-1 sm:px-2'} />;
+    case 'groceries':
+      return <GrocerieIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
 
-    case 'Education':
-      return <SchoolIcon style={{ fill: '#2E3440' }} className={'h-full w-10 lg:w-16 px-1 sm:px-2'} />;
+    case 'education':
+      return <SchoolIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
 
-    case 'Transport':
-      return <TrainIcon style={{ fill: '#2E3440' }} className={'h-full w-10 lg:w-16 px-1 sm:px-2'} />;
+    case 'transport':
+      return <TrainIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
     default:
       return <></>;
   }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { ReactComponent as Logo } from '/src/assets/Logo.svg';
-import { ReactComponent as Fondo } from '/src/assets/Fondo.svg';
+import { Link } from 'react-router-dom';
 import { UseAuth } from '../hooks/auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../../infraestructure/http/http';
 
 const LoginPage = () => {
   const useAuth = UseAuth();
@@ -53,22 +54,19 @@ const LoginPage = () => {
         //Desktop layout
         <div className='w-screen h-screen bg-primary '>
           <div className='bg-secondary bg-opacity-80 p-8 rounded-lg w-full h-full flex flex-col justify-center items-center pb-40 px-6'>
-            <div className="mb-6 flex">
+            <div className='mb-6 flex'>
               <h1 className='text-5xl font-bold text-primary'>{'Zaragoza en juego'}</h1>
             </div>
-            <div className="mb-6flex">
-              <Logo className="max-w-full"/>
+            <div className='mb-6flex'>
+              <Logo className='max-w-full' />
             </div>
             <div>
-              <button
-                onClick={() => {
-                  useAuth.handleLogin();
-                  navigate('/', { replace: true });
-                }}
+              <Link
+                to={baseUrl + '/api/auth/google'}
                 className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
               >
                 Iniciar sesión
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -76,22 +74,19 @@ const LoginPage = () => {
         //Mobile layout
         <div className='w-screen h-screen bg-background '>
           <div className='bg-secondary bg-opacity-80 p-8 rounded-lg w-full h-full flex flex-col justify-center items-center pb-40 px-6'>
-            <div className="mb-6 flex">
+            <div className='mb-6 flex'>
               <h1 className='text-5xl font-bold text-primary'>{'Zaragoza en juego'}</h1>
             </div>
-            <div className="mb-6 flex">
-              <Logo className="max-w-full"/>
+            <div className='mb-6 flex'>
+              <Logo className='max-w-full' />
             </div>
             <div>
-              <button
-                onClick={() => {
-                  useAuth.handleLogin();
-                  navigate('/', { replace: true });
-                }}
+              <Link
+                 to={baseUrl + '/api/auth/google'}
                 className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
               >
                 Iniciar sesión
-              </button>
+              </Link>
             </div>
           </div>
         </div>
