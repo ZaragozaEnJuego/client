@@ -118,7 +118,7 @@ const PropertiePage = () => {
           <div className='w-full'>
             <div className='flex ml-16 py-2  '>
               <div className='block'>
-                {descriptionElement('Propietario', propertie.owner || 'Sin comprar')}
+                {descriptionElement('Propietario', propertie.owner ?? 'Sin comprar')}
                 {descriptionElement('Valor de compra', propertie.price)}
               </div>
               <div className='w-20' />
