@@ -1,5 +1,5 @@
 import axios from './http'
-import { User } from '../../core/admin/domain/model'
+import { User } from '../../core/admin/domain'
 
 export class HTTPAdminRepo {
     async getUserList(): Promise<User[]> {

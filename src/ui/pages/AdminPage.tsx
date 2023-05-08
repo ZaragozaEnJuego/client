@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-import { MemoryUserRepo } from '../../infraestructure/memory';
-import { AdminLayout } from '../components/layouts';
-import { BarChart, DonutChart, UserList } from '../components/ui/user';
-import { Landlord } from '../../core/landlord/model';
+import { useEffect, useState } from 'react'
+import { AdminLayout } from '../components/layouts'
+import { BarChart, DonutChart, UserList } from '../components/ui/user'
+import { User } from '../../core/admin/domain'
+import { HTTPAdminRepo } from '../../infraestructure/http/AdminRepo'
 
 const AdminPage = () => {
-  const userRepo: MemoryUserRepo = new MemoryUserRepo();
-  const [userList, setUsersList] = useState<Landlord[]>([]);
+  const userRepo: HTTPAdminRepo = new HTTPAdminRepo();
+  const [userList, setUsersList] = useState<User[]>([]);
 
   useEffect(() => {
-    userRepo.getAllUsers().then((list) => {
-      setUsersList(list);
-    });
-  }, []);
+    userRepo.getUserList().then((list) => {
+      setUsersList(list)
+    })
+  }, [])
 
   return (
     <AdminLayout>

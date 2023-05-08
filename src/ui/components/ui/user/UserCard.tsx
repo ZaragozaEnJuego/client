@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { Landlord } from '../../../../core/landlord/model';
+import { FC } from 'react'
+import { User } from '../../../../core/admin/domain'
 
 interface Users {
-    user: Landlord;
+    user: User
 }
 
 const chooseColor = (access: boolean): string => { return access ? '#bf616a' : '#a3be8c' }
