@@ -119,7 +119,7 @@ const PropertiePage = () => {
           <div className='w-full'>
             <div className='flex ml-16 py-2  '>
               <div className='block'>
-                {descriptionElement('Propietario', propertie.owner ?? 'Sin comprar')}
+                {descriptionElement('Propietario', propertie.owner || 'Sin comprar')}
                 {descriptionElement('Valor de compra', propertie.price)}
               </div>
               <div className='w-20' />
@@ -261,7 +261,7 @@ const PropertiePage = () => {
         </button>
         ) : (
           userId !== undefined && propertie !== undefined ? (
-            <ModalNegotiation property={propertie.id} owner={propertie.owner} offerer={userId}></ModalNegotiation>
+            <ModalNegotiation property={propertie.id} owner={propertie.owner} offerer={userId}/>
           ) : (
             toast.error('Error al lanzar la ventana modal', {
               position: 'top-right',
