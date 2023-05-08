@@ -1,4 +1,5 @@
-import { Offer } from '../../core/negotiations/domain/model'
+import { User } from '../../core/admin/domain'
+import { Offer } from '../../core/negotiations/domain'
 import axios from './http'
 
 export class HTTPOfferRepo {
@@ -58,8 +59,10 @@ export class HTTPOfferRepo {
             return offer
         }))
     }
-    async execOffer(offer: Offer): Promise<string> {
+    async execOffer(offer: Offer, offerer: User, owner: User): Promise<string> {
         //TODO: Este servicio desarrollarse en el servidor y en este repositorio
+        // offerer se convertirá en el nuevo propietario de la propiedad con id offer.property
+        // owner.liquidity += offer.amount, se elimina la propiedad con id offer.property de owner.properties
        return ''
     }
     async deleteOffer(offer: Offer): Promise<string> {

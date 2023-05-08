@@ -54,7 +54,7 @@ const OfferCard: FC<Offers> = ({ offer, offerer, owner }) => {
         <div className='flex flex-col items-center px-5 py-1 w-full'>
           <button className='items-center text-xs text-primary py-1 my-1 w-20 rounded-lg mx-2 bg-green-nord'
             onClick={() => {
-              offerRepo.execOffer(offer)
+              offerRepo.execOffer(offer, offerer, owner)
               offerRepo.deleteOffer(offer)
             }}>Aceptar</button>
           <button
