@@ -9,6 +9,8 @@ import { BarChart } from '../components/ui/BarChart';
 import { DonutChart } from '../components/ui/DonutChart';
 import { HttpLandlordRepo } from '../../infraestructure/http/LandlordRepo';
 import { UseAuth } from '../hooks/auth/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProfilePage = () => {
   const landlordRepo: ILandlordRepo = new HttpLandlordRepo();
@@ -23,9 +25,22 @@ const ProfilePage = () => {
   });
 
   useEffect(() => {
-    landlordRepo.getLandlordInfo(useAuth.getUserId()!).then((landlord: Landlord) => {
-      setPropertiesList(landlord);
-    });
+    try {
+      landlordRepo.getLandlordInfo(useAuth.getUserId()!).then((landlord: Landlord) => {
+        setPropertiesList(landlord);
+      });
+    } catch (error) {
+      toast.error('Error al obtener el usuario', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
   }, []);
 
   const calcPropertieValue = (properties: Propertie[]): number => {
@@ -38,6 +53,7 @@ const ProfilePage = () => {
 
   return (
     <MainLayout>
+      <ToastContainer />
       <div className='w-full h-full flex md:pb-10 md:pr-4  '>
         <div className='w-full md:w-1/2 flex flex-col h-full '>
           <div className=' md:h-1/3 md:min-h-fit  w-full flex  items-center justify-center '>
