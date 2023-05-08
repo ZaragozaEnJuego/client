@@ -18,8 +18,7 @@ const UserCard: FC<Users> = ({ user }) => {
             <div className='text-sm justify-end items-end'>
                 <button style={{background: chooseColor(user.access)}} className='text-xs text-primary rounded-md px-3 py-5'
                     onClick={() => {
-                        alert('Cambio de modo');
-                        user.access === true ?  user.access = false : user.access = true;
+                        //user.access === true ?  updateAccess(user.id, false) : updateAccess(user.id, true)
                     }}>
                     {user.access === false ? (
                         <p>Activar</p>
