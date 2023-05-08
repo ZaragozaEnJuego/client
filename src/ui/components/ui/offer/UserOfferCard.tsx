@@ -1,13 +1,17 @@
-import { FC } from 'react';
-import { Offer } from '../../../../core/negotiations/domain';
-import { Kind } from '../../../../core/properties/domain';
-import { ReactComponent as SchoolIcon } from '/src/assets/graduation-cap-solid.svg';
-import { ReactComponent as MedicalIcon } from '/src/assets/suitcase-medical-solid.svg';
-import { ReactComponent as GrocerieIcon } from '/src/assets/utensils-solid.svg';
-import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg';
+import { FC } from 'react'
+import { Offer } from '../../../../core/negotiations/domain'
+import { Kind } from '../../../../core/properties/domain'
+import { ReactComponent as SchoolIcon } from '/src/assets/graduation-cap-solid.svg'
+import { ReactComponent as MedicalIcon } from '/src/assets/suitcase-medical-solid.svg'
+import { ReactComponent as GrocerieIcon } from '/src/assets/utensils-solid.svg'
+import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg'
+import { User } from '../../../../core/admin/domain'
+import { ReactComponent as UndefinedIcon } from 'src/assets/undefined-icon.svg'
 
 interface Offers {
-  offer: Offer;
+  offer: Offer,
+  offerer: User,
+  owner: User
 }
 
 const PropertyIcon = (kind: Kind) => {
@@ -28,17 +32,18 @@ const PropertyIcon = (kind: Kind) => {
   }
 };
 
-const UserOfferCard: FC<Offers> = ({ offer }) => {
+const UserOfferCard: FC<Offers> = ({ offer, offerer, owner }) => {
   return (
     <div
       style={{ background: '#8FBCBB' }}
       className='flex justify-center items-center border w-full rounded-3xl py-2 px-4 my-4 h-100'
     >
       <div className='flex flex-col justify-center items-center'>
-        <img
-          className='w-10 h-10 object-cover rounded-full '
-          src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'
-        />
+        { offerer.icon !== undefined ? (
+          <img className='w-10 h-10 object-cover rounded-full' src={offerer.icon}></img>
+        ) : (
+          <UndefinedIcon style={{ fill: '#2E3440' }} className='w-10 h-10 object-cover rounded-full'/>
+        )}
         <h1 className='text-xs text-nord1'>Tú</h1>
         <h1 className='text-xl w-50 font-bold text-primary'>{offer.amount}€</h1>
       </div>
@@ -62,14 +67,13 @@ const UserOfferCard: FC<Offers> = ({ offer }) => {
         </div>
       </div>
       <div className='flex flex-col justify-center items-center '>
-        <img
-          className='w-10 h-10 object-cover rounded-full '
-          src='https://media.istockphoto.com/id/1151155288/es/foto/close-up-foto-incre%C3%ADble-hermosa-ella-sus-dedos-pulgar-de-la-dama-indican-directamente-pecho.jpg?s=612x612&w=0&k=20&c=NCuogVJLvUYYfMihKzWPAl7OPRQSsQsyWFKi6fyuty4='
-        />
-        <h1 className='text-xs text-nord1'>Lucía</h1>
-        <h1 style={{ background: '#8FBCBB' }} className={'w-50 font-bold text-lg'}>
-          Estación Delicias
-        </h1>
+        { owner.icon !== undefined ? (
+          <img className='w-10 h-10 object-cover rounded-full' src={owner.icon}></img>
+        ) : (
+          <UndefinedIcon style={{ fill: '#2E3440' }} className='w-10 h-10 object-cover rounded-full'/>
+        )}
+        <h1 className='text-xs text-nord1'>{offerer.name}</h1>
+        <h1 style={{ background: '#8FBCBB' }} className='w-50 font-bold text-lg'>Estación Delicias</h1>
       </div>
     </div>
   );
