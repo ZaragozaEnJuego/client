@@ -8,13 +8,15 @@ import { ReactComponent as GrocerieIcon } from '/src/assets/utensils-solid.svg'
 import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg'
 import { User } from '../../../../core/admin/domain'
 import { ReactComponent as UndefinedIcon } from 'src/assets/undefined-icon.svg'
-
+import { HTTPOfferRepo } from '../../../../infraestructure/http/OfferRepo'
 
 interface Offers {
   offer: Offer,
   offerer: User,
   owner: User
 }
+
+const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
 
 const PropertyIcon = (kind: Kind) => {
   switch (kind) {
@@ -52,12 +54,13 @@ const OfferCard: FC<Offers> = ({ offer, offerer, owner }) => {
         <div className='flex flex-col items-center px-5 py-1 w-full'>
           <button className='items-center text-xs text-primary py-1 my-1 w-20 rounded-lg mx-2 bg-green-nord'
             onClick={() => {
-              alert('Oferta aceptada');
+              offerRepo.execOffer(offer)
+              offerRepo.deleteOffer(offer)
             }}>Aceptar</button>
           <button
             className='items-center text-xs text-hover py-1 my-1 w-20 rounded-lg bg-red-nord'
             onClick={() => {
-              alert('Oferta rechazada');
+              offerRepo.deleteOffer(offer)
             }}>Rechazar</button>
         </div>
       </div>

@@ -58,4 +58,12 @@ export class HTTPOfferRepo {
             return offer
         }))
     }
+    async execOffer(offer: Offer): Promise<string> {
+        //TODO: Este servicio desarrollarse en el servidor y en este repositorio
+       return ''
+    }
+    async deleteOffer(offer: Offer): Promise<string> {
+        //TODO: Este servicio desarrollarse en el servidor y en este repositorio
+        return ''
+    }
 }
