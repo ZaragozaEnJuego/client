@@ -1,4 +1,4 @@
-import { IOfferRepo, Offer } from '../../core/negotiations/domain'
+import { Offer } from '../../core/negotiations/domain'
 import { MainLayout } from '../components/layouts'
 import { useEffect, useState } from 'react'
 import { OfferList, UserOfferList } from '../components/ui/offer'
