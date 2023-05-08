@@ -7,9 +7,12 @@ import { MainLayout } from '../components/layouts';
 import { PropertieList } from '../components/ui/propertie';
 import { BarChart } from '../components/ui/BarChart';
 import { DonutChart } from '../components/ui/DonutChart';
+import { HttpLandlordRepo } from '../../infraestructure/http/LandlordRepo';
+import { UseAuth } from '../hooks/auth/AuthContext';
 
 const ProfilePage = () => {
-  const landlordRepo: ILandlordRepo = new MemorieLandlordRepo();
+  const landlordRepo: ILandlordRepo = new HttpLandlordRepo();
+  const useAuth = UseAuth();
   const [landlord, setPropertiesList] = useState<Landlord>({
     id: '1',
     name: 'Juan',
@@ -20,7 +23,7 @@ const ProfilePage = () => {
   });
 
   useEffect(() => {
-    landlordRepo.getLandlordInfo().then((landlord: Landlord) => {
+    landlordRepo.getLandlordInfo(useAuth.getUserId()!).then((landlord: Landlord) => {
       setPropertiesList(landlord);
     });
   }, []);
@@ -53,12 +56,18 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className="rounded-3xl border-secondary border-2 w-1/2 h-full hidden md:inline flex flex-col overflow-auto">
-          <div className="flex-shrink-0 w-full flex items-center justify-center h-96 mb-4">
-            <BarChart data={[12, 19, 3, 5, 2, 3]} labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']} />
+        <div className='rounded-3xl border-secondary border-2 w-1/2 h-full hidden md:inline flex flex-col overflow-auto'>
+          <div className='flex-shrink-0 w-full flex items-center justify-center h-96 mb-4'>
+            <BarChart
+              data={[12, 19, 3, 5, 2, 3]}
+              labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']}
+            />
           </div>
-          <div className="flex-shrink-0 w-full flex items-center justify-center h-96">
-            <DonutChart data={[12, 19, 3, 5, 2, 3]} labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']} />
+          <div className='flex-shrink-0 w-full flex items-center justify-center h-96'>
+            <DonutChart
+              data={[12, 19, 3, 5, 2, 3]}
+              labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']}
+            />
           </div>
         </div>
       </div>
