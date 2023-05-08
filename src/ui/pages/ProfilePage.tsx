@@ -66,13 +66,13 @@ const ProfilePage = () => {
           <div className=' h-full md:h-2/3 w-full  flex justify-center items-center'>
             <div className='w-2/3 h-full '>
               <h1 className='text-secondary text-2xl'>
-                Propiedades: {landlord.properties.length}{' '}
+                Propiedades: {landlord.properties.length ?? 0}{' '}
               </h1>
               <PropertieList list={landlord.properties ?? []} size={'small'} />
             </div>
           </div>
         </div>
-        <div className='rounded-3xl border-secondary border-2 w-1/2 h-full hidden md:inline flex flex-col overflow-auto'>
+        <div className='rounded-3xl border-secondary border-2 w-1/2 h-full hidden md:inline md:flex-col md:overflow-auto'>
           <div className='flex-shrink-0 w-full flex items-center justify-center h-96 mb-4'>
             <BarChart
               data={[12, 19, 3, 5, 2, 3]}
