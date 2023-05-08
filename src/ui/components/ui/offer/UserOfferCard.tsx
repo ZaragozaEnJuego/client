@@ -13,16 +13,16 @@ interface Offers {
 const PropertyIcon = (kind: Kind) => {
   switch (kind) {
     case 'health':
-      return <MedicalIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
+      return <MedicalIcon style={{ fill: '#2E3440' }} className={'h-full w-10 lg:w-16 px-1 sm:px-2'} />;
 
     case 'groceries':
-      return <GrocerieIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
+      return <GrocerieIcon style={{ fill: '#2E3440' }} className={'h-full w-10 lg:w-16 px-1 sm:px-2'} />;
 
     case 'education':
-      return <SchoolIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
+      return <SchoolIcon style={{ fill: '#2E3440' }} className={'h-full w-10 lg:w-16 px-1 sm:px-2'} />;
 
     case 'transport':
-      return <TrainIcon style={{ fill: '#2E3440' }} className={'h-full  w-16 px-2'} />;
+      return <TrainIcon style={{ fill: '#2E3440' }} className={'h-full w-10 lg:w-16 px-1 sm:px-2'} />;
     default:
       return <></>;
   }
@@ -37,7 +37,7 @@ const UserOfferCard: FC<Offers> = ({ offer }) => {
       <h1 className='text-xs lg:text-lg md:text-base sm:text-sm xl:text-xl w-50 font-bold text-primary text-center'>{offer.amount}€</h1>
     </div>
     <div className='flex items-center justify-top mt-4 mx-1 sm:mx-2 md:mx-4 flex-col'>
-      {PropertyIcon('Transport')}
+      {PropertyIcon('transport')}
       <div className='flex flex-col items-bottom px-5 py-1 w-full'>
         <button className='items-center text-xs text-hover py-1 my-1 sm:mx-2 mx-1 w-20 rounded-lg bg-primary'
           onClick={() => { alert('Oferta cancelada');}}>Cancelar</button>
