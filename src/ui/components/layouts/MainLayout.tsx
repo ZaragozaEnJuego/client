@@ -29,7 +29,7 @@ const menuOptions: menuOption[] = [
   {
     icon: <UserIcon />,
     route: '/profile',
-    name: 'Portfolio',
+    name: 'Perfil',
   },
   {
     icon: <AdrressBookIcon />,
