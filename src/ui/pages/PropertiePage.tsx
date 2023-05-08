@@ -280,7 +280,7 @@ const PropertiePage = () => {
             }
           }}
         >
-        Comprar
+        Negociar
         </button>
         )}
 
