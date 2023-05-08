@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState  } from "react"
+import { HTTPOfferRepo } from "../../../infraestructure/http/OfferRepo"
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-export default function ModalNegotiation() {
-  const [showModal, setShowModal] = React.useState(false);
+export default function ModalNegotiation(property: string, owner: string, offerer: string) {
+  const [amount] = useState<number|null>(null);
+  const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
+  const [showModal, setShowModal] = React.useState(false)
   return (
     <>
       <button
@@ -39,7 +44,7 @@ export default function ModalNegotiation() {
                     por ella.
                   </p>
                   <div className="mb-3 pt-0">
-                    <input type="text" placeholder="Placeholder" className="px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+                    <input id="amount" name="amount" type="number" min="0" max="999999" step="100" value={amount ?? 50000} placeholder="Cantidad" className="px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"></input>
                   </div>
                 </div>
                 {/*footer*/}
@@ -54,7 +59,36 @@ export default function ModalNegotiation() {
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      try {
+                        amount !== null ? (
+                          offerRepo.createOffer(property, owner, offerer, amount)
+                        ) : (
+                          toast.error('Error al ingresar la cantidad para la oferta', {
+                            position: 'top-right',
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: 'light',
+                          })
+                        )
+                      } catch (error) {
+                        toast.error('Error al realizar la oferta', {
+                          position: 'top-right',
+                          autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: 'light',
+                        })
+                      }
+                      setShowModal(false)
+                    }}
                   >
                     Realizar oferta
                   </button>

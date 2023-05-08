@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { OfferCard, SmallOfferCard } from '.'
 import { Offer } from '../../../../core/negotiations/domain'
-//import { HTTPAdminRepo } from '../../../../infraestructure/http/AdminRepo'
+import { HTTPAdminRepo } from '../../../../infraestructure/http/AdminRepo'
 
 type Size = 'small' | 'regular'
 
