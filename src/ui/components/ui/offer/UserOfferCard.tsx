@@ -5,8 +5,8 @@ import { ReactComponent as SchoolIcon } from '/src/assets/graduation-cap-solid.s
 import { ReactComponent as MedicalIcon } from '/src/assets/suitcase-medical-solid.svg'
 import { ReactComponent as GrocerieIcon } from '/src/assets/utensils-solid.svg'
 import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg'
-import { User } from '../../../../core/admin/domain'
 import { ReactComponent as UndefinedIcon } from 'src/assets/undefined-icon.svg'
+import { User } from '../../../../core/admin/domain'
 import { HTTPOfferRepo } from '../../../../infraestructure/http/OfferRepo'
 
 interface Offers {
