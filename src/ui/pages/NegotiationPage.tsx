@@ -1,35 +1,43 @@
-import { IOfferRepo, Offer } from '../../core/negotiations/domain';
-import { MemoryOfferRepo } from '../../infraestructure/memory';
-import { MainLayout } from '../components/layouts';
-import { useEffect, useState } from 'react';
-import { OfferList, UserOfferList } from '../components/ui/offer';
+import { IOfferRepo, Offer } from '../../core/negotiations/domain'
+import { MainLayout } from '../components/layouts'
+import { useEffect, useState } from 'react'
+import { OfferList, UserOfferList } from '../components/ui/offer'
+import { HTTPOfferRepo } from '../../infraestructure/http/OfferRepo'
+import { UseAuth } from '../hooks/auth/AuthContext'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const NegotiationPage = () => {
-  const offerRepo: IOfferRepo = new MemoryOfferRepo();
-  const [offersList, setOffersList] = useState<Offer[]>([]);
-  const [userOffersList, setUserOffersList] = useState<Offer[]>([]);
+  const useAuth = UseAuth()
+  const userId = useAuth.getUserId()
+  
+  const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
+  const [offersList, setOffersList] = useState<Offer[]>([])
+  const [userOffersList, setUserOffersList] = useState<Offer[]>([])
 
   useEffect(() => {
-    offerRepo.getOwnerOffers().then((list) => {
-      setOffersList(list);
-    });
-    offerRepo.getOffererOffers().then((list) => {
-      setUserOffersList(list);
-    });
-    //TODO: Modificar este useEffect para que llame a las operaciones que reciben los datos de la api
+    if (userId !== undefined) {
+      try {
+        offerRepo.getOwnerOffers(userId).then((list) => {
+          setOffersList(list)
+        })
+        offerRepo.getOffererOffers(userId).then((list) => {
+          setUserOffersList(list)
+        })
+    } catch (error) {
+        toast('Error al obtener las ofertas del usuario', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+    }
   }, []);
-
-  const getOwnerOffers = async () => {
-    const data = await fetch(''); //Ruta correspondiente
-    const offers = await data.json();
-    console.log('Ofertas a las propiedades del usuario recibidas');
-  };
-
-  const getOffererOffers = async () => {
-    const data = await fetch(''); //Ruta correspondiente
-    const offers = await data.json();
-    console.log('Ofertas del usuario recibidas');
-  };
 
   return (
     <MainLayout>
