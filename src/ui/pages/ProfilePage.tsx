@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Landlord } from '../../core/landlord/model';
 import { ILandlordRepo } from '../../core/landlord/ports';
 import { Propertie } from '../../core/properties/domain';
-import { MemorieLandlordRepo } from '../../infraestructure/memory/LandlordRepo';
 import { MainLayout } from '../components/layouts';
 import { PropertieList } from '../components/ui/propertie';
 import { BarChart } from '../components/ui/BarChart';
@@ -30,7 +29,7 @@ const ProfilePage = () => {
       .then((landlord: Landlord) => {
         setPropertiesList(landlord);
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error('Error al obtener el usuario', {
           position: 'top-right',
           autoClose: 5000,
