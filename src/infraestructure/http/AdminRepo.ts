@@ -28,6 +28,24 @@ export class HTTPAdminRepo {
             return user
         }))
     }
+    async getUser(id: string): Promise<User> {
+        interface UserDTO {
+            id: string,
+            name: string,
+            icon?: string,
+            access: boolean
+        }
+        const response = await axios.get<UserDTO>(`/admin/${id}`, {
+            headers: {
+                accept: 'application/json'
+            }
+        })
+        if (response.status !== 200) {
+            throw new Error('Error al obtener el usuario');
+        }
+        console.log(response.data)
+        return response.data
+    }
     async updateAccess(id: string, access: boolean): Promise<string> {
         const response = await axios.patch<{ id: string }>(`/admin/${id}/access`, {
             access: access
