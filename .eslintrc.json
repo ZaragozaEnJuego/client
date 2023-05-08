@@ -24,6 +24,7 @@
     "server.ts",
     ".env",
     "vite.config.ts",
-    "tailwind.config.cjs"
+    "tailwind.config.cjs",
+    "dist/*"
   ]
 }

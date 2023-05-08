@@ -45,7 +45,7 @@ const ProfilePage = () => {
   }, []);
 
   const calcPropertieValue = (properties: Propertie[]): number => {
-    var value = 0;
+    let value = 0;
     properties.forEach((propertie) => {
       value += propertie.price;
     });
