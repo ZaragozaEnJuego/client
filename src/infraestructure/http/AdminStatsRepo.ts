@@ -3,7 +3,7 @@ import { PropertyPurchaseData, User } from '../../core/admin/domain'
 import { Kind, Propertie } from '../../core/properties/domain'
 
 export class HTTPAdminStatsRepo {
-    async propertyBuys(data: PropertyPurchaseData): Promise<string> {
+    async propertyPurchases(data: PropertyPurchaseData): Promise<string> {
         return ''
     }
     async getPropertiesByKind(kind: Kind): Promise<Propertie[]> {
