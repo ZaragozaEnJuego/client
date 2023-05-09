@@ -8,6 +8,10 @@ import { HTTPAdminStatsRepo } from '../../infraestructure/http/AdminStatsRepo'
 const AdminPage = () => {
   const userRepo: HTTPAdminRepo = new HTTPAdminRepo()
   const adminStats: HTTPAdminStatsRepo = new HTTPAdminStatsRepo()
+  const transportProperties = adminStats.getPropertiesByKind('transport')
+  const healthProperties = adminStats.getPropertiesByKind('health')
+  const educationProperties = adminStats.getPropertiesByKind('education')
+  const groceriesProperties = adminStats.getPropertiesByKind('groceries')
   const [userList, setUsersList] = useState<User[]>([])
 
   useEffect(() => {
@@ -31,7 +35,7 @@ const AdminPage = () => {
         </div>
         <div className='w-1/4 collapse md:visible'>
           <DonutChart
-            data={[120, 85, 73, 95]}
+            data={[100, 85, 73, 95]}
             labels={['transporte', 'Salud', 'Restaurantes', 'Educación']}
           />
         </div>
