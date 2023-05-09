@@ -3,10 +3,12 @@ import { AdminLayout } from '../components/layouts'
 import { BarChart, DonutChart, UserList } from '../components/ui/user'
 import { User } from '../../core/admin/domain'
 import { HTTPAdminRepo } from '../../infraestructure/http/AdminRepo'
+import { HTTPAdminStatsRepo } from '../../infraestructure/http/AdminStatsRepo'
 
 const AdminPage = () => {
-  const userRepo: HTTPAdminRepo = new HTTPAdminRepo();
-  const [userList, setUsersList] = useState<User[]>([]);
+  const userRepo: HTTPAdminRepo = new HTTPAdminRepo()
+  const adminStats: HTTPAdminStatsRepo = new HTTPAdminStatsRepo()
+  const [userList, setUsersList] = useState<User[]>([])
 
   useEffect(() => {
     userRepo.getUserList().then((list) => {
