@@ -15,7 +15,7 @@ export class HTTPAdminStatsRepo {
             }
         })
         if (response.status !== 200) {
-            throw new Error('No se puedo obtener los datos de las compras');
+            throw new Error('No se pudo obtener los datos de las compras');
           }
         return response.data.map((purchaseDTO) => {
             const purchase: PropertyPurchaseData = {
@@ -45,7 +45,7 @@ export class HTTPAdminStatsRepo {
             }
         })
         if (response.status !== 200) {
-            throw new Error('No se puedo obtener los datos de las propiedades');
+            throw new Error('No se pudo obtener los datos de las propiedades');
           }
           console.log(response.data);
           return response.data.map((propertieDto) => {
@@ -65,6 +65,15 @@ export class HTTPAdminStatsRepo {
     }
 
     async collectPurchaseInfo(idProperty: string, date: Date, kind: Kind): Promise<string> {
-        return ''
+        const response = await axios.post("/adminstats", {
+            property: idProperty,
+            kind: kind,
+            date: date
+        })
+        if (response.status !== 201) {
+            throw new Error('No se pudo guardar la información de la compra');
+          }
+        console.log(response.data);
+        return response.data.id;
     }
 }
