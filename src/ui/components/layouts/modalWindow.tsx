@@ -1,9 +1,15 @@
-import React, { useState  } from "react"
+import React, { FC, useState  } from "react"
 import { HTTPOfferRepo } from "../../../infraestructure/http/OfferRepo"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function ModalNegotiation(property: string, owner: string, offerer: string) {
+interface modalWindow {
+  property: string, 
+  owner: string, 
+  offerer: string
+}
+
+const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
   const [amount] = useState<number|null>(null);
   const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
   const [showModal, setShowModal] = React.useState(false)
@@ -102,3 +108,5 @@ export default function ModalNegotiation(property: string, owner: string, offere
     </>
   );
 }
+
+export { ModalNegotiation }

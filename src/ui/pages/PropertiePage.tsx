@@ -13,7 +13,7 @@ import { HttpPropertieRepo } from '../../infraestructure/http/PropertieRepo';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UseAuth } from '../hooks/auth/AuthContext';
-import ModalNegotiation from '../components/layouts/modalWindow';
+import { ModalNegotiation } from '../components/layouts/modalWindow';
 
 const PropertiePage = () => {
   const navigate = useNavigate();
