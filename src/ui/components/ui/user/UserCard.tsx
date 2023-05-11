@@ -1,9 +1,12 @@
-import { FC } from 'react';
-import { Landlord } from '../../../../core/landlord/model';
+import { FC } from 'react'
+import { User } from '../../../../core/admin/domain'
+import { HTTPAdminRepo } from '../../../../infraestructure/http/AdminRepo'
 
 interface Users {
-    user: Landlord;
+    user: User
 }
+
+const adminRepo: HTTPAdminRepo = new HTTPAdminRepo()
 
 const chooseColor = (access: boolean): string => { return access ? '#bf616a' : '#a3be8c' }
 
@@ -18,8 +21,7 @@ const UserCard: FC<Users> = ({ user }) => {
             <div className='text-sm justify-end items-end'>
                 <button style={{background: chooseColor(user.access)}} className='text-xs text-primary rounded-md px-3 py-5'
                     onClick={() => {
-                        alert('Cambio de modo');
-                        user.access === true ?  user.access = false : user.access = true;
+                        user.access === true ?  adminRepo.updateAccess(user.id, false) : adminRepo.updateAccess(user.id, true)
                     }}>
                     {user.access === false ? (
                         <p>Activar</p>
