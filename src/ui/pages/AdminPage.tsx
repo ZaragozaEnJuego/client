@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AdminLayout } from '../components/layouts'
 import { BarChart, DonutChart, UserList } from '../components/ui/user'
-import { User } from '../../core/admin/domain'
+import { PropertyPurchaseData, User } from '../../core/admin/domain'
 import { HTTPAdminRepo } from '../../infraestructure/http/AdminRepo'
 import { HTTPAdminStatsRepo } from '../../infraestructure/http/AdminStatsRepo'
 import { Propertie } from '../../core/properties/domain'
@@ -15,6 +15,26 @@ const AdminPage = () => {
   const [ healthProperties, setHealthProperties ] = useState<Propertie[]>([])
   const [ educationProperties, setEducationProperties ] = useState<Propertie[]>([])
   const [ groceriesProperties, setGroceriesProperties ] = useState<Propertie[]>([])
+  const [ propertyPurchases, setPropertyPurchases ] = useState<PropertyPurchaseData[]>([])
+
+  useEffect(() => {
+    adminStatsRepo
+    .propertyPurchases()
+    .then((list) => {
+      setPropertyPurchases(list)
+    }).catch((error) => {
+      toast.error('Error al obtener las propiedades de transporte', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      })
+    })
+  }, [])
 
   useEffect(() => {
     adminStatsRepo
@@ -31,9 +51,9 @@ const AdminPage = () => {
           draggable: true,
           progress: undefined,
           theme: 'light',
-        });
-      });
-  }, []);
+        })
+      })
+  }, [])
 
   useEffect(() => {
     adminStatsRepo
@@ -50,9 +70,9 @@ const AdminPage = () => {
           draggable: true,
           progress: undefined,
           theme: 'light',
-        });
-      });
-  }, []);
+        })
+      })
+  }, [])
 
   useEffect(() => {
     adminStatsRepo
@@ -69,9 +89,9 @@ const AdminPage = () => {
           draggable: true,
           progress: undefined,
           theme: 'light',
-        });
-      });
-  }, []);
+        })
+      })
+  }, [])
 
   useEffect(() => {
     adminStatsRepo
