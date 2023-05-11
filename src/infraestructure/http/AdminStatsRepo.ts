@@ -3,9 +3,30 @@ import { PropertyPurchaseData, User } from '../../core/admin/domain'
 import { Kind, Propertie } from '../../core/properties/domain'
 
 export class HTTPAdminStatsRepo {
-    async propertyPurchases(data: PropertyPurchaseData): Promise<string> {
-        return ''
+    async propertyPurchases(): Promise<PropertyPurchaseData[]> {
+        interface PurchaseDTO {
+            property: string,
+            kind: Kind,
+            date: Date
+        }
+        const response = await axios.get<PurchaseDTO[]>('/purchases', {
+            headers: {
+                accept: 'application/json'
+            }
+        })
+        if (response.status !== 200) {
+            throw new Error('No se puedo obtener los datos de las compras');
+          }
+        return response.data.map((purchaseDTO) => {
+            const purchase: PropertyPurchaseData = {
+                property: purchaseDTO.property,
+                kind: purchaseDTO.kind,
+                date: purchaseDTO.date
+            }
+            return purchase
+        })
     }
+
     async getPropertiesByKind(kind: Kind): Promise<Propertie[]> {
         interface PropertieDTO {
             _id: string;
@@ -21,7 +42,7 @@ export class HTTPAdminStatsRepo {
         const response = await axios.get<PropertieDTO[]>(`/statsadmin/${kind}`, {
             headers: {
                 accept: 'application/json'
-            },
+            }
         })
         if (response.status !== 200) {
             throw new Error('No se puedo obtener los datos de las propiedades');
@@ -42,6 +63,7 @@ export class HTTPAdminStatsRepo {
             return prop;
           });
     }
+
     async collectPurchaseInfo(idProperty: string, date: Date, kind: Kind): Promise<string> {
         return ''
     }

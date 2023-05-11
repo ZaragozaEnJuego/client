@@ -23,7 +23,7 @@ const PropertiePage = () => {
   const useAuth = UseAuth();
 
   const propertieRepo: IPropertieRepo = new HttpPropertieRepo();
-  const adminStatsRepo: IAdminStatsRepo = new HTTPAdminStatsRepo()
+  const adminStatsRepo: HTTPAdminStatsRepo = new HTTPAdminStatsRepo()
   const [propertie, setPropertie] = useState<Propertie>(DefaultPropertie());
   const [kindRestrictions, setKindRestrictions] = useState<KindRestrictions>();
   const [buy, setBuy] = useState<string>('');

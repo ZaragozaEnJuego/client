@@ -4,7 +4,7 @@ import { User } from '../../core/admin/domain'
 export class HTTPAdminRepo {
     async getUserList(): Promise<User[]> {
         interface UserDTO {
-            id: string,
+            _id: string,
             name: string,
             icon?: string,
             access: boolean
@@ -20,7 +20,7 @@ export class HTTPAdminRepo {
         console.log(response.data);
         return response.data.map((userDTO => {
             const user: User = {
-                id: userDTO.id,
+                _id: userDTO._id,
                 name: userDTO.name,
                 icon: userDTO.icon,
                 access: userDTO.access
@@ -30,7 +30,7 @@ export class HTTPAdminRepo {
     }
     async getUser(id: string): Promise<User> {
         interface UserDTO {
-            id: string,
+            _id: string,
             name: string,
             icon?: string,
             access: boolean

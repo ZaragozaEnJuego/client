@@ -1,7 +1,7 @@
 import { Kind } from "../../properties/domain";
 
 export type User = {
-    id: string;
+    _id: string;
     name: string;
     icon?: string;
     access: boolean;
