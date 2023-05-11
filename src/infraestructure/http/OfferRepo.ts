@@ -72,13 +72,13 @@ export class HTTPOfferRepo {
             return offer
         }))
     }
-    async execOffer(offer: Offer, offerer: User, owner: User): Promise<string> {
+    async execOffer(offerId: string): Promise<string> {
         //TODO: Este servicio desarrollarse en el servidor y en este repositorio
         // offerer se convertirá en el nuevo propietario de la propiedad con id offer.property
         // owner.liquidity += offer.amount, se elimina la propiedad con id offer.property de owner.properties
        return ''
     }
-    async deleteOffer(offer: Offer): Promise<string> {
+    async deleteOffer(offerId: string): Promise<string> {
         //TODO: Este servicio desarrollarse en el servidor y en este repositorio
         return ''
     }

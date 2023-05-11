@@ -267,7 +267,7 @@ const PropertiePage = () => {
         Comprar
         </button>
         ) : (
-          userId !== undefined && propertie !== undefined ? (
+          userId !== undefined ? (
             <ModalNegotiation property={propertie.id} owner={propertie.owner} offerer={userId}/>
           ) : (
             toast.error('Error al lanzar la ventana modal', {

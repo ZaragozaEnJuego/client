@@ -127,8 +127,8 @@ const AdminPage = () => {
         </div>
         <div className='w-1/4 collapse md:visible'>
           <BarChart
-            data={[transportProperties.length, healthProperties.length, educationProperties.length, groceriesProperties.length]}
-            labels={['Transporte', 'Salud', 'Educación', 'Restauración']}
+            data={[0, 0, 0, 0, 0, 0, 0]}
+            labels={['L', 'M', 'X', 'J', 'V', 'S', 'D']}
           />
         </div>
         <div className='w-1/4 collapse md:visible'>
