@@ -1,18 +1,24 @@
-import { useEffect, useState } from 'react';
-import { MemoryUserRepo } from '../../infraestructure/memory';
-import { AdminLayout } from '../components/layouts';
-import { BarChart, DonutChart, UserList } from '../components/ui/user';
-import { Landlord } from '../../core/landlord/model';
+import { useEffect, useState } from 'react'
+import { AdminLayout } from '../components/layouts'
+import { BarChart, DonutChart, UserList } from '../components/ui/user'
+import { User } from '../../core/admin/domain'
+import { HTTPAdminRepo } from '../../infraestructure/http/AdminRepo'
+import { HTTPAdminStatsRepo } from '../../infraestructure/http/AdminStatsRepo'
 
 const AdminPage = () => {
-  const userRepo: MemoryUserRepo = new MemoryUserRepo();
-  const [userList, setUsersList] = useState<Landlord[]>([]);
+  const userRepo: HTTPAdminRepo = new HTTPAdminRepo()
+  const adminStats: HTTPAdminStatsRepo = new HTTPAdminStatsRepo()
+  const transportProperties = adminStats.getPropertiesByKind('transport')
+  const healthProperties = adminStats.getPropertiesByKind('health')
+  const educationProperties = adminStats.getPropertiesByKind('education')
+  const groceriesProperties = adminStats.getPropertiesByKind('groceries')
+  const [userList, setUsersList] = useState<User[]>([])
 
   useEffect(() => {
-    userRepo.getAllUsers().then((list) => {
-      setUsersList(list);
-    });
-  }, []);
+    userRepo.getUserList().then((list) => {
+      setUsersList(list)
+    })
+  }, [])
 
   return (
     <AdminLayout>
@@ -29,7 +35,7 @@ const AdminPage = () => {
         </div>
         <div className='w-1/4 collapse md:visible'>
           <DonutChart
-            data={[120, 85, 73, 95]}
+            data={[100, 85, 73, 95]}
             labels={['transporte', 'Salud', 'Restaurantes', 'Educación']}
           />
         </div>

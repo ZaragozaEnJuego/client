@@ -13,6 +13,8 @@ import { HttpPropertieRepo } from '../../infraestructure/http/PropertieRepo';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UseAuth } from '../hooks/auth/AuthContext';
+import { IAdminStatsRepo } from '../../core/admin/domain';
+import { HTTPAdminStatsRepo } from '../../infraestructure/http/AdminStatsRepo';
 import { ModalNegotiation } from '../components/layouts/modalWindow';
 
 const PropertiePage = () => {
@@ -21,6 +23,7 @@ const PropertiePage = () => {
   const useAuth = UseAuth();
 
   const propertieRepo: IPropertieRepo = new HttpPropertieRepo();
+  const adminStatsRepo: IAdminStatsRepo = new HTTPAdminStatsRepo()
   const [propertie, setPropertie] = useState<Propertie>(DefaultPropertie());
   const [kindRestrictions, setKindRestrictions] = useState<KindRestrictions>();
   const [buy, setBuy] = useState<string>('');
@@ -243,6 +246,7 @@ const PropertiePage = () => {
                 theme: 'light',
               });
               setBuy(buyId);
+              //adminStatsRepo.collectPurchaseInfo(propertie.id, date, propertie.kind)
             } catch (error) {
               toast.error('Error al comprar', {
                 position: 'top-right',

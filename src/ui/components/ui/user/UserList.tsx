@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { UserCard } from '.';
-import { Landlord } from '../../../../core/landlord/model';
+import { FC } from 'react'
+import { UserCard } from '.'
+import { User } from '../../../../core/admin/domain'
 
 interface Users {
-    list: Landlord[];
+    list: User[];
 }
 
 const UserList: FC<Users> = ({ list }) => {
