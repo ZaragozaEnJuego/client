@@ -43,8 +43,15 @@ export class HTTPAdminRepo {
         if (response.status !== 200) {
             throw new Error('Error al obtener el usuario');
         }
-        console.log(response.data)
-        return response.data
+        const userRespose = response.data
+        const user: User = {
+            _id: userRespose._id,
+            name: userRespose.name,
+            icon: userRespose.icon,
+            access: userRespose.access
+        }
+        console.log(user)
+        return user
     }
     async updateAccess(id: string, access: boolean): Promise<string> {
         const response = await axios.patch<{ id: string }>(`/admin/${id}/access`, {
