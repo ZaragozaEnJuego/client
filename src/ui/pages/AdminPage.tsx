@@ -4,15 +4,93 @@ import { BarChart, DonutChart, UserList } from '../components/ui/user'
 import { User } from '../../core/admin/domain'
 import { HTTPAdminRepo } from '../../infraestructure/http/AdminRepo'
 import { HTTPAdminStatsRepo } from '../../infraestructure/http/AdminStatsRepo'
+import { Propertie } from '../../core/properties/domain'
+import { toast } from 'react-toastify'
 
 const AdminPage = () => {
   const userRepo: HTTPAdminRepo = new HTTPAdminRepo()
-  const adminStats: HTTPAdminStatsRepo = new HTTPAdminStatsRepo()
-  const transportProperties = adminStats.getPropertiesByKind('transport')
-  const healthProperties = adminStats.getPropertiesByKind('health')
-  const educationProperties = adminStats.getPropertiesByKind('education')
-  const groceriesProperties = adminStats.getPropertiesByKind('groceries')
+  const adminStatsRepo: HTTPAdminStatsRepo = new HTTPAdminStatsRepo()
   const [userList, setUsersList] = useState<User[]>([])
+  const [ transportProperties, setTransportProperties ] = useState<Propertie[]>([])
+  const [ healthProperties, setHealthProperties ] = useState<Propertie[]>([])
+  const [ educationProperties, setEducationProperties ] = useState<Propertie[]>([])
+  const [ groceriesProperties, setGroceriesProperties ] = useState<Propertie[]>([])
+
+  useEffect(() => {
+    adminStatsRepo
+    .getPropertiesByKind('transport')
+    .then((list) => {
+      setTransportProperties(list)
+    }).catch((error) => {
+        toast.error('Error al obtener las propiedades de transporte', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
+  }, []);
+
+  useEffect(() => {
+    adminStatsRepo
+    .getPropertiesByKind('health')
+    .then((list) => {
+      setHealthProperties(list)
+    }).catch((error) => {
+        toast.error('Error al obtener las propiedades de salud', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
+  }, []);
+
+  useEffect(() => {
+    adminStatsRepo
+    .getPropertiesByKind('education')
+    .then((list) => {
+      setEducationProperties(list)
+    }).catch((error) => {
+        toast.error('Error al obtener las propiedades de educación', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
+  }, []);
+
+  useEffect(() => {
+    adminStatsRepo
+    .getPropertiesByKind('groceries')
+    .then((list) => {
+      setGroceriesProperties(list)
+    }).catch((error) => {
+        toast.error('Error al obtener las propiedades de restauración', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
+  }, []);
 
   useEffect(() => {
     userRepo.getUserList().then((list) => {
@@ -29,14 +107,14 @@ const AdminPage = () => {
         </div>
         <div className='w-1/4 collapse md:visible'>
           <BarChart
-            data={[112, 119, 93, 145, 123, 198, 185, 230]}
-            labels={['L', 'M', 'X', 'J', 'V', 'S', 'D']}
+            data={[transportProperties.length, healthProperties.length, educationProperties.length, groceriesProperties.length]}
+            labels={['Transporte', 'Salud', 'Educación', 'Restauración']}
           />
         </div>
         <div className='w-1/4 collapse md:visible'>
           <DonutChart
-            data={[100, 85, 73, 95]}
-            labels={['transporte', 'Salud', 'Restaurantes', 'Educación']}
+            data={[transportProperties.length, healthProperties.length, educationProperties.length, groceriesProperties.length]}
+            labels={['transporte', 'Salud', 'Educación', 'Restauración']}
           />
         </div>
       </div>
