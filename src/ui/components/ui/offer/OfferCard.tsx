@@ -10,6 +10,7 @@ import { User } from '../../../../core/admin/domain'
 import { ReactComponent as UndefinedIcon } from '/src/assets/undefined-icon.svg'
 import { HTTPOfferRepo } from '../../../../infraestructure/http/OfferRepo'
 import { toast } from 'react-toastify'
+import { HTTPAdminStatsRepo } from '../../../../infraestructure/http/AdminStatsRepo'
 
 interface Offers {
   offer: Offer,
@@ -18,6 +19,7 @@ interface Offers {
 }
 
 const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
+const adminStatsRepo: HTTPAdminStatsRepo = new HTTPAdminStatsRepo()
 
 const PropertyIcon = (kind: Kind) => {
   switch (kind) {
@@ -68,6 +70,11 @@ const OfferCard: FC<Offers> = ({ offer, offerer, owner }) => {
                       progress: undefined,
                       theme: 'light',
                     })
+                    try {
+                      adminStatsRepo.collectPurchaseInfo(offer.property, new Date())
+                    } catch (error) { 
+                      console.log("Error al guardar la compra para estadísticas") 
+                    }
                   } catch (error) {
                     toast('Error al aceptar la oferta', {
                       position: 'top-right',

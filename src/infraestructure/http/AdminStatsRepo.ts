@@ -64,10 +64,9 @@ export class HTTPAdminStatsRepo {
           });
     }
 
-    async collectPurchaseInfo(idProperty: string, date: Date, kind: Kind): Promise<string> {
+    async collectPurchaseInfo(idProperty: string, date: Date): Promise<string> {
         const response = await axios.post("/adminstats", {
             property: idProperty,
-            kind: kind,
             date: date
         })
         if (response.status !== 201) {

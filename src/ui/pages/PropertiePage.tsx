@@ -246,7 +246,7 @@ const PropertiePage = () => {
               });
               setBuy(buyId);
               try {
-                adminStatsRepo.collectPurchaseInfo(propertie.id, new Date(), propertie.kind)
+                adminStatsRepo.collectPurchaseInfo(propertie.id, new Date())
               } catch (error) { 
                 console.log("Error al guardar la compra para estadísticas") 
               }
