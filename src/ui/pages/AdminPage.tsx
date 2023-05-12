@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AdminLayout } from '../components/layouts'
-import { BarChart, DonutChart, UserList } from '../components/ui/user'
+import { LineChart, DonutChart, UserList } from '../components/ui/user'
 import { PropertyPurchaseData, User } from '../../core/admin/domain'
 import { HTTPAdminRepo } from '../../infraestructure/http/AdminRepo'
 import { HTTPAdminStatsRepo } from '../../infraestructure/http/AdminStatsRepo'
@@ -22,7 +22,7 @@ const AdminPage = () => {
     .propertyPurchases()
     .then((list) => {
       setPropertyPurchases(list)
-    }).catch((error) => {
+    }).catch(() => {
       toast.error('Error al obtener las propiedades de transporte', {
         position: 'top-right',
         autoClose: 5000,
@@ -41,7 +41,7 @@ const AdminPage = () => {
     .getPropertiesByKind('transport')
     .then((list) => {
       setTransportProperties(list)
-    }).catch((error) => {
+    }).catch(() => {
         toast.error('Error al obtener las propiedades de transporte', {
           position: 'top-right',
           autoClose: 5000,
@@ -60,7 +60,7 @@ const AdminPage = () => {
     .getPropertiesByKind('health')
     .then((list) => {
       setHealthProperties(list)
-    }).catch((error) => {
+    }).catch(() => {
         toast.error('Error al obtener las propiedades de salud', {
           position: 'top-right',
           autoClose: 5000,
@@ -79,7 +79,7 @@ const AdminPage = () => {
     .getPropertiesByKind('education')
     .then((list) => {
       setEducationProperties(list)
-    }).catch((error) => {
+    }).catch(() => {
         toast.error('Error al obtener las propiedades de educación', {
           position: 'top-right',
           autoClose: 5000,
@@ -98,7 +98,7 @@ const AdminPage = () => {
     .getPropertiesByKind('groceries')
     .then((list) => {
       setGroceriesProperties(list)
-    }).catch((error) => {
+    }).catch(() => {
         toast.error('Error al obtener las propiedades de restauración', {
           position: 'top-right',
           autoClose: 5000,
@@ -126,9 +126,12 @@ const AdminPage = () => {
           <UserList list={userList} />
         </div>
         <div className='w-1/4 collapse md:visible'>
-          <BarChart
-            data={[0, 0, 0, 0, 0, 0, 0]}
-            labels={['L', 'M', 'X', 'J', 'V', 'S', 'D']}
+          <LineChart
+            dataTrasnport={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+            dataHealth={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+            dataEducation={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+            dataGroceries={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+            labels={['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']}
           />
         </div>
         <div className='w-1/4 collapse md:visible'>

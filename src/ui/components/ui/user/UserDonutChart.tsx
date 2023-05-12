@@ -22,20 +22,16 @@ export function DonutChart({ data, labels }: DonutChartProps) {
               label: 'vendidas',
               data: data,
               backgroundColor: [
-                '#BF616A',
+                '#b48ead',
+                '#bf616a',
                 '#5E81AC',
-                '#EBCB8B',
-                '#A3BE8C',
-                '#B48EAD',
-                '#D08770'
+                '#b48ead',
               ],
               borderColor: [
-                '#BF616A',
+                '#b48ead',
+                '#bf616a',
                 '#5E81AC',
-                '#EBCB8B',
-                '#A3BE8C',
-                '#B48EAD',
-                '#D08770'
+                '#b48ead',
               ],
               borderWidth: 1
             }]
