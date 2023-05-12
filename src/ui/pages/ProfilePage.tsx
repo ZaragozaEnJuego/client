@@ -60,7 +60,7 @@ const ProfilePage = () => {
             <div className=' md:h-1/3 md:min-h-fit  w-full flex  items-center justify-center '>
               <div className='rounded-3xl border-secondary border-2 text-primary font-bold  text-lg md:text-3xl p-3 w-full mx-4   flex flex-col  items-center justify-center '>
                 <h1>Patrimonio: {calcPropertieValue(landlord.properties ?? [])}</h1>
-                <h1>Liquidez: {landlord.liquidity ?? 0}</h1>
+                <h1>Liquidez: {landlord.liquidity ?? 0}€</h1>
               </div>
             </div>
             <div className=' h-full md:h-2/3 w-full  flex justify-center items-center'>
