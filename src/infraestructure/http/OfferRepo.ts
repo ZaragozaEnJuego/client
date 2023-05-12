@@ -4,7 +4,7 @@ import axios from './http'
 
 export class HTTPOfferRepo {
     async createOffer(_property: string, _owner: string, _offerer: string, _amount: number): Promise<string> {
-        const response = await axios.post<{ id: string }>('/negotiations', {
+        const response = await axios.post('/negotiations/create', {
             property: _property,
             owner: _owner,
             offerer: _offerer,
@@ -73,13 +73,27 @@ export class HTTPOfferRepo {
         }))
     }
     async execOffer(offerId: string): Promise<string> {
-        //TODO: Este servicio desarrollarse en el servidor y en este repositorio
-        // offerer se convertirá en el nuevo propietario de la propiedad con id offer.property
-        // owner.liquidity += offer.amount, se elimina la propiedad con id offer.property de owner.properties
-       return ''
+        const response = await axios.post(`/negotiation/${offerId}/execute`, {
+            headers: {
+                accept: 'application/json'
+            }
+        })
+        if (response.status !== 201) {
+            throw new Error('Error al ejecutar la oferta')
+        }
+        console.log(response.data)
+        return response.data.id
     }
     async deleteOffer(offerId: string): Promise<string> {
-        //TODO: Este servicio desarrollarse en el servidor y en este repositorio
-        return ''
+        const response = await axios.delete(`/negotiation/${offerId}/delete`, {
+            headers: {
+                accept: 'application/json'
+            }
+        })
+        if (response.status !== 201) {
+            throw new Error('Error al eliminar la oferta')
+        }
+        console.log(response.data)
+        return response.data.id
     }
 }
