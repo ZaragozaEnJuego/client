@@ -10,7 +10,7 @@ Chart.register(...registerables);
 
 type BarChartProps = {
   labels: string[],
-  dataTrasnport: number[],
+  dataTransport: number[],
   dataHealth: number[],
   dataEducation: number[],
   dataGroceries: number[],
@@ -20,7 +20,7 @@ type BarChartProps = {
  *  y se declara una referencia a un elemento HTMLCanvasElement usando useRef.
  * Sino, sale como elemento null y no funciona en typescript */
 
-export function LineChart({ labels, dataTrasnport, dataHealth, dataEducation, dataGroceries }: BarChartProps) {
+export function LineChart({ labels, dataTransport, dataHealth, dataEducation, dataGroceries }: BarChartProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export function LineChart({ labels, dataTrasnport, dataHealth, dataEducation, da
             labels: labels,
             datasets: [{
               label: 'Transporte',
-              data: dataTrasnport,
+              data: dataTransport,
               backgroundColor: '#b48ead',
               borderColor: '#b48ead',
               borderWidth: 1
@@ -71,7 +71,7 @@ export function LineChart({ labels, dataTrasnport, dataHealth, dataEducation, da
         };
       }
     }
-  }, [dataTrasnport, dataHealth, dataEducation, dataGroceries, labels]);
+  }, [dataTransport, dataHealth, dataEducation, dataGroceries, labels]);
 
   return (
     <canvas ref={canvasRef} />

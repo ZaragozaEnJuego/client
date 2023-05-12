@@ -16,12 +16,34 @@ const AdminPage = () => {
   const [ educationProperties, setEducationProperties ] = useState<Propertie[]>([])
   const [ groceriesProperties, setGroceriesProperties ] = useState<Propertie[]>([])
   const [ propertyPurchases, setPropertyPurchases ] = useState<PropertyPurchaseData[]>([])
+  const transportPurchases: PropertyPurchaseData[] = []
+  const healthPurchases: PropertyPurchaseData[] = []
+  const educationPurchases: PropertyPurchaseData[] = []
+  const groceriesPurchases: PropertyPurchaseData[] = []
 
   useEffect(() => {
     adminStatsRepo
     .propertyPurchases()
     .then((list) => {
       setPropertyPurchases(list)
+      propertyPurchases.map((value) => {
+        switch(value.kind) {
+          case 'transport':
+            transportPurchases.push(value)
+            break;
+          case 'health':
+            healthPurchases.push(value)
+            break;
+          case 'education':
+            educationPurchases.push(value)
+            break;
+          case 'groceries':
+            groceriesPurchases.push(value)
+            break;
+          default:
+            console.log("Tipo de propiedad erróneo")
+        }
+      })
     }).catch(() => {
       toast.error('Error al obtener las propiedades de transporte', {
         position: 'top-right',
@@ -127,7 +149,7 @@ const AdminPage = () => {
         </div>
         <div className='w-1/4 collapse md:visible'>
           <LineChart
-            dataTrasnport={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+            dataTransport={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
             dataHealth={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
             dataEducation={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
             dataGroceries={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
