@@ -9,6 +9,7 @@ import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg'
 import { User } from '../../../../core/admin/domain'
 import { ReactComponent as UndefinedIcon } from '/src/assets/undefined-icon.svg'
 import { HTTPOfferRepo } from '../../../../infraestructure/http/OfferRepo'
+import { toast } from 'react-toastify'
 
 interface Offers {
   offer: Offer,
@@ -54,11 +55,59 @@ const OfferCard: FC<Offers> = ({ offer, offerer, owner }) => {
             <div className='flex flex-col items-center px-5 py-1 w-full'>
               <button className='items-center text-xs text-primary py-1 my-1 w-20 rounded-lg sm:mx-2 mx-1 bg-green-nord'
                 onClick={() => {
-                  offerRepo.execOffer(offer, offerer, owner)
-                  offerRepo.deleteOffer(offer)
+                  try {
+                    offerRepo.execOffer(offer.id)
+                    offerRepo.deleteOffer(offer.id)
+                    toast('Oferta aceptada', {
+                      position: 'top-right',
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: 'light',
+                    })
+                  } catch (error) {
+                    toast('Error al aceptar la oferta', {
+                      position: 'top-right',
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: 'light',
+                    });
+                  }
                 }}>Aceptar</button>
               <button className='items-center text-xs text-hover py-1 my-1 w-20 rounded-lg bg-red-nord'
-                onClick={() => { offerRepo.deleteOffer(offer) }}>Rechazar</button>
+                onClick={() => { 
+                  try {
+                    offerRepo.deleteOffer(offer.id) 
+                    toast('Oferta rechazada', {
+                      position: 'top-right',
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: 'light',
+                    })
+                  } catch (error) {
+                    toast('Error al rechazar la oferta', {
+                      position: 'top-right',
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: 'light',
+                    });
+                  }
+                }}>Rechazar</button>
             </div>
           </div>
           <div className='flex flex-col justify-center items-center'>

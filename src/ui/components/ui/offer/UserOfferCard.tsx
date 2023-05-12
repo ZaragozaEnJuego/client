@@ -8,6 +8,7 @@ import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg'
 import { ReactComponent as UndefinedIcon } from '/src/assets/undefined-icon.svg'
 import { User } from '../../../../core/admin/domain'
 import { HTTPOfferRepo } from '../../../../infraestructure/http/OfferRepo'
+import { toast } from 'react-toastify'
 
 interface Offers {
   offer: Offer,
@@ -51,7 +52,32 @@ const UserOfferCard: FC<Offers> = ({ offer, offerer, owner }) => {
       {PropertyIcon('transport')}
       <div className='flex flex-col items-bottom px-5 py-1 w-full'>
         <button className='items-center text-xs text-hover py-1 my-1 sm:mx-2 mx-1 w-20 rounded-lg bg-primary'
-          onClick={() => { offerRepo.deleteOffer(offer)}}>Cancelar</button>
+          onClick={() => { 
+            try {
+              offerRepo.deleteOffer(offer.id)
+              toast('Oferta cancelada', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+              })
+            } catch (error) {
+              toast('Error al cancelar la oferta', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+              })
+            }
+          }}>Cancelar</button>
         <button style={{ background: '#8FBCBB', color: '#8FBCBB'}} className='items-center text-xs cursor-default py-1 my-1 w-20 rounded-lg mx-2'>Consultar</button>
       </div>
     </div>
