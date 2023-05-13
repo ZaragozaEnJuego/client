@@ -245,11 +245,6 @@ const PropertiePage = () => {
                 theme: 'light',
               });
               setBuy(buyId);
-              try {
-                adminStatsRepo.collectPurchaseInfo(propertie.id, new Date())
-              } catch (error) { 
-                console.log("Error al guardar la compra para estadísticas") 
-              }
             } catch (error) {
               toast.error('Error al comprar', {
                 position: 'top-right',

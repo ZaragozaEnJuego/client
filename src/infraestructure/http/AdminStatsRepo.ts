@@ -63,16 +63,4 @@ export class HTTPAdminStatsRepo {
             return prop;
           });
     }
-
-    async collectPurchaseInfo(idProperty: string, date: Date): Promise<string> {
-        const response = await axios.post("/adminstats", {
-            property: idProperty,
-            date: date
-        })
-        if (response.status !== 201) {
-            throw new Error('No se pudo guardar la información de la compra');
-          }
-        console.log(response.data);
-        return response.data.id;
-    }
 }

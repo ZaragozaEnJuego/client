@@ -9,5 +9,4 @@ export interface IUserRepo {
 export interface IAdminStatsRepo {
   propertyPurchases(data: PropertyPurchaseData): Promise<string>
   getPropertiesByKind(kind: Kind): Promise<Propertie[]>
-  collectPurchaseInfo(idProperty: string, date: Date, kind: Kind): Promise<string>
 }

@@ -70,11 +70,6 @@ const OfferCard: FC<Offers> = ({ offer, offerer, owner }) => {
                       progress: undefined,
                       theme: 'light',
                     })
-                    try {
-                      adminStatsRepo.collectPurchaseInfo(offer.property, new Date())
-                    } catch (error) { 
-                      console.log("Error al guardar la compra para estadísticas") 
-                    }
                   } catch (error) {
                     toast('Error al aceptar la oferta', {
                       position: 'top-right',
