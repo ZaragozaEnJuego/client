@@ -82,11 +82,11 @@ const DesktopHeader = () => {
   }, []);
 
   return (
-    <div className='flex p-8 justify-between items-end pl-32 '>
-      <Logo className='h-20 w-20 fill-primary mx-4 ' />
-      <h1 className='text-5xl font-bold text-primary mx-4'>Zaragoza en juego</h1>
-      <Wallet className='h-20 w-20 fill-primary mx-4' />
-      <span className='text-5xl font-bold text-primary mx-4'>{landlord.liquidity ?? 0}€</span>
+    <div className='flex p-8 justify-between items-end pl-32 w-full '>
+      <Logo className='h-20 w-20 fill-primary mx-4' />
+      <h1 className='text-5xl font-bold text-primary mx-4'>  Zaragoza en juego</h1>
+      <Wallet className='h-20 w-20 fill-primary ml-10 mr-4' />
+      <span className='text-5xl font-bold text-primary'> {landlord.liquidity ?? 0}€</span>
     </div>
   );
 };
@@ -137,8 +137,8 @@ const MobileHeader = () => {
         <MobileSideBarContent />
       </Drawer>
       <h1 className='text-3xl font-bold text-primary '>Zaragoza en juego</h1>
-      <Wallet className='h-20 w-20 fill-primary mx-4' />
-      <span className='text-3xl font-bold text-primary mx-4'>{landlord.liquidity ?? 0}€</span>
+      <Wallet className='h-10 w-10 fill-primary' />
+      <span className='text-3xl font-bold text-primary'> {landlord.liquidity ?? 0}€</span>
     </div>
   );
 };

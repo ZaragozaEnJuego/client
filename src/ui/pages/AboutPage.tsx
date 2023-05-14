@@ -2,12 +2,24 @@ import { MainLayout } from '../components/layouts';
 import { BarChart, TemperatureBarChart, ElectricityBarChart } from '../components/ui/BarChart';
 import { DonutChart, StateDonutChart } from '../components/ui/DonutChart';
 import { useState, useEffect } from 'react';
+import { StatsRepo } from '../../infraestructure/http/StatsRepo';
 import { MemorieAboutRepo, getTemperatureChartData, getElectricityChartData, getStateChartData } from '../../infraestructure/memory/AboutRepo';
+import { WeatherData } from '../../core/about/domain/model';
 
 
 const AboutPage = () => {
+  const [weatherDataList, setWeatherDataList] = useState<WeatherData[]>([]);
 
-  const weatherDataList = new MemorieAboutRepo().list;
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      const statsRepo = new StatsRepo();
+      const weatherData = await statsRepo.getAllWeatherData();
+      setWeatherDataList(weatherData);
+    };
+
+    fetchWeatherData();
+  }, []);
+
   const { chartDataValuesTemperature, chartLabelsTemperature } = getTemperatureChartData(weatherDataList);
   const { chartDataValuesElectricity, chartLabelsElectricity } = getElectricityChartData(weatherDataList);
   const { chartDataValuesState, chartLabelsState } = getStateChartData(weatherDataList);
