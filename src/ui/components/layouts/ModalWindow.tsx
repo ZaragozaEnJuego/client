@@ -67,9 +67,7 @@ const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
                     type="button"
                     onClick={() => {
                       try {
-                        amount !== null ? (
-                          offerRepo.createOffer(property, owner, offerer, amount)
-                        ) : (
+                        amount !== null ? offerRepo.createOffer(property, owner, offerer, amount) : (
                           toast.error('Error al ingresar la cantidad para la oferta', {
                             position: 'top-right',
                             autoClose: 5000,
