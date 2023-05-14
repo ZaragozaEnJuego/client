@@ -72,6 +72,7 @@ export class HttpPropertieRepo {
       name: propertieRes.name,
       price: propertieRes.price,
       owner: propertieRes.owner,
+      stats: propertieRes.stats,
     };
     console.log(propertie);
     return propertie;

@@ -53,11 +53,6 @@ const OfferCard: FC<Offers> = ({ offer }) => {
             <h1 style={{ color: chooseColor('transport') }} className='w-50 text-center text-sm lg:text-base md:text-sm xl:text-lg font-bold text-primary'>Estación Delicias</h1>
           </div>
         </div>
-        <div className='flex flex-col justify-center items-center'>
-          <img className='w-10 h-10 object-cover rounded-full' src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'/>
-          <h1 className='text-xs text-nord1'>Tú</h1>
-          <h1 style={{ color: chooseColor('transport') }} className='w-50 text-lg font-bold text-primary'>Estación Delicias</h1>
-        </div>
       </div>
   );
 };
