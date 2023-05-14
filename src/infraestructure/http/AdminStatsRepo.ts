@@ -9,7 +9,7 @@ export class HTTPAdminStatsRepo {
             kind: Kind,
             date: Date
         }
-        const response = await axios.get<PurchaseDTO[]>('/purchases', {
+        const response = await axios.get<PurchaseDTO[]>('/adminstats/purchases', {
             headers: {
                 accept: 'application/json'
             }
@@ -39,7 +39,7 @@ export class HTTPAdminStatsRepo {
             baseIncome: number;
             owener?: string;
         }
-        const response = await axios.get<PropertieDTO[]>(`/statsadmin/${kind}`, {
+        const response = await axios.get<PropertieDTO[]>(`/adminstats/${kind}`, {
             headers: {
                 accept: 'application/json'
             }
