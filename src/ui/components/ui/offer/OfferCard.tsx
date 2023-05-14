@@ -122,8 +122,6 @@ const OfferCard: FC<Offers> = ({ offer, offerer, owner }) => {
             <h1 style={{ color: chooseColor('transport') }} className='w-50 text-center text-sm lg:text-base md:text-sm xl:text-lg font-bold text-primary'>Estación Delicias</h1>
           </div>
         </div>
-        <div className='flex flex-col justify-center items-center'>
-        </div>
       </div>
   );
 };

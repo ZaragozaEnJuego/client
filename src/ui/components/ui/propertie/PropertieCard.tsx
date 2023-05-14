@@ -22,7 +22,7 @@ const PropertieCard: FC<Props> = ({ propertie }) => {
       </div>
       <div className='flex flex-col collapse xl:visible justify-center items-center '>
         <h1 style={{ color: chooseColor(propertie.kind) }} className={' font-bold text-6xl'}>
-          {propertie.price}
+          {propertie.price}€
         </h1>
         <h2 className='text-secondary font-bold text-2xl'>
           {propertie.owner === undefined ? 'Disponible' : 'Vendido'}

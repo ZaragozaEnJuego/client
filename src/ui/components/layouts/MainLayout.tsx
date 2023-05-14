@@ -3,12 +3,18 @@ import { ReactComponent as UserIcon } from '/src/assets/user-regular.svg';
 import { ReactComponent as AdrressBookIcon } from '/src/assets/address-book-regular.svg';
 import { ReactComponent as BuildingIcon } from '/src/assets/building-regular.svg';
 import { ReactComponent as InfoIcon } from '/src/assets/circle-question-regular.svg';
+import { ReactComponent as Wallet } from '/src/assets/wallet-solid.svg';
 import { ReactComponent as Logo } from '/src/assets/tree-city-solid.svg';
 import { Link } from 'react-router-dom';
 import { ReactComponent as MenuIcon } from '/src/assets/bars-solid.svg';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
 import { ProfileButton } from '../ui';
+import { HttpLandlordRepo } from '../../../infraestructure/http/LandlordRepo';
+import { ILandlordRepo } from '../../../core/landlord/ports';
+import { UseAuth } from '../../hooks/auth/AuthContext';
+import { Landlord } from '../../../core/landlord/model';
+import { toast } from 'react-toastify';
 
 type Props = PropsWithChildren & {
   title?: string;
@@ -44,15 +50,79 @@ const menuOptions: menuOption[] = [
 ];
 
 const DesktopHeader = () => {
+  const landlordRepo: ILandlordRepo = new HttpLandlordRepo();
+  const useAuth = UseAuth();
+  const [landlord, setPropertiesList] = useState<Landlord>({
+    id: '',
+    name: '',
+    access: true,
+    liquidity: 0,
+    properties: [],
+    lastDayIncome: 0,
+  });
+
+  useEffect(() => {
+    landlordRepo
+      .getLandlordInfo(useAuth.getUserId() ?? '')
+      .then((landlord: Landlord) => {
+        setPropertiesList(landlord);
+      })
+      .catch(() => {
+        toast.error('Error al obtener el usuario', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
+  }, []);
+
   return (
-    <div className='flex p-8 justify-between items-end pl-32 '>
-      <Logo className='h-20 w-20 fill-primary mx-4 ' />
-      <h1 className='text-5xl font-bold text-primary'>Zaragoza en juego</h1>
+    <div className='flex p-8 justify-between items-end pl-32 w-full '>
+      <Logo className='h-20 w-20 fill-primary mx-4' />
+      <h1 className='text-5xl font-bold text-primary mx-4'>  Zaragoza en juego</h1>
+      <Wallet className='h-20 w-20 fill-primary ml-10 mr-4' />
+      <span className='text-5xl font-bold text-primary'> {landlord.liquidity ?? 0}€</span>
     </div>
   );
 };
 
 const MobileHeader = () => {
+  const landlordRepo: ILandlordRepo = new HttpLandlordRepo();
+  const useAuth = UseAuth();
+  const [landlord, setPropertiesList] = useState<Landlord>({
+    id: '',
+    name: '',
+    access: true,
+    liquidity: 0,
+    properties: [],
+    lastDayIncome: 0,
+  });
+
+  useEffect(() => {
+    landlordRepo
+      .getLandlordInfo(useAuth.getUserId() ?? '')
+      .then((landlord: Landlord) => {
+        setPropertiesList(landlord);
+      })
+      .catch(() => {
+        toast.error('Error al obtener el usuario', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -67,6 +137,8 @@ const MobileHeader = () => {
         <MobileSideBarContent />
       </Drawer>
       <h1 className='text-3xl font-bold text-primary '>Zaragoza en juego</h1>
+      <Wallet className='h-10 w-10 fill-primary' />
+      <span className='text-3xl font-bold text-primary'> {landlord.liquidity ?? 0}€</span>
     </div>
   );
 };
