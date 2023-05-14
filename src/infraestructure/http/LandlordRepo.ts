@@ -13,7 +13,7 @@ export class HttpLandlordRepo {
     }
 
     const landlord: any = response.data;
-    landlord.properties.map((p, k) => (p.id = p._id));
+    landlord.properties.map((p: any, k: any) => (p.id = p._id));
     return landlord;
   }
 }
