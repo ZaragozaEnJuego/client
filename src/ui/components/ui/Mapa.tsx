@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Propertie } from '../../../core/properties/domain';
 import L from 'leaflet';
+import { NavLink } from 'react-router-dom';
 
 type Sizes = 'small' | 'regular';
 
@@ -24,8 +25,9 @@ const Mapa: FC<Props> = ({ list }) => {
           <div>
             <h2>{propiedad.name}</h2>
             <p>{propiedad.address}</p>
-            <p>{propiedad.price}</p>
+            <p>{propiedad.price}€</p>
             <p>{propiedad.kind}</p>
+            <NavLink to={`/propertie/${propiedad.id}`}>Ver más</NavLink>
           </div>
         </Popup>
       </Marker>

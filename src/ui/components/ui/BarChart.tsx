@@ -178,3 +178,55 @@ export function ElectricityBarChart({ labels, data }: BarChartProps) {
     <canvas ref={canvasRef} />
   );
 }
+
+export function PropertieBarChart({ labels, data, color }: BarChartProps & { color: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const context = canvas.getContext('2d');
+      if (context) {
+        const chart = new Chart(context, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: data,
+              backgroundColor: color,
+              borderColor: 'black',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: 'Ingresos',
+              },
+              legend: {
+                display: false,
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Dinero (€)'
+                }
+              }
+            },
+          }
+        });
+        return () => {
+          chart.destroy();
+        };
+      }
+    }
+  }, [data, labels, color]);
+
+  return (
+    <canvas ref={canvasRef} />
+  );
+}

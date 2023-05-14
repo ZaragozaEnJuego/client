@@ -4,8 +4,7 @@ import { ILandlordRepo } from '../../core/landlord/ports';
 import { Propertie } from '../../core/properties/domain';
 import { MainLayout } from '../components/layouts';
 import { PropertieList } from '../components/ui/propertie';
-import { BarChart } from '../components/ui/BarChart';
-import { DonutChart } from '../components/ui/DonutChart';
+import { ProfileDonutChart } from '../components/ui/DonutChart';
 import { HttpLandlordRepo } from '../../infraestructure/http/LandlordRepo';
 import { UseAuth } from '../hooks/auth/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
@@ -22,12 +21,31 @@ const ProfilePage = () => {
     properties: [],
     lastDayIncome: 0,
   });
+  const [chartData, setChartData] = useState<number[]>([]);
+  const [chartLabels, setChartLabels] = useState<string[]>([]);
 
   useEffect(() => {
     landlordRepo
       .getLandlordInfo(useAuth.getUserId() ?? '')
       .then((landlord: Landlord) => {
+        const buildingCounts: { [key: string]: number } = {};
+        const buildingTypes: string[] = [];
+
+        for (const property of landlord.properties) {
+          const buildingType = property.kind;
+          if (!buildingCounts[buildingType]) {
+            buildingCounts[buildingType] = 0;
+            buildingTypes.push(buildingType);
+          }
+          buildingCounts[buildingType]++;
+        }
+
+        const chartDataValues: number[] = buildingTypes.map((type) => buildingCounts[type]);
+        const chartLabels: string[] = buildingTypes;
+
         setPropertiesList(landlord);
+        setChartData(chartDataValues);
+        setChartLabels(chartLabels);
       })
       .catch(() => {
         toast.error('Error al obtener el usuario', {
@@ -73,17 +91,14 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className='rounded-3xl border-secondary border-2 w-1/2 h-full hidden md:inline md:flex-col md:overflow-auto'>
-            <div className='flex-shrink-0 w-full flex items-center justify-center h-96 mb-4'>
-              <BarChart
-                data={[12, 19, 3, 5, 2, 3]}
-                labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']}
-              />
-            </div>
             <div className='flex-shrink-0 w-full flex items-center justify-center h-96'>
-              <DonutChart
-                data={[12, 19, 3, 5, 2, 3]}
-                labels={['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']}
-              />
+              {chartData.length > 0 && chartLabels.length > 0 ? (
+                <ProfileDonutChart data={chartData} labels={chartLabels} />
+              ) : (
+                <p className=' text-primary font-bold  text-lg md:text-3xl'>
+                  ¡Compra edificios para obtener estadísticas!
+                </p>
+              )}
             </div>
           </div>
         </div>

@@ -10,6 +10,10 @@ export type Propertie = {
   kind: Kind;
   lat: number;
   lng: number;
+  stats?: {
+    date: string;
+    baseIncome: number;
+  }[];
 };
 
 export type KindRestrictions = {
