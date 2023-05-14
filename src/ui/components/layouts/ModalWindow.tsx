@@ -10,13 +10,13 @@ interface modalWindow {
 }
 
 const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
-  const [amount] = useState<number|null>(null);
+  const [amount, setAmount]  = useState<number>(50000);
   const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
   const [showModal, setShowModal] = React.useState(false)
   return (
     <>
       <button
-        className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
+        className='font-bold bg-primary text-secondary py-4 w-52 rounded-full mx-10'
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -26,40 +26,44 @@ const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
         <>
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-sm">
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <div className="relative bg-nord4 w-auto my-6 mx-auto max-w-sm">
+              <div className="border-0 rounded-lg bg-white shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">
+                  <h3 className="text-3xl text-primary font-bold">
                     Iniciar negociación por la propiedad
                   </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}>
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                    <span className="bg-white text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
                   </button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
+                  <p className="my-4 font-bold text-primary text-slate-500 text-lg leading-relaxed">
                     Esta propiedad pertenece a otro usuario. Si deseas obtenerla, puedes
                     realizar una oferta especificando la cantidad de dinero que deseas pagar
                     por ella.
                   </p>
                   <div className="mb-3 pt-0">
-                    <input id="amount" name="amount" type="number" min="0" max="999999" step="100" value={amount ?? ''} placeholder="Cantidad" className="px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"></input>
+                    <input id="amount" name="amount" type="number" min="0" max="999999" step="100" value={amount ?? '50000'} onChange={ (event) => { 
+                        const quantity = parseInt(event.target.value)
+                        setAmount(quantity)
+                      }
+                    }placeholder="Cantidad" className="px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"></input>
                   </div>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="font-bold bg-primary text-secondary py-2 w-52   rounded-full mx-10"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
                     Cancelar
                   </button>
                   <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="font-bold bg-primary text-secondary py-2 w-52   rounded-full mx-10"
                     type="button"
                     onClick={() => {
                       try {
