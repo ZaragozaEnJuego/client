@@ -47,7 +47,7 @@ const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
                     por ella.
                   </p>
                   <div className="mb-3 pt-0">
-                    <input id="amount" name="amount" type="number" min="0" max="999999" step="100" value={amount ?? 50000} placeholder="Cantidad" className="px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"></input>
+                    <input id="amount" name="amount" type="number" min="0" max="999999" step="100" value={amount ?? ''} placeholder="Cantidad" className="px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"></input>
                   </div>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
