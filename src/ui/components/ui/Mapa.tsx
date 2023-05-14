@@ -11,7 +11,12 @@ interface Props {
   list: Propertie[];
   size?: Sizes;
 }
-
+// Personalizar el icono predeterminado de Leaflet
+const blueIcon = L.icon({
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon.png',
+  iconSize: [38, 38],
+  iconAnchor: [19, 38],
+});
 const Mapa: FC<Props> = ({ list }) => {
   const center = L.latLng([41.6488, -0.8891]);
 
@@ -20,7 +25,7 @@ const Mapa: FC<Props> = ({ list }) => {
   });
   const renderMarkers = () => {
     return list.map((propiedad) => (
-      <Marker key={propiedad.id} position={[propiedad.lat, propiedad.lng]}>
+      <Marker icon={blueIcon} key={propiedad.id} position={[propiedad.lat, propiedad.lng]}>
         <Popup>
           <div>
             <h2>{propiedad.name}</h2>
