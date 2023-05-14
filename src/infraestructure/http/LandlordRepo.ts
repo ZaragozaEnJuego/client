@@ -11,6 +11,9 @@ export class HttpLandlordRepo {
     if (response.status !== 200) {
       throw new Error('No se puedo obtener las propiedades');
     }
-    return response.data;
+
+    const landlord: any = response.data;
+    landlord.properties.map((p, k) => (p.id = p._id));
+    return landlord;
   }
 }
