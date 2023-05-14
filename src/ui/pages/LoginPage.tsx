@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { FaGoogle, FaGithub, FaDiscord } from 'react-icons/fa';
 import { ReactComponent as Logo } from '/src/assets/Logo.svg';
 import { Link } from 'react-router-dom';
 import { UseAuth } from '../hooks/auth/AuthContext';
@@ -60,12 +61,26 @@ const LoginPage = () => {
             <div className='mb-6flex'>
               <Logo className='max-w-full' />
             </div>
-            <div>
+            <div className='flex space-x-4'>
               <Link
                 to={baseUrl + '/api/auth/google'}
-                className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
+                className='flex items-center justify-center p-2 mt-4 bg-primary text-secondary rounded-lg'
               >
-                Iniciar sesión
+                <FaGoogle className='text-xl' />
+              </Link>
+
+              <Link
+                to={baseUrl + '/api/auth/github'}
+                className='flex items-center justify-center p-2 mt-4 bg-primary text-secondary rounded-lg'
+              >
+                <FaGithub className='text-xl' />
+              </Link>
+
+              <Link
+                to={baseUrl + '/api/auth/discord'}
+                className='flex items-center justify-center p-2 mt-4 bg-primary text-secondary rounded-lg'
+              >
+                <FaDiscord className='text-xl' />
               </Link>
             </div>
           </div>
@@ -80,12 +95,26 @@ const LoginPage = () => {
             <div className='mb-6 flex'>
               <Logo className='max-w-full' />
             </div>
-            <div>
+            <div className='flex space-x-4'>
               <Link
-                 to={baseUrl + '/api/auth/google'}
-                className='px-20 py-4 mt-4 bg-primary text-secondary rounded-lg'
+                to={baseUrl + '/api/auth/google'}
+                className='flex items-center justify-center p-2 mt-4 bg-primary text-secondary rounded-lg'
               >
-                Iniciar sesión
+                <FaGoogle className='text-xl' />
+              </Link>
+
+              <Link
+                to={baseUrl + '/api/auth/github'}
+                className='flex items-center justify-center p-2 mt-4 bg-primary text-secondary rounded-lg'
+              >
+                <FaGithub className='text-xl' />
+              </Link>
+
+              <Link
+                to={baseUrl + '/api/auth/discord'}
+                className='flex items-center justify-center p-2 mt-4 bg-primary text-secondary rounded-lg'
+              >
+                <FaDiscord className='text-xl' />
               </Link>
             </div>
           </div>
