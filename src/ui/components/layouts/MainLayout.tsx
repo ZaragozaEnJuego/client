@@ -80,7 +80,7 @@ const DesktopHeader = () => {
         });
       });
   }, []);
-  
+
   return (
     <div className='flex p-8 justify-between items-end pl-32 '>
       <Logo className='h-20 w-20 fill-primary mx-4 ' />
@@ -92,6 +92,37 @@ const DesktopHeader = () => {
 };
 
 const MobileHeader = () => {
+  const landlordRepo: ILandlordRepo = new HttpLandlordRepo();
+  const useAuth = UseAuth();
+  const [landlord, setPropertiesList] = useState<Landlord>({
+    id: '',
+    name: '',
+    access: true,
+    liquidity: 0,
+    properties: [],
+    lastDayIncome: 0,
+  });
+
+  useEffect(() => {
+    landlordRepo
+      .getLandlordInfo(useAuth.getUserId() ?? '')
+      .then((landlord: Landlord) => {
+        setPropertiesList(landlord);
+      })
+      .catch(() => {
+        toast.error('Error al obtener el usuario', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -106,6 +137,8 @@ const MobileHeader = () => {
         <MobileSideBarContent />
       </Drawer>
       <h1 className='text-3xl font-bold text-primary '>Zaragoza en juego</h1>
+      <Wallet className='h-20 w-20 fill-primary mx-4' />
+      <span className='text-3xl font-bold text-primary mx-4'>{landlord.liquidity ?? 0}€</span>
     </div>
   );
 };
