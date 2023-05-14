@@ -18,36 +18,41 @@ export function DonutChart({ data, labels }: DonutChartProps) {
           type: 'doughnut',
           data: {
             labels: labels,
-            datasets: [{
-              data: data,
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-            }]
+            datasets: [
+              {
+                data: data,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+              },
+            ],
           },
           options: {
+            animation: {
+              duration: 0,
+            },
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
               legend: {
-                position: 'right'
-              }
-            }
-          }
+                position: 'right',
+              },
+            },
+          },
         });
         return () => {
           chart.destroy();
@@ -56,9 +61,7 @@ export function DonutChart({ data, labels }: DonutChartProps) {
     }
   }, [data, labels]);
 
-  return (
-    <canvas ref={canvasRef} />
-  );
+  return <canvas ref={canvasRef} />;
 }
 
 export function StateDonutChart({ data, labels }: DonutChartProps) {
@@ -73,30 +76,27 @@ export function StateDonutChart({ data, labels }: DonutChartProps) {
           type: 'doughnut',
           data: {
             labels: labels,
-            datasets: [{
-              data: data,
-              backgroundColor: [
-                '#ebcb8b',
-                '#5E81AC',
-                '#a3be8c'
-              ],
-              borderColor: [
-                'black',
-                'black',
-                'black'
-              ],
-              borderWidth: 1
-            }]
+            datasets: [
+              {
+                data: data,
+                backgroundColor: ['#ebcb8b', '#5E81AC', '#a3be8c'],
+                borderColor: ['black', 'black', 'black'],
+                borderWidth: 1,
+              },
+            ],
           },
           options: {
+            animation: {
+              duration: 0,
+            },
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
               legend: {
-                position: 'right'
-              }
-            }
-          }
+                position: 'right',
+              },
+            },
+          },
         });
         return () => {
           chart.destroy();
@@ -105,9 +105,7 @@ export function StateDonutChart({ data, labels }: DonutChartProps) {
     }
   }, [data, labels]);
 
-  return (
-    <canvas ref={canvasRef} />
-  );
+  return <canvas ref={canvasRef} />;
 }
 
 export function ProfileDonutChart({ data, labels }: DonutChartProps) {
@@ -122,32 +120,27 @@ export function ProfileDonutChart({ data, labels }: DonutChartProps) {
           type: 'doughnut',
           data: {
             labels: labels,
-            datasets: [{
-              data: data,
-              backgroundColor: [
-                '#a3be8c',
-                '#bf616a',
-                '#5E81AC',
-                '#b48ead'
-              ],
-              borderColor: [
-                'black',
-                'black',
-                'black',
-                'black'
-              ],
-              borderWidth: 1
-            }]
+            datasets: [
+              {
+                data: data,
+                backgroundColor: ['#a3be8c', '#bf616a', '#5E81AC', '#b48ead'],
+                borderColor: ['black', 'black', 'black', 'black'],
+                borderWidth: 1,
+              },
+            ],
           },
           options: {
+            animation: {
+              duration: 0,
+            },
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
               legend: {
-                position: 'right'
-              }
-            }
-          }
+                position: 'right',
+              },
+            },
+          },
         });
         return () => {
           chart.destroy();
@@ -156,7 +149,5 @@ export function ProfileDonutChart({ data, labels }: DonutChartProps) {
     }
   }, [data, labels]);
 
-  return (
-    <canvas ref={canvasRef} />
-  );
+  return <canvas ref={canvasRef} />;
 }
