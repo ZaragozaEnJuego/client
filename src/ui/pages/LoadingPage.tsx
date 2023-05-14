@@ -11,18 +11,15 @@ const LoadingPage = () => {
   const searchParams = new URLSearchParams(location.search);
 
   useEffect(() => {
-    async function fetchData() {
-      const token = searchParams.get('token');
-      const userId = searchParams.get('userId');
-      const isAdminStr = searchParams.get('admin');
-      const isAdmin = isAdminStr === 'true';
-      if (token !== null && userId !== null) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        useAuth.handleLogin({ isAdmin, token, userId });
-      }
-      setloaded(true);
+    const token = searchParams.get('token');
+    const userId = searchParams.get('userId');
+    const isAdminStr = searchParams.get('admin');
+    const isAdmin = isAdminStr === 'true';
+    if (token !== null && userId !== null) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      useAuth.handleLogin({ isAdmin, token, userId });
     }
-    fetchData();
+    setloaded(true);
   }, []);
 
   return loaded ? (
