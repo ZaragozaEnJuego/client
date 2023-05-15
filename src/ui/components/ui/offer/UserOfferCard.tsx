@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Offer } from '../../../../core/negotiations/domain';
-import { Kind, Propertie } from '../../../../core/properties/domain';
+import { DefaultPropertie, IPropertieRepo, Kind, Propertie } from '../../../../core/properties/domain';
 import { ReactComponent as SchoolIcon } from '/src/assets/graduation-cap-solid.svg';
 import { ReactComponent as MedicalIcon } from '/src/assets/suitcase-medical-solid.svg';
 import { ReactComponent as GrocerieIcon } from '/src/assets/utensils-solid.svg';
@@ -9,14 +9,13 @@ import { ReactComponent as UndefinedIcon } from '/src/assets/undefined-icon.svg'
 import { User } from '../../../../core/admin/domain';
 import { HTTPOfferRepo } from '../../../../infraestructure/http/OfferRepo';
 import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
+import { HttpPropertieRepo } from '../../../../infraestructure/http/PropertieRepo';
 
 interface Offers {
   offer: Offer,
   owner: User
-  property: Propertie
 }
-
-const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
 
 const PropertyIcon = (kind: Kind) => {
   switch (kind) {
@@ -36,7 +35,31 @@ const PropertyIcon = (kind: Kind) => {
   }
 };
 
-const UserOfferCard: FC<Offers> = ({ offer, owner, property }) => {
+const UserOfferCard: FC<Offers> = ({ offer, owner }) => {
+  const params = useParams()
+  const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
+  const propertyRepo: IPropertieRepo = new HttpPropertieRepo()
+  const [property, setProperty] = useState<Propertie>(DefaultPropertie())
+  useEffect(() => {
+    if (params.buildingId !== undefined) {
+        try {
+            propertyRepo.getPropertieById(params.buildingId).then((property: Propertie) => {
+                setProperty(property)
+            })
+        } catch (error) {
+            toast.error('Error al obtener datos de la propiedad', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
+        }
+    }
+})
   return (
     <div style={{ background: '#8FBCBB' }} className='flex justify-center align-middle items-center overflow-x-clip border w-auto rounded-3xl py-2 px-1 sm:px-4 my-4 h-100'>
     <div className='flex flex-col justify-center items-center'>

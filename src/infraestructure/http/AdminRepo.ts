@@ -9,7 +9,7 @@ export class HTTPAdminRepo {
             icon?: string,
             access: boolean
         }
-        const response = await axios.get<UserDTO[]>('/admin', {
+        const response = await axios.get<UserDTO[]>('/users', {
             headers: {
                 accept: 'application/json',
             },
@@ -35,7 +35,7 @@ export class HTTPAdminRepo {
             icon?: string,
             access: boolean
         }
-        const response = await axios.get<UserDTO>(`/admin/${id}`, {
+        const response = await axios.get<UserDTO>(`/users/${id}`, {
             headers: {
                 accept: 'application/json'
             }
@@ -54,7 +54,7 @@ export class HTTPAdminRepo {
         return user
     }
     async updateAccess(id: string, access: boolean): Promise<string> {
-        const response = await axios.patch<{ id: string }>(`/admin/${id}/access`, {
+        const response = await axios.patch<{ id: string }>(`/users/${id}/access`, {
             access: access
         })
         if (response.status !== 200) {
