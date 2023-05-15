@@ -12,10 +12,10 @@ const NegotiationPage = () => {
   const md = 768;
 
   useEffect(() => {
-    offerRepo.getOwnerOffers().then((list) => {
+    offerRepo.getOwnerOffers('').then((list) => {
       setOffersList(list);
     });
-    offerRepo.getOffererOffers().then((list) => {
+    offerRepo.getOffererOffers('').then((list) => {
       setUserOffersList(list);
     });
     //TODO: Modificar este useEffect para que llame a las operaciones que reciben los datos de la api
