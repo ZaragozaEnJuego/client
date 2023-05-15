@@ -161,7 +161,7 @@ export class MemoryOfferRepo {
           }, 100);
         });
   }
-  createOffer(_property: string, _owner: string, _offerer: string, _amount: number): Promise<string> { 
+  createOffer(_property: string, _offerer: string, _amount: number): Promise<string> { 
     return new Promise((resolve, reject) => {})
   }
   execOffer(offerId: string): Promise<string> { 
