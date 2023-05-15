@@ -16,7 +16,6 @@ const UserCard: FC<Users> = ({ user }) => {
             <div className='flex flex-col justify-center items-center '>
                 <UndefinedIcon style={{ fill: '#D8DEE9' }} className='w-10 h-10 object-cover rounded-full'/>
                 <h1 className='text-sm text-nord1 items-center justify-center' >{user.name}</h1>
-                <h1 className=' text-secondary text-sm' >{user.access}</h1>
             </div>
             <div className='text-sm justify-end items-end'>
                 <button style={{background: chooseColor(user.access)}} className='text-xs text-primary rounded-md px-3 py-5'

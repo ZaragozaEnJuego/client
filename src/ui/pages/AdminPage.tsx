@@ -159,7 +159,7 @@ const AdminPage = () => {
         <div className='w-1/2 collapse md:visible'>
           <DonutChart
             data={[transportProperties.length, healthProperties.length, educationProperties.length, groceriesProperties.length]}
-            labels={['transporte', 'Salud', 'Educación', 'Restauración']}
+            labels={['Transporte', 'Salud', 'Educación', 'Restauración']}
           />
         </div>
       </div>
