@@ -146,7 +146,7 @@ export class MemoryOfferRepo {
       },
   ];
 
-    getOffererOffers(): Promise<Offer[]> {
+    getOffererOffers(id: string): Promise<Offer[]> {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
               resolve(this.myOffers);
@@ -154,11 +154,20 @@ export class MemoryOfferRepo {
           });
     }
 
-    getOwnerOffers(): Promise<Offer[]> {
+    getOwnerOffers(id: string): Promise<Offer[]> {
       return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve(this.offers);
           }, 100);
         });
+  }
+  createOffer(_property: string, _owner: string, _offerer: string, _amount: number): Promise<string> { 
+    return new Promise((resolve, reject) => {})
+  }
+  execOffer(offerId: string): Promise<string> { 
+    return new Promise((resolve, reject) => {})
+  }
+  deleteOffer(offerId: string): Promise<string> { 
+    return new Promise((resolve, reject) => {})
   }
 }
