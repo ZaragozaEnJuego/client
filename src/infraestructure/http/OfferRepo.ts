@@ -3,12 +3,14 @@ import axios from './http'
 
 export class HTTPOfferRepo {
     async createOffer(_property: string, _owner: string, _offerer: string, _amount: number): Promise<string> {
-        const response = await axios.post('/negotiations/create', {
+        const newOffer = {
             property: _property,
-            owner: _owner,
-            offerer: _offerer,
-            amount: _amount
-        })
+            offerer: _owner,
+            owner: _offerer,
+            amount: _amount,
+          };
+
+        const response = await axios.post('/negotiations/create', newOffer)
         if (response.status !== 201) {
             throw new Error('No se puedo obtener los datos de la oferta creada')
         }
