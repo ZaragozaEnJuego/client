@@ -20,6 +20,7 @@ const OfferList: FC<Offers> = ({ list, size }) => {
     const params = useParams()
     const useAuth = UseAuth()
     const userId = useAuth.getUserId()
+    console.log(userId)
     const userRepo: HTTPAdminRepo = new HTTPAdminRepo()
     const propertyRepo: IPropertieRepo = new HttpPropertieRepo()
     const [ offerer, setOfferer ] = useState<User>(defaultUser())
