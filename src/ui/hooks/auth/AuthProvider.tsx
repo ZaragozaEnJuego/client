@@ -26,8 +26,12 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   };
   const getUserId = () => state.credetials.userId;
 
+  const isAdmin = () => state.credetials.isAdmin === true;
+
   return (
-    <AuthContext.Provider value={{ ...state, handleLogin, handleLogout, isLogged, getUserId }}>
+    <AuthContext.Provider
+      value={{ ...state, handleLogin, handleLogout, isLogged, getUserId, isAdmin }}
+    >
       {children}
     </AuthContext.Provider>
   );

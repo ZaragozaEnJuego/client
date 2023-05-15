@@ -10,20 +10,26 @@ const LoadingPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
+  const chooseHomePage = () => {
+    return useAuth.isAdmin() ? <Navigate to='/admin' replace /> : <Navigate to='/home' replace />;
+  };
+
   useEffect(() => {
     const token = searchParams.get('token');
     const userId = searchParams.get('userId');
-    const isAdminStr = searchParams.get('admin');
+    const isAdminStr = searchParams.get('isAdmin');
     const isAdmin = isAdminStr === 'true';
     if (token !== null && userId !== null) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      console.log(location.search);
+
       useAuth.handleLogin({ isAdmin, token, userId });
     }
     setloaded(true);
   }, []);
 
   return loaded ? (
-    <Navigate to='/home' replace />
+    chooseHomePage()
   ) : (
     <div className='flex justify-center items-center h-screen w-screen '>
       <ReactLoading type={'spin'} color={'#2E3440'} height={'20%'} width={'20%'} />

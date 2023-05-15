@@ -6,6 +6,7 @@ interface ContextProps {
   handleLogin(credetials: Credentials): void;
   handleLogout(): void;
   isLogged(): boolean;
+  isAdmin(): boolean;
   getUserId(): string | undefined;
 }
 
