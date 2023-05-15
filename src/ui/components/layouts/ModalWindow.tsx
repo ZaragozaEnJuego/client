@@ -26,11 +26,11 @@ const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
         <>
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative bg-nord4 w-auto my-6 mx-auto max-w-sm">
+            <div className="relative bg-secondary shadow-xl w-auto my-6 mx-auto max-w-sm">
               <div className="border-0 rounded-lg bg-white shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-2xl text-primary font-bold">
-                    Negociación por la propiedad
+                    Negociar por la propiedad
                   </h3>
                 </div>
                 <div className="relative p-6 flex-auto">
@@ -48,14 +48,14 @@ const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="font-bold bg-primary text-secondary py-2 w-52   rounded-full mx-10"
+                    className="font-bold bg-secondary outline-primary outline text-primary py-2 w-full rounded-full mx-10"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
                     Cancelar
                   </button>
                   <button
-                    className="font-bold bg-primary text-secondary py-2 w-52   rounded-full mx-10"
+                    className="font-bold bg-primary text-hover py-2 w-full rounded-full mx-10"
                     type="button"
                     onClick={() => {
                       try {
@@ -85,7 +85,7 @@ const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
                       setShowModal(false)
                     }}
                   >
-                    Realizar oferta
+                    Ofrecer
                   </button>
                 </div>
               </div>
