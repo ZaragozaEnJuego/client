@@ -9,6 +9,7 @@ interface Users {
 const chooseColor = (access: boolean): string => { return access ? '#bf616a' : '#a3be8c' }
 
 const UserCard: FC<Users> = ({ user }) => {
+    const adminRepo: HTTPAdminRepo = new HTTPAdminRepo()
     return (
         <div className=' flex flex-col2 justify-between items-center border border-nord4 w-full rounded-3xl  py-2 px-4  mt-3 h-36'>
             <div className='flex flex-col justify-center items-center '>
@@ -19,8 +20,7 @@ const UserCard: FC<Users> = ({ user }) => {
             <div className='text-sm justify-end items-end'>
                 <button style={{background: chooseColor(user.access)}} className='text-xs text-primary rounded-md px-3 py-5'
                     onClick={() => {
-                        alert('Cambio de modo');
-                        user.access === true ?  user.access = false : user.access = true;
+                        user.access === true ?  adminRepo.updateAccess(user._id, false) : adminRepo.updateAccess(user._id, true);
                     }}>
                     {user.access === false ? (
                         <p>Activar</p>
