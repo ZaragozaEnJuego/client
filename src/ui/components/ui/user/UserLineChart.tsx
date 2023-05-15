@@ -9,15 +9,18 @@ Chart.register(...registerables);
  * otro array de cadenas de texto (labels). */
 
 type BarChartProps = {
-  labels: string[];
-  data: number[];
+  labels: string[],
+  dataTransport: number[],
+  dataHealth: number[],
+  dataEducation: number[],
+  dataGroceries: number[],
 }
 
 /** Se define el componente BarChart como una función de React que recibe las props data y labels,
  *  y se declara una referencia a un elemento HTMLCanvasElement usando useRef.
  * Sino, sale como elemento null y no funciona en typescript */
 
-export function BarChart({ labels, data }: BarChartProps) {
+export function LineChart({ labels, dataTransport, dataHealth, dataEducation, dataGroceries }: BarChartProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -26,28 +29,32 @@ export function BarChart({ labels, data }: BarChartProps) {
       const context = canvas.getContext('2d');
       if (context) {
         const chart = new Chart(context, {
-          type: 'bar',
+          type: 'line',
           data: {
             labels: labels,
             datasets: [{
-              label: 'Accesos a la semana',
-              data: data,
-              backgroundColor: [
-                '#BF616A',
-                '#5E81AC',
-                '#EBCB8B',
-                '#A3BE8C',
-                '#B48EAD',
-                '#D08770'
-              ],
-              borderColor: [
-                '#BF616A',
-                '#5E81AC',
-                '#EBCB8B',
-                '#A3BE8C',
-                '#B48EAD',
-                '#D08770'
-              ],
+              label: 'Transporte',
+              data: dataTransport,
+              backgroundColor: '#b48ead',
+              borderColor: '#b48ead',
+              borderWidth: 1
+            }, {
+              label: 'Salud',
+              data: dataHealth,
+              backgroundColor: '#bf616a',
+              borderColor: '#bf616a',
+              borderWidth: 1
+            }, {
+              label: 'Educación',
+              data: dataEducation,
+              backgroundColor: '#5E81AC',
+              borderColor: '#5E81AC',
+              borderWidth: 1
+            }, {
+              label: 'Restauración',
+              data: dataGroceries,
+              backgroundColor: '#A3BE8C',
+              borderColor: '#A3BE8C',
               borderWidth: 1
             }]
           },
@@ -64,7 +71,7 @@ export function BarChart({ labels, data }: BarChartProps) {
         };
       }
     }
-  }, [data, labels]);
+  }, [dataTransport, dataHealth, dataEducation, dataGroceries, labels]);
 
   return (
     <canvas ref={canvasRef} />
