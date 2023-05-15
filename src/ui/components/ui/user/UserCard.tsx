@@ -1,9 +1,10 @@
 import { FC } from 'react';
-import { Landlord } from '../../../../core/landlord/model';
 import { ReactComponent as UndefinedIcon } from '/src/assets/undefined-icon.svg';
+import { HTTPAdminRepo } from '../../../../infraestructure/http/AdminRepo';
+import { User } from '../../../../core/admin/domain';
 
 interface Users {
-    user: Landlord;
+    user: User;
 }
 
 const chooseColor = (access: boolean): string => { return access ? '#bf616a' : '#a3be8c' }
