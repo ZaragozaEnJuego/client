@@ -64,6 +64,15 @@ const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
   return <>{children}</>;
 };
 
+const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
+  const useAuth = UseAuth();
+  if (!useAuth.isLogged()) {
+    return <Navigate to='/login' replace />;
+  }
+
+  return <>{children}</>;
+};
+
 const routes = publicRoutes.concat(
   protectedRoutes.map((route) => {
     return {
@@ -71,7 +80,14 @@ const routes = publicRoutes.concat(
       element: <ProtectedRoute children={route.element} />,
     };
   }),
-);
+).concat(
+  privateRoutes.map((route) => {
+    return {
+      path: route.path,
+      element: <PrivateRoute children={route.element} />,
+    };
+  })
+)
 
 const router = createBrowserRouter(routes);
 export { router };

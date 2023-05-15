@@ -31,7 +31,7 @@ export class HTTPAdminStatsRepo {
         interface PropertieDTO {
             _id: string;
             name: string;
-            kind: 'transport' | 'education' | 'health' | 'groceries';
+            kind: Kind;
             address: string;
             lng: number;
             lat: number;

@@ -9,25 +9,30 @@ export class HTTPAdminRepo {
             icon?: string,
             access: boolean
         }
-        const response = await axios.get<UserDTO[]>('/users', {
-            headers: {
-                accept: 'application/json',
-            },
-        });
-        if (response.status !== 200) {
-            throw new Error('Error al obtener la lista de usuarios');
-        }
-        console.log(response.data);
-        return response.data.map((userDTO => {
-            const user: User = {
-                _id: userDTO._id,
-                name: userDTO.name,
-                icon: userDTO.icon,
-                access: userDTO.access
+        try {
+            const response = await axios.get<UserDTO[]>('/admin', {
+                headers: {
+                    accept: 'application/json',
+                },
+            });
+            if (response.status === 200) {
+                return response.data.map((userDTO => {
+                    const user: User = {
+                        _id: userDTO._id,
+                        name: userDTO.name,
+                        icon: userDTO.icon,
+                        access: userDTO.access
+                    }
+                    return user
+                }))
+            } else {
+                throw new Error(`Error al obtener la lista de usuarios: ${response.status} - ${response.data}`);
             }
-            return user
-        }))
+        } catch (error: any) {
+            throw new Error(`Error al obtener la lista de usuarios: ${error.message}`);
+        }
     }
+    
     async getUser(id: string): Promise<User> {
         interface UserDTO {
             _id: string,
@@ -54,7 +59,7 @@ export class HTTPAdminRepo {
         return user
     }
     async updateAccess(id: string, access: boolean): Promise<string> {
-        const response = await axios.patch<{ id: string }>(`/users/${id}/access`, {
+        const response = await axios.patch<{ id: string }>(`/admin/${id}/access`, {
             access: access
         })
         if (response.status !== 200) {
