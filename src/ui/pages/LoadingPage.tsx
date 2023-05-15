@@ -23,7 +23,7 @@ const LoadingPage = () => {
   }, []);
 
   return loaded ? (
-    <Navigate to='/home' replace />
+    searchParams.get('admin') === 'true' ? (<Navigate to='/admin' replace />) : (<Navigate to='/home' replace />)
   ) : (
     <div className='flex justify-center items-center h-screen w-screen '>
       <ReactLoading type={'spin'} color={'#2E3440'} height={'20%'} width={'20%'} />

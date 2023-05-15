@@ -235,7 +235,7 @@ const PropertiePage = () => {
         >
           Volver
         </button>
-        { propertie.owner === undefined ? (
+        { propertie.owner === undefined || propertie.owner === userId ? (
           <button
           style={{ backgroundColor: chooseColor(propertie.kind) }}
           className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
