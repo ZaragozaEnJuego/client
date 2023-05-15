@@ -29,22 +29,14 @@ const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
             <div className="relative bg-nord4 w-auto my-6 mx-auto max-w-sm">
               <div className="border-0 rounded-lg bg-white shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl text-primary font-bold">
-                    Iniciar negociación por la propiedad
+                  <h3 className="text-2xl text-primary font-bold">
+                    Negociación por la propiedad
                   </h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}>
-                    <span className="bg-white text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                  <p className="my-4 font-bold text-primary text-slate-500 text-lg leading-relaxed">
-                    Esta propiedad pertenece a otro usuario. Si deseas obtenerla, puedes
-                    realizar una oferta especificando la cantidad de dinero que deseas pagar
-                    por ella.
+                  <p className="my-4 font-bold text-primary text-slate-500 text-md leading-relaxed">
+                    Esta propiedad ya pertenece a otro usuario.
+                    Si deseas obtenerla, puedes realizar una oferta indicando la cantidad de dinero que deseas pagar por ella.
                   </p>
                   <div className="mb-3 pt-0">
                     <input id="amount" name="amount" type="number" min="0" max="999999" step="100" value={amount ?? '50000'} onChange={ (event) => { 
@@ -67,18 +59,17 @@ const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
                     type="button"
                     onClick={() => {
                       try {
-                        amount !== null ? offerRepo.createOffer(property, owner, offerer, amount) : (
-                          toast.error('Error al ingresar la cantidad para la oferta', {
-                            position: 'top-right',
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: 'light',
-                          })
-                        )
+                        offerRepo.createOffer(property, owner, offerer, amount)
+                        toast('Oferta realizada con éxito', {
+                          position: 'top-right',
+                          autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: 'light',
+                        })
                       } catch (error) {
                         toast.error('Error al realizar la oferta', {
                           position: 'top-right',
