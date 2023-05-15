@@ -13,6 +13,7 @@ import { HttpPropertieRepo } from '../../infraestructure/http/PropertieRepo';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UseAuth } from '../hooks/auth/AuthContext';
+import { ModalNegotiation } from '../components/layouts/ModalWindow';
 
 const PropertiePage = () => {
   const navigate = useNavigate();
@@ -234,7 +235,8 @@ const PropertiePage = () => {
         >
           Volver
         </button>
-        <button
+        { propertie.owner === undefined || propertie.owner === userId ? (
+          <button
           style={{ backgroundColor: chooseColor(propertie.kind) }}
           className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
           onClick={async () => {
@@ -266,7 +268,23 @@ const PropertiePage = () => {
           }}
         >
           Comprar
-        </button>
+      </button>
+        ) : (
+          userId !== undefined ? (
+            <ModalNegotiation property={propertie.id} owner={propertie.owner} offerer={userId}/>
+          ) : (
+            toast.error('Error al lanzar la ventana modal', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'light',
+            })
+          )
+        )}
       </div>
       <ToastContainer />
     </MainLayout>
