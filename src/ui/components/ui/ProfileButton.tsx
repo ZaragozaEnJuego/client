@@ -10,15 +10,10 @@ const ProfileButton = () => {
         useAuth.handleLogout();
       }}
     >
-      <img
-        className='w-full h-full object-cover rounded-full '
-        src='https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg'
-      />
-
       <p
-        className='text-secondary font-bold  absolute top-0 left-0 w-full h-full 
-        flex items-center justify-center hover:bg-red-nord opacity-0 hover:opacity-80 
-        text-opacity-0 hover:text-opacity-100 rounded-full '
+        className='text-primary font-bold  absolute top-0 left-0 w-full h-full 
+        flex items-center justify-center hover:bg-red-nord  
+        hover:text-opacity-100 rounded-full '
       >
         Cerrar sesión
       </p>
