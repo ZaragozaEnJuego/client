@@ -20,9 +20,6 @@ const blueIcon = L.icon({
 const Mapa: FC<Props> = ({ list }) => {
   const center = L.latLng([41.6488, -0.8891]);
 
-  list.forEach((element) => {
-    console.log(element.lng);
-  });
   const renderMarkers = () => {
     return list.map((propiedad) => (
       <Marker icon={blueIcon} key={propiedad.id} position={[propiedad.lat, propiedad.lng]}>

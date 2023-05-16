@@ -12,7 +12,7 @@ export class HttpPropertieRepo {
       lat: number;
       price: number;
       baseIncome: number;
-      owener?: string;
+      owner?: string;
     }
     const response = await axios.get<PropertieDTO[]>('/properties', {
       headers: {
@@ -34,7 +34,7 @@ export class HttpPropertieRepo {
         lng: propertieDto.lng,
         name: propertieDto.name,
         price: propertieDto.price,
-        owner: propertieDto.owener,
+        owner: propertieDto.owner,
       };
       return prop;
     });
