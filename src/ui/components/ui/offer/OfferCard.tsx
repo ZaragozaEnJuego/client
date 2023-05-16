@@ -7,15 +7,12 @@ import { ReactComponent as MedicalIcon } from '/src/assets/suitcase-medical-soli
 import { ReactComponent as GrocerieIcon } from '/src/assets/utensils-solid.svg';
 import { ReactComponent as TrainIcon } from '/src/assets/train-solid.svg';
 import { ReactComponent as UndefinedIcon } from '/src/assets/undefined-icon.svg';
-import { User } from '../../../../core/admin/domain';
 import { HTTPOfferRepo } from '../../../../infraestructure/http/OfferRepo';
 import { toast } from 'react-toastify';
-import { useParams } from 'react-router-dom';
 import { HttpPropertieRepo } from '../../../../infraestructure/http/PropertieRepo';
 
 interface Offers {
   offer: Offer,
-  offerer: User,
 }
 
 const PropertyIcon = (kind: Kind) => {
@@ -36,15 +33,14 @@ const PropertyIcon = (kind: Kind) => {
   }
 };
 
-const OfferCard: FC<Offers> = ({ offer, offerer }) => {
-  const params = useParams()
+const OfferCard: FC<Offers> = ({ offer }) => {
   const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
   const propertyRepo: IPropertieRepo = new HttpPropertieRepo()
   const [property, setProperty] = useState<Propertie>(DefaultPropertie())
   useEffect(() => {
-    if (params.buildingId !== undefined) {
+    if (offer.property !== undefined) {
         try {
-            propertyRepo.getPropertieById(params.buildingId).then((property: Propertie) => {
+            propertyRepo.getPropertieById(offer.property).then((property: Propertie) => {
                 setProperty(property)
             })
         } catch (error) {
@@ -63,14 +59,14 @@ const OfferCard: FC<Offers> = ({ offer, offerer }) => {
 })
     return (
       <div>
-        <div style={{ color: chooseColor(property.kind ?? 'education') }} className='flex flex-col-3 justify-center align-middle overflow-x-clip items-top border w-auto rounded-3xl py-2 px-1 sm:px-4 my-4 h-100'>
+        <div style={{ color: chooseColor(property.kind) }} className='flex flex-col-3 justify-center align-middle overflow-x-clip items-top border w-auto rounded-3xl py-2 px-1 sm:px-4 my-4 h-100'>
           <div className='flex flex-col justify-center items-center'>
             <UndefinedIcon style={{ fill: '#D8DEE9' }} className='w-10 h-10 object-cover rounded-full'/>
-            <h1 className='text-xs text-nord1' >{offerer.name ?? ''}</h1>
-            <h1 style={{ color: chooseColor(property.kind ?? 'education') }} className={'w-50 font-bold text-xs lg:text-lg md:text-base sm:text-sm xl:text-xl text-center'}>{offer.amount ?? ''}€</h1>
+            <h1 className='text-xs text-nord1' >{offer.owner}</h1>
+            <h1 style={{ color: chooseColor(property.kind) }} className={'w-50 font-bold text-xs lg:text-lg md:text-base sm:text-sm xl:text-xl text-center'}>{offer.amount}€</h1>
           </div>
           <div className='flex items-center justify-top mt-4 mx-1 sm:mx-2 md:mx-4 flex-col'>
-            {PropertyIcon(property.kind ?? 'education')}
+            {PropertyIcon(property.kind)}
             <div className='flex flex-col items-center px-5 py-1 w-full'>
               <button className='items-center text-xs text-primary py-1 my-1 w-20 rounded-lg sm:mx-2 mx-1 bg-green-nord'
                 onClick={() => { 
@@ -134,7 +130,7 @@ const OfferCard: FC<Offers> = ({ offer, offerer }) => {
           <div className='flex flex-col justify-center items-center'>
             <UndefinedIcon style={{ fill: '#D8DEE9' }} className='w-10 h-10 object-cover rounded-full'/>
             <h1 className='text-xs text-nord1' >Tú</h1>
-            <h1 style={{ color: chooseColor('transport') }} className='w-50 text-center text-sm lg:text-base md:text-sm xl:text-lg font-bold text-primary'>{property.kind ?? 'education'}</h1>
+            <h1 style={{ color: chooseColor(property.kind) }} className='w-50 text-center text-sm lg:text-base md:text-sm xl:text-lg font-bold text-primary'>{property.name}</h1>
           </div>
         </div>
       </div>
