@@ -35,7 +35,7 @@ const UserCard: FC<Users> = ({ user }) => {
         <div className=' flex flex-col2 justify-between items-center border border-nord4 w-full rounded-3xl  py-2 px-4  mt-3 h-36'>
             <div className='flex flex-col justify-center items-center '>
                 <UndefinedIcon style={{ fill: '#D8DEE9' }} className='w-10 h-10 object-cover rounded-full'/>
-                <h1 className='text-sm text-nord1 items-center justify-center' >{user.name}</h1>
+                <h1 className='text-sm text-nord1 items-center justify-center' >{user.mail}</h1>
                 <h1 className=' text-secondary text-sm' >{text}</h1>
             </div>
             <div className='text-sm justify-end items-end'>

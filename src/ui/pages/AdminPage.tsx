@@ -13,6 +13,7 @@ const AdminPage = () => {
   useEffect(() => {
     userRepo.getUserList().then((list) => {
       setUsersList(list);
+      console.log(list)
     }).catch((error) => { console.log(error) })
   }, []);
 

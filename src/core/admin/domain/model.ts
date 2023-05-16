@@ -4,6 +4,7 @@ export type User = {
     _id: string,
     name: string,
     icon?: string,
+    mail: string,
     access: boolean
 }
 
@@ -12,6 +13,7 @@ export const defaultUser = (): User => {
         _id: '',
         name: '',
         icon: '',
+        mail: '',
         access: true
     }
 }

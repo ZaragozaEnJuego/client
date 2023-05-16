@@ -7,6 +7,7 @@ export class HTTPAdminRepo {
             _id: string,
             name: string,
             icon?: string,
+            mail: string,
             access: boolean
         }
         try {
@@ -21,6 +22,7 @@ export class HTTPAdminRepo {
                         _id: userDTO._id,
                         name: userDTO.name,
                         icon: userDTO.icon,
+                        mail: userDTO.mail,
                         access: userDTO.access
                     }
                     return user
@@ -38,6 +40,7 @@ export class HTTPAdminRepo {
             _id: string,
             name: string,
             icon?: string,
+            mail: string,
             access: boolean
         }
         const response = await axios.get<UserDTO>(`/users/${id}`, {
@@ -53,6 +56,7 @@ export class HTTPAdminRepo {
             _id: userRespose._id,
             name: userRespose.name,
             icon: userRespose.icon,
+            mail: userRespose.mail,
             access: userRespose.access
         }
         console.log(user)
