@@ -11,8 +11,8 @@ const ProfileButton = () => {
       }}
     >
       <p
-        className='text-primary font-bold  absolute top-0 left-0 w-full h-full 
-        flex items-center justify-center hover:bg-red-nord  
+        className='text-primary font-bold outline-nord0 outline absolute top-0 left-0 w-full h-full 
+        flex items-center justify-center hover:bg-red-nord hover:text-hover hover:outline-none
         hover:text-opacity-100 rounded-full '
       >
         Cerrar sesión

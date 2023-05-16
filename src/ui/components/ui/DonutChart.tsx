@@ -123,7 +123,7 @@ export function ProfileDonutChart({ data, labels }: DonutChartProps) {
             datasets: [
               {
                 data: data,
-                backgroundColor: ['#a3be8c', '#bf616a', '#5E81AC', '#b48ead'],
+                backgroundColor: ['#b48ead', '#A3BE8C', '#5E81AC', '#bf616a'],
                 borderColor: ['black', 'black', 'black', 'black'],
                 borderWidth: 1,
               },
