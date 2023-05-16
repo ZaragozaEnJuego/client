@@ -1,6 +1,5 @@
 import axios from './http'
 import { User } from '../../core/admin/domain'
-import { stringify } from 'querystring';
 
 export class HTTPAdminRepo {
     async getUserList(): Promise<User[]> {
@@ -8,7 +7,7 @@ export class HTTPAdminRepo {
             _id: string,
             name: string,
             icon?: string,
-            mail?: string,
+            mail: string,
             access: boolean
         }
         try {
@@ -41,7 +40,7 @@ export class HTTPAdminRepo {
             _id: string,
             name: string,
             icon?: string,
-            mail?: string,
+            mail: string,
             access: boolean
         }
         const response = await axios.get<UserDTO>(`/users/${id}`, {
@@ -64,7 +63,7 @@ export class HTTPAdminRepo {
         return user
     }
     async updateAccess(id: string, access: boolean): Promise<string> {
-        const response = await axios.patch<{ id: string }>(`/admin/${id}/access`, {
+        const response = await axios.patch(`/admin/${id}/access`, {
             access: access
         })
         if (response.status !== 200) {
