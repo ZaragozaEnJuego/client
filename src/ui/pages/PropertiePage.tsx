@@ -14,6 +14,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UseAuth } from '../hooks/auth/AuthContext';
 import { ModalNegotiation } from '../components/layouts/ModalWindow';
+import { IUserRepo } from '../../core/admin/domain';
+import { HTTPAdminRepo } from '../../infraestructure/http/AdminRepo';
+import { Colors } from 'chart.js';
 
 const PropertiePage = () => {
   const navigate = useNavigate();
@@ -21,10 +24,21 @@ const PropertiePage = () => {
   const useAuth = UseAuth();
 
   const propertieRepo: IPropertieRepo = new HttpPropertieRepo();
+  const userRepo: HTTPAdminRepo = new HTTPAdminRepo()
+  const [name, setName] = useState<string>('')
   const [propertie, setPropertie] = useState<Propertie>(DefaultPropertie());
   const [kindRestrictions, setKindRestrictions] = useState<KindRestrictions>();
   const [buy, setBuy] = useState<string>('');
   const userId = useAuth.getUserId();
+
+  useEffect(() => {
+    if (userId !== undefined)
+      userRepo.getUser(userId).then((user) => {
+        setName(user.name)
+      }).catch((error) => {
+        console.log(error)
+      })
+  }, [])
 
   useEffect(() => {
     if (undefined !== params.buildingId) {
@@ -235,7 +249,7 @@ const PropertiePage = () => {
         >
           Volver
         </button>
-        { propertie.owner === undefined || propertie.owner === userId ? (
+        { propertie.owner === undefined ? (
           <button
           style={{ backgroundColor: chooseColor(propertie.kind) }}
           className='font-bold  text-secondary py-4 w-52 rounded-full mx-10'
@@ -270,21 +284,13 @@ const PropertiePage = () => {
           Comprar
       </button>
         ) : (
-          userId !== undefined ? (
+          propertie.owner !== name && userId !== undefined ? (
             <ModalNegotiation property={propertie.id} offerer={userId}/>
           ) : (
-            toast.error('Error al lanzar la ventana modal', {
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'light',
-            })
-          )
-        )}
+            <button style={{ color: chooseColor(propertie.kind), outlineColor: chooseColor(propertie.kind) }} className='font-bold bg-white text-primary py-4 w-52 outline rounded-full mx-10'>
+              Comprada
+            </button>
+          ))}
       </div>
       <ToastContainer />
     </MainLayout>
