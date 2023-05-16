@@ -3,15 +3,17 @@ import { MemoryUserRepo } from '../../infraestructure/memory';
 import { AdminLayout } from '../components/layouts';
 import { BarChart, DonutChart, UserList } from '../components/ui/user';
 import { Landlord } from '../../core/landlord/model';
+import { IUserRepo, User } from '../../core/admin/domain';
+import { HTTPAdminRepo } from '../../infraestructure/http/AdminRepo';
 
 const AdminPage = () => {
-  const userRepo: MemoryUserRepo = new MemoryUserRepo();
-  const [userList, setUsersList] = useState<Landlord[]>([]);
+  const userRepo: IUserRepo = new HTTPAdminRepo();
+  const [userList, setUsersList] = useState<User[]>([]);
 
   useEffect(() => {
-    userRepo.getAllUsers().then((list) => {
+    userRepo.getUserList().then((list) => {
       setUsersList(list);
-    });
+    }).catch((error) => { console.log(error) })
   }, []);
 
   return (
@@ -30,7 +32,7 @@ const AdminPage = () => {
         <div className='w-1/4 collapse md:visible'>
           <DonutChart
             data={[120, 85, 73, 95]}
-            labels={['transporte', 'Salud', 'Restaurantes', 'Educación']}
+            labels={['Transporte', 'Salud', 'Restaurantes', 'Educación']}
           />
         </div>
       </div>
