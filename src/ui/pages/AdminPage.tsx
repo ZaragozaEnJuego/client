@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AdminLayout } from '../components/layouts';
-import { BarChart, DonutChart, LineChart, UserList } from '../components/ui/user';
+import { BarChart, LineChart, UserList } from '../components/ui/user';
 import { IAdminStatsRepo, IUserRepo, UnitsPerDay, User } from '../../core/admin/domain';
 import { HTTPAdminRepo } from '../../infraestructure/http/AdminRepo';
 import { HTTPAdminStatsRepo } from '../../infraestructure/http/AdminStatsRepo';
@@ -11,6 +11,7 @@ const AdminPage = () => {
   const [userList, setUsersList] = useState<User[]>([]);
   const [transactions, setTransactions] = useState<UnitsPerDay[]>([])
   const [newUsers, setNewUsers] = useState<UnitsPerDay[]>([])
+  const [logins, setLogins] = useState<UnitsPerDay[]>([])
 
   useEffect(() => {
     userRepo.getUserList().then((list) => {
@@ -28,6 +29,12 @@ const AdminPage = () => {
   useEffect(() => {
     statsRepo.getNewUsersPerDay().then((list) => {
       setNewUsers(list)
+    }).catch((error) => { console.log(error) })
+  }, [])
+
+    useEffect(() => {
+    statsRepo.getUserLoginsPerDay().then((list) => {
+      setLogins(list)
     }).catch((error) => { console.log(error) })
   }, [])
 
@@ -56,8 +63,8 @@ const AdminPage = () => {
         <div>
         <h1 className='font-bold text-primary text-xl'>Accesos al día</h1>
           <BarChart
-            data={newUsers.map((newUser) => { return newUser.count})}
-            labels={newUsers.map((newUser) => { return newUser.date})}
+            data={logins.map((login) => { return login.count})}
+            labels={logins.map((login) => { return login.date})}
           />
         </div>
         </div>

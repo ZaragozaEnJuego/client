@@ -8,4 +8,5 @@ export interface IUserRepo {
 export interface IAdminStatsRepo {
   getTransactionsPerDay(): Promise<UnitsPerDay[]>
   getNewUsersPerDay(): Promise<UnitsPerDay[]>
+  getUserLoginsPerDay(): Promise<UnitsPerDay[]>
 }
