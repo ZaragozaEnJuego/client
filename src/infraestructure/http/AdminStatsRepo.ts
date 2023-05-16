@@ -58,7 +58,6 @@ export class HTTPAdminStatsRepo {
                     date: loginsDTO.date,
                     count: loginsDTO.count
                 }
-                console.log(userLoginPerDay)
                 return userLoginPerDay
             }))
         } catch (error: any) {
