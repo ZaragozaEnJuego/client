@@ -19,7 +19,6 @@ export class HTTPAdminStatsRepo {
                     date: unitsDTO.date,
                     count: unitsDTO.count
                 }
-                console.log(transactionPerDay)
                 return transactionPerDay
             }))
         } catch (error: any) {
@@ -40,7 +39,6 @@ export class HTTPAdminStatsRepo {
                     date: unitsDTO.date,
                     count: unitsDTO.count
                 }
-                console.log(newUserPerDay)
                 return newUserPerDay
             }))
         } catch (error: any) {

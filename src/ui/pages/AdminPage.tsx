@@ -9,10 +9,8 @@ const AdminPage = () => {
   const userRepo: IUserRepo = new HTTPAdminRepo();
   const statsRepo: IAdminStatsRepo = new HTTPAdminStatsRepo()
   const [userList, setUsersList] = useState<User[]>([]);
-  const [transactions, setTransactions] = useState<number[]>([])
-  const [newUsers, setNewUsers] = useState<number[]>([])
-  const [transactionsDates, setTransactionsDates] = useState<string[]>([])
-  const [newUsersDates, setUsersDates] = useState<string[]>([])
+  const [transactions, setTransactions] = useState<UnitsPerDay[]>([])
+  const [newUsers, setNewUsers] = useState<UnitsPerDay[]>([])
 
   useEffect(() => {
     userRepo.getUserList().then((list) => {
@@ -23,15 +21,13 @@ const AdminPage = () => {
 
   useEffect(() => {
     statsRepo.getTransactionsPerDay().then((list) => {
-      setTransactionsDates(list.map((date) => { return date.date}))
-      setTransactions(list.map((transaction) => { return transaction.count}))
+      setTransactions(list)
     }).catch((error) => { console.log(error) })
   }, [])
 
   useEffect(() => {
     statsRepo.getNewUsersPerDay().then((list) => {
-      setUsersDates(list.map((date) => { return date.date}))
-      setNewUsers(list.map((newUser) => { return newUser.count}))
+      setNewUsers(list)
     }).catch((error) => { console.log(error) })
   }, [])
 
@@ -42,26 +38,26 @@ const AdminPage = () => {
           <h1>Usuarios</h1>
           <UserList list={userList} />
         </div>
-        <div className='flex flex-col w-full h-full overflow-y-scroll overflow-x-clip collapse md:visible ml-20'>
+        <div className='flex flex-col w-full h-full overflow-y-scroll overflow-x-clip collapse md:visible'>
         <div>
           <h1 className='font-bold text-primary text-xl'>Usuarios nuevos</h1>
           <BarChart
-            data={transactions}
-            labels={transactionsDates}
+            data={newUsers.map((newUser) => { return newUser.count})}
+            labels={newUsers.map((newUser) => { return newUser.date})}
           />
         </div>
         <div className='my-10'>
           <h1 className='font-bold text-primary text-xl'>Transacciones al día</h1>
           <LineChart
-            data={newUsers}
-            labels={newUsersDates}
+            data={transactions.map((transaction) => { return transaction.count})}
+            labels={transactions.map((transaction) => { return transaction.date})}
           />
         </div>
         <div>
         <h1 className='font-bold text-primary text-xl'>Accesos al día</h1>
           <BarChart
-            data={transactions}
-            labels={transactionsDates}
+            data={newUsers.map((newUser) => { return newUser.count})}
+            labels={newUsers.map((newUser) => { return newUser.date})}
           />
         </div>
         </div>

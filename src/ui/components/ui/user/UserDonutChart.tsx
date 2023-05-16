@@ -32,6 +32,9 @@ export function DonutChart({ data, labels }: DonutChartProps) {
             }]
           },
           options: {
+            animation: {
+              duration: 0,
+            },
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
