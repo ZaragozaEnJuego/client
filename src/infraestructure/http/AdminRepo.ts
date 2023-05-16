@@ -69,7 +69,6 @@ export class HTTPAdminRepo {
         if (response.status !== 200) {
             throw new Error('Error al actualizar el acceso al usuario')
           }
-        console.log(response.data)
         return response.data.id
     }
 }

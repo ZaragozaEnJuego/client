@@ -45,4 +45,24 @@ export class HTTPAdminStatsRepo {
             throw new Error(`Error al obtener las estadísticas: ${error.message}`);
         }
     }
+
+    async getUserLoginsPerDay(): Promise<UnitsPerDay[]> {
+        try {
+            const response = await axios.get<UnitsPerDayDTO[]>('admin/stats/logins', {
+                headers: {
+                    accept: 'application/json'
+                }
+            })
+            return response.data.map((loginsDTO => {
+                const userLoginPerDay: UnitsPerDay = {
+                    date: loginsDTO.date,
+                    count: loginsDTO.count
+                }
+                console.log(userLoginPerDay)
+                return userLoginPerDay
+            }))
+        } catch (error: any) {
+            throw new Error(`Error al obtener las estadísticas: ${error.message}`);
+        }
+    }
 }
