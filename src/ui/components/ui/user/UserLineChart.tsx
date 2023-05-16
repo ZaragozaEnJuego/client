@@ -9,15 +9,15 @@ Chart.register(...registerables);
  * otro array de cadenas de texto (labels). */
 
 type BarChartProps = {
-  labels: string[];
-  data: number[];
+  labels: string[],
+  data: number[]
 }
 
 /** Se define el componente BarChart como una función de React que recibe las props data y labels,
  *  y se declara una referencia a un elemento HTMLCanvasElement usando useRef.
  * Sino, sale como elemento null y no funciona en typescript */
 
-export function BarChart({ labels, data }: BarChartProps) {
+export function LineChart({ labels, data }: BarChartProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -26,21 +26,21 @@ export function BarChart({ labels, data }: BarChartProps) {
       const context = canvas.getContext('2d');
       if (context) {
         const chart = new Chart(context, {
-          type: 'bar',
+          type: 'line',
           data: {
             labels: labels,
             datasets: [{
-              label: 'Accesos',
+              label: 'Transacciones',
               data: data,
-              backgroundColor: ['#2E3440',],
-              borderColor: ['#2E3440',],
+              backgroundColor: '#2E3440',
+              borderColor: '#2E3440',
               borderWidth: 1
             }]
           },
           options: {
             animation: {
-              duration: 0,
-            },
+                duration: 0,
+              },
             scales: {
               y: {
                 beginAtZero: true
@@ -49,7 +49,7 @@ export function BarChart({ labels, data }: BarChartProps) {
             responsive: true,
             plugins: {
               legend: {
-                display: false,
+                display: false
               },
             }
           }
@@ -59,7 +59,7 @@ export function BarChart({ labels, data }: BarChartProps) {
         };
       }
     }
-  }, [data, labels]);
+  }, [labels, data]);
 
   return (
     <canvas ref={canvasRef} />

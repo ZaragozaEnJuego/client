@@ -17,3 +17,8 @@ export const defaultUser = (): User => {
         access: true
     }
 }
+
+export type UnitsPerDay = {
+    date: string,
+    count: number,
+}
