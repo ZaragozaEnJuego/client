@@ -62,7 +62,7 @@ const OfferCard: FC<Offers> = ({ offer }) => {
         <div style={{ color: chooseColor(property.kind) }} className='flex flex-col-3 justify-center align-middle overflow-x-clip items-top border w-auto rounded-3xl py-2 px-1 sm:px-4 my-4 h-100'>
           <div className='flex flex-col justify-center items-center'>
             <UndefinedIcon style={{ fill: '#D8DEE9' }} className='w-10 h-10 object-cover rounded-full'/>
-            <h1 className='text-xs text-nord1' >{offer.owner}</h1>
+            <h1 className='text-xs text-nord1' >{offer.offerer}</h1>
             <h1 style={{ color: chooseColor(property.kind) }} className={'w-50 font-bold text-xs lg:text-lg md:text-base sm:text-sm xl:text-xl text-center'}>{offer.amount}€</h1>
           </div>
           <div className='flex items-center justify-top mt-4 mx-1 sm:mx-2 md:mx-4 flex-col'>

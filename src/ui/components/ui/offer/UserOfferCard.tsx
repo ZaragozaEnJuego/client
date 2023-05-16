@@ -60,7 +60,7 @@ const UserOfferCard: FC<Offers> = ({ offer }) => {
   return (
     <div style={{ background: '#8FBCBB' }} className='flex justify-center align-middle items-center overflow-x-clip border w-auto rounded-3xl py-2 px-1 sm:px-4 my-4 h-100'>
     <div className='flex flex-col justify-center items-center'>
-      <UndefinedIcon style={{ fill: '#D8DEE9' }} className='w-10 h-10 object-cover rounded-full'/>
+      <UndefinedIcon className='w-10 h-10 object-cover rounded-full'/>
       <h1 className='text-xs text-nord1' >Tú</h1>
       <h1 className='text-xs lg:text-lg md:text-base sm:text-sm xl:text-xl w-50 font-bold text-primary text-center'>{offer.amount}€</h1>
     </div>
@@ -99,7 +99,7 @@ const UserOfferCard: FC<Offers> = ({ offer }) => {
       </div>
     </div>
     <div className='flex flex-col justify-center items-center '>
-      <UndefinedIcon style={{ fill: '#D8DEE9' }} className='w-10 h-10 object-cover rounded-full'/>
+      <UndefinedIcon className='w-10 h-10 object-cover rounded-full'/>
       <h1 className='text-xs text-nord1' >{offer.owner}</h1>
       <h1 style={{ background: '#8FBCBB' }} className={'w-50 text-center font-bold text-sm lg:text-base md:text-sm xl:text-lg'}>{property.name}</h1>
     </div>
