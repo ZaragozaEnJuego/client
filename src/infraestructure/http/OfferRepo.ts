@@ -5,7 +5,7 @@ export class HTTPOfferRepo {
     async createOffer(_property: string, _offerer: string, _amount: number): Promise<string> {
         const newOffer = {
             property: _property,
-            owner: _offerer,
+            offerer: _offerer,
             amount: _amount,
           };
 
