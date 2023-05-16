@@ -5,11 +5,10 @@ import 'react-toastify/dist/ReactToastify.css'
 
 interface modalWindow {
   property: string, 
-  owner: string, 
   offerer: string
 }
 
-const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
+const ModalNegotiation: FC<modalWindow> = ({ property, offerer }) => {
   const [amount, setAmount]  = useState<number>(50000);
   const offerRepo: HTTPOfferRepo = new HTTPOfferRepo()
   const [showModal, setShowModal] = React.useState(false)
@@ -59,7 +58,8 @@ const ModalNegotiation: FC<modalWindow> = ({ property, owner, offerer }) => {
                     type="button"
                     onClick={() => {
                       try {
-                        offerRepo.createOffer(property, owner, offerer, amount)
+                        console.log("propertie id: "+property+" offerer id: "+offerer+" amount: "+amount)
+                        offerRepo.createOffer(property, offerer, amount)
                         toast('Oferta realizada con éxito', {
                           position: 'top-right',
                           autoClose: 5000,

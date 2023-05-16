@@ -2,15 +2,14 @@ import { Offer } from '../../core/negotiations/domain'
 import axios from './http'
 
 export class HTTPOfferRepo {
-    async createOffer(_property: string, _owner: string, _offerer: string, _amount: number): Promise<string> {
+    async createOffer(_property: string, _offerer: string, _amount: number): Promise<string> {
         const newOffer = {
             property: _property,
-            offerer: _owner,
             owner: _offerer,
             amount: _amount,
           };
 
-        const response = await axios.post('/negotiations/create', newOffer)
+        const response = await axios.post('/offers', newOffer)
         if (response.status !== 201) {
             throw new Error('No se puedo obtener los datos de la oferta creada')
         }
@@ -25,7 +24,7 @@ export class HTTPOfferRepo {
             owner: string,
             amount: number
         }
-        const response = await axios.get<OfferDTO[]>(`/negotiation/${id}/offerer`, {
+        const response = await axios.get<OfferDTO[]>(`/offers/offerer/${id}`, {
             headers: {
                 accept: 'application/json'
             }
@@ -53,7 +52,7 @@ export class HTTPOfferRepo {
             owner: string,
             amount: number
         }
-        const response = await axios.get<OfferDTO[]>(`/negotiation/${id}/owner`, {
+        const response = await axios.get<OfferDTO[]>(`/offers/owner/${id}`, {
             headers: {
                 accept: 'application/json'
             }
@@ -74,7 +73,7 @@ export class HTTPOfferRepo {
         }))
     }
     async execOffer(offerId: string): Promise<string> {
-        const response = await axios.post(`/negotiation/${offerId}/execute`, {
+        const response = await axios.post(`/offers/accept/${offerId}`, {
             headers: {
                 accept: 'application/json'
             }
@@ -86,7 +85,7 @@ export class HTTPOfferRepo {
         return response.data.id
     }
     async deleteOffer(offerId: string): Promise<string> {
-        const response = await axios.delete(`/negotiation/${offerId}/delete`, {
+        const response = await axios.delete(`/offers/${offerId}`, {
             headers: {
                 accept: 'application/json'
             }

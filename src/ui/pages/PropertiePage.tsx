@@ -32,6 +32,7 @@ const PropertiePage = () => {
         propertieRepo.getPropertieById(params.buildingId).then((propertie: Propertie) => {
           console.log(propertie);
           setPropertie(propertie);
+          console.log("propertie id: "+propertie.id+" offerer id: "+userId)
         });
       } catch (error) {
         toast('Error al obtener datos del edificio', {
@@ -271,7 +272,7 @@ const PropertiePage = () => {
       </button>
         ) : (
           userId !== undefined ? (
-            <ModalNegotiation property={propertie.id} owner={propertie.owner} offerer={userId}/>
+            <ModalNegotiation property={propertie.id} offerer={userId}/>
           ) : (
             toast.error('Error al lanzar la ventana modal', {
               position: 'top-right',
