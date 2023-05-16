@@ -6,7 +6,7 @@ type Size = 'small' | 'regular'
 
 interface Offers {
     list: Offer[],
-    size?: Size
+    size?: Size,
   }
 
 const UserOfferList: FC<Offers> = ({ list, size }) => {

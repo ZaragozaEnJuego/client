@@ -6,10 +6,11 @@ type Size = 'small' | 'regular'
 
 interface Offers {
     list: Offer[];
-    size?: Size
+    size?: Size,
   }
 
 const OfferList: FC<Offers> = ({ list, size }) => {
+
     return (
         <div className='w-full overflow-y-scroll overflow-x-clip pr-2 h-full'>
         {size === 'small' ? (
