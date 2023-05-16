@@ -58,7 +58,6 @@ const ModalNegotiation: FC<modalWindow> = ({ property, offerer }) => {
                     type="button"
                     onClick={() => {
                       try {
-                        console.log("propertie id: "+property+" offerer id: "+offerer+" amount: "+amount)
                         offerRepo.createOffer(property, offerer, amount)
                         toast('Oferta realizada con éxito', {
                           position: 'top-right',
