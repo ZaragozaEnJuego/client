@@ -287,7 +287,7 @@ const PropertiePage = () => {
           propertie.owner !== name && userId !== undefined ? (
             <ModalNegotiation property={propertie.id} offerer={userId}/>
           ) : (
-            <button style={{ color: chooseColor(propertie.kind), outlineColor: chooseColor(propertie.kind) }} className='font-bold bg-white text-primary py-4 w-52 outline rounded-full mx-10'>
+            <button style={{ color: chooseColor(propertie.kind), outlineColor: chooseColor(propertie.kind) }} className='font-bold bg-white text-primary py-4 w-52 outline cursor-default rounded-full mx-10'>
               Comprada
             </button>
           ))}
