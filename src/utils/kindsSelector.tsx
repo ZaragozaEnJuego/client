@@ -1,3 +1,12 @@
+/*  Sistemas y Tecnologías Web - Fabra Caro, Francisco
+*   Proyecto:                    Zaragoza en Juego 
+*   Fichero:                     kindsSelector.tsx
+*   Desarrolladores:             Aréjula Aísa, Íñigo                  - 785370              
+*                                González Martínez de Apellániz, Ibón - 756878
+*                                Ruiz Borao, Juan José                - 756640
+*                                Penacho, Ismael                      - 774572
+*/
+
 import { Kind } from '../core/properties/domain';
 import { ReactComponent as SchoolIcon } from '/src/assets/graduation-cap-solid.svg';
 import { ReactComponent as MedicalIcon } from '/src/assets/suitcase-medical-solid.svg';
