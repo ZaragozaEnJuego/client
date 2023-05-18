@@ -1,3 +1,12 @@
+/*  Sistemas y Tecnologías Web - Fabra Caro, Francisco
+*   Proyecto:                    Zaragoza en Juego 
+*   Fichero:                     LoginPage.tsx
+*   Desarrolladores:             Aréjula Aísa, Íñigo                  - 785370              
+*                                González Martínez de Apellániz, Ibón - 756878
+*                                Ruiz Borao, Juan José                - 756640
+*                                Penacho, Ismael                      - 774572
+*/
+
 import { useEffect, useState } from 'react';
 import { FaGoogle, FaGithub, FaDiscord } from 'react-icons/fa';
 import { ReactComponent as Logo } from '/src/assets/Logo.svg';

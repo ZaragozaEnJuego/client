@@ -1,3 +1,12 @@
+/*  Sistemas y Tecnologías Web - Fabra Caro, Francisco
+*   Proyecto:                    Zaragoza en Juego 
+*   Fichero:                     HomePage.tsx
+*   Desarrolladores:             Aréjula Aísa, Íñigo                  - 785370              
+*                                González Martínez de Apellániz, Ibón - 756878
+*                                Ruiz Borao, Juan José                - 756640
+*                                Penacho, Ismael                      - 774572
+*/
+
 import { NavLink } from 'react-router-dom';
 import { IPropertieRepo, Propertie } from '../../core/properties/domain';
 import { MemoriePropertieRepo } from '../../infraestructure/memory';

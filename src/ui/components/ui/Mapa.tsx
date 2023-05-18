@@ -1,3 +1,12 @@
+/*  Sistemas y Tecnologías Web - Fabra Caro, Francisco
+*   Proyecto:                    Zaragoza en Juego 
+*   Fichero:                     Mapa.tsx
+*   Desarrolladores:             Aréjula Aísa, Íñigo                  - 785370              
+*                                González Martínez de Apellániz, Ibón - 756878
+*                                Ruiz Borao, Juan José                - 756640
+*                                Penacho, Ismael                      - 774572
+*/
+
 import React, { FC, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';

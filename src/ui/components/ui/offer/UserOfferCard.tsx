@@ -1,3 +1,12 @@
+/*  Sistemas y Tecnologías Web - Fabra Caro, Francisco
+*   Proyecto:                    Zaragoza en Juego 
+*   Fichero:                     UserOfferCard.tsx
+*   Desarrolladores:             Aréjula Aísa, Íñigo                  - 785370              
+*                                González Martínez de Apellániz, Ibón - 756878
+*                                Ruiz Borao, Juan José                - 756640
+*                                Penacho, Ismael                      - 774572
+*/
+
 import { FC, useEffect, useState } from 'react';
 import { Offer } from '../../../../core/negotiations/domain';
 import { DefaultPropertie, IPropertieRepo, Kind, Propertie } from '../../../../core/properties/domain';
